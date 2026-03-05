@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Me — Sales Ignition</title>
+  <meta name="description" content="Ready to fix your deliverability, build Klaviyo flows that convert, and grow email revenue? Let's talk.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #ffffff;
+      --bg-alt:       #f7f6f3;
+      --bg-card:      #f2f1ee;
+      --border:       #e2e1de;
+      --border-light: #d0cfc9;
+      --text:         #1a1a1a;
+      --text-muted:   #666666;
+      --text-dim:     #999999;
+      --accent:       #e84c1e;
+      --accent-dark:  #c93d14;
+      --font:         'Open Sans', sans-serif;
+      --max:          1080px;
+      --radius:       5px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+
+    .eyebrow {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 14px;
+    }
+
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); }
+    h2 { font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
+    h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    p { margin-bottom: 16px; color: var(--text-muted); }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 700; color: var(--text); }
+
+    /* ── BUTTONS ─────────────────────────────────────────── */
+    .btn {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-family: var(--font); font-size: 15px; font-weight: 700;
+      padding: 13px 28px; border-radius: var(--radius);
+      text-decoration: none; transition: background 0.15s, transform 0.12s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--accent-dark); text-decoration: none; transform: translateY(-1px); }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 36px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 66px; gap: 20px;
+    }
+    .nav__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav__logo-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; }
+    .nav__logo-fallback { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: none; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; flex-shrink: 0; }
+    .nav__logo-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .nav__logo-sub { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); }
+    .nav__links { display: flex; align-items: center; list-style: none; gap: 2px; flex: 1; justify-content: flex-end; }
+    .nav__links > li > a { display: block; font-size: 14px; font-weight: 600; color: var(--text-muted); padding: 6px 13px; border-radius: var(--radius); transition: color 0.12s, background 0.12s; text-decoration: none; white-space: nowrap; }
+    .nav__links > li > a:hover { color: var(--text); background: var(--bg-alt); }
+    .nav__links > li.nav__cta > a { background: var(--accent); color: #fff; font-weight: 700; }
+    .nav__links > li.nav__cta > a:hover { background: var(--accent-dark); }
+    .nav__dropdown { position: relative; }
+    .nav__dropdown > a::after { content: ' ▾'; font-size: 9px; opacity: 0.5; }
+    .nav__dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; min-width: 230px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 8px 32px rgba(0,0,0,0.10); padding: 5px; z-index: 300; }
+    .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+    .nav__dropdown-menu a { display: block; padding: 8px 13px; font-size: 14px; font-weight: 500; color: var(--text-muted); border-radius: 4px; transition: color 0.1s, background 0.1s; }
+    .nav__dropdown-menu a:hover { color: var(--text); background: var(--bg-alt); text-decoration: none; }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      padding: 72px 0 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .hero h1 { margin-bottom: 20px; }
+    .hero__desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px; }
+
+    /* ── CRITERIA LIST ───────────────────────────────────── */
+    .criteria { list-style: none; margin-bottom: 36px; }
+    .criteria li {
+      display: flex; align-items: flex-start; gap: 13px;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+      font-size: 16px; color: var(--text-muted); line-height: 1.5;
+    }
+    .criteria li:first-child { border-top: 1px solid var(--border); }
+    .criteria li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── SOCIAL PROOF STRIP ──────────────────────────────── */
+    .proof-strip {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .proof-strip__text { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── FORM PANEL ──────────────────────────────────────── */
+    .form-panel {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 40px 36px;
+      position: sticky;
+      top: 88px;
+    }
+    .form-panel h2 { font-size: 1.35rem; margin-bottom: 6px; }
+    .form-panel__sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+
+    /* Close.io form embed */
+    close-form {
+      display: block;
+      width: 100%;
+    }
+
+    /* ── WHAT TO EXPECT ──────────────────────────────────── */
+    .expect { padding: 72px 0; background: var(--bg-alt); border-top: 1px solid var(--border); }
+    .expect__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .expect__card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+    }
+    .expect__num {
+      display: inline-block;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      background: #fef2ee; border-radius: 100px;
+      padding: 3px 10px; margin-bottom: 14px;
+    }
+
+    /* ── STAT ROW ────────────────────────────────────────── */
+    .stat-row {
+      display: flex; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+      margin-top: 36px;
+    }
+    .stat-row__item {
+      flex: 1; padding: 22px 24px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-row__item:last-child { border-right: none; }
+    .stat-row__num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; display: block; }
+    .stat-row__label { font-size: 13px; color: var(--text-muted); margin-top: 5px; display: block; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 26px 36px; text-align: center; font-size: 13px; color: var(--text-dim); }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: var(--text-muted); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .nav__links { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 14px 24px 18px; z-index: 500; }
+      .nav__links.open { display: flex; }
+      .nav__hamburger { display: flex; }
+      .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-panel { position: static; }
+      .expect__grid { grid-template-columns: 1fr; }
+      .stat-row { flex-direction: column; }
+      .stat-row__item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-row__item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html">
+      <img src="https://conversion.design/public/images/jaka_smid_conversion_designer.png"
+        alt="Steven" class="nav__logo-avatar"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="nav__logo-fallback">SI</span>
+      <span class="nav__logo-name">Steven<span class="nav__logo-sub">Email Deliverability Expert</span></span>
+    </a>
+    <ul class="nav__links" id="nav-links">
+      <li class="nav__dropdown">
+        <a href="#">My Tools</a>
+        <div class="nav__dropdown-menu">
+          <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co — Audit Tool</a>
+          <a href="https://inboxsmarts.com" target="_blank">InboxSmarts.com — Warm-Up</a>
+          <a href="index.html#stealflows">StealFlows — Klaviyo Templates</a>
+        </div>
+      </li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li class="nav__cta"><a href="work-with-me.html">Work With Me</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO + FORM ════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+
+      <!-- LEFT — copy -->
+      <div>
+        <span class="eyebrow">Let's work together</span>
+        <h1>Ready to grow your email revenue?</h1>
+        <p class="hero__desc">
+          Tell me about your business. I'll review your current email setup and tell you
+          exactly where the biggest opportunities are — deliverability, flows, list health,
+          or all three.
+        </p>
+
+        <h2>I work best with brands that:</h2>
+        <ul class="criteria">
+          <li>Are doing $1M+ in annual revenue</li>
+          <li>Send email through Klaviyo, ActiveCampaign, or HubSpot</li>
+          <li>Have an email list of at least 10,000 subscribers</li>
+          <li>Are serious about revenue-driven email, not just "sending newsletters"</li>
+          <li>Want to work directly with an expert, not an account manager</li>
+        </ul>
+
+        <div class="proof-strip">
+          <img src="https://conversion.design/public/images/customers2x.png"
+            alt="Happy clients" style="height:38px;width:auto;"
+            onerror="this.style.display='none';">
+          <p class="proof-strip__text" style="margin:0;">
+            <strong>Toyota, True Citrus, Vurbmoto and 50+ others</strong> are already growing.<br>
+            <a href="index.html#testimonials">Read their stories →</a>
+          </p>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-row__item">
+            <span class="stat-row__num">$1M+</span>
+            <span class="stat-row__label">email revenue generated</span>
+          </div>
+          <div class="stat-row__item">
+            <span class="stat-row__num">50+</span>
+            <span class="stat-row__label">brands served</span>
+          </div>
+          <div class="stat-row__item">
+            <span class="stat-row__num">97%</span>
+            <span class="stat-row__label">avg inbox rate after audit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — form -->
+      <div>
+        <div class="form-panel">
+          <h2>Get in touch</h2>
+          <p class="form-panel__sub">Fill out the form and I'll follow up within one business day.</p>
+
+          <!-- Close.io embedded form -->
+          <script src="https://webforms.closeiocdn.com/webforms.js" type="module" crossorigin="anonymous" defer></script>
+          <close-form id="form_032AI3Q0PR6AiLOLMpJo0o"></close-form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT TO EXPECT ════════════════════════════════════ -->
+<section class="expect">
+  <div class="container">
+    <span class="eyebrow">What happens next</span>
+    <h2>Here's what to expect after you reach out</h2>
+    <div class="expect__grid">
+
+      <div class="expect__card">
+        <span class="expect__num">Step 01</span>
+        <h3>I review your setup</h3>
+        <p>Within one business day I'll take a look at your email program — domain health, current flows, list quality, and platform setup — so I come to our first call with real observations, not generic questions.</p>
+      </div>
+
+      <div class="expect__card">
+        <span class="expect__num">Step 02</span>
+        <h3>Discovery call</h3>
+        <p>We'll spend 30 minutes on a call where I walk you through what I found, ask about your goals and constraints, and give you an honest read on where the biggest revenue opportunities are.</p>
+      </div>
+
+      <div class="expect__card">
+        <span class="expect__num">Step 03</span>
+        <h3>Proposal & kickoff</h3>
+        <p>If we're a good fit, I'll send a focused proposal within 48 hours. No bloated retainers, no junior team members. Just a clear scope, timeline, and the work we'll do together.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  Copyright &copy; 2024–2026 Sales Ignition LLC. All rights reserved. &nbsp;·&nbsp;
+  Greenville, South Carolina &nbsp;·&nbsp;
+  <a href="mailto:hello@salesignition.com">hello@salesignition.com</a>
+</footer>
+
+<script>
+  const btn=document.getElementById('hamburger'),links=document.getElementById('nav-links');
+  if(btn&&links){
+    btn.addEventListener('click',()=>links.classList.toggle('open'));
+    document.addEventListener('click',(e)=>{if(!btn.contains(e.target)&&!links.contains(e.target))links.classList.remove('open');});
+  }
+</script>
+</body>
+</html>
