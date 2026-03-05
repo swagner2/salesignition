@@ -1,256 +1,334 @@
-# Image Replacement Guide — Sales Ignition Website
+# Sales Ignition Website — Build Guide & Image Replacement Reference
 
-All case study pages currently show **real images hotlinked from conversion.design** as
-placeholders, so every page renders with actual content immediately. This file tells you
-exactly which image to replace, what to put there, and how to do it.
+**Last updated:** March 2026  
+**Total pages:** 12 (1 homepage + 11 case study pages)  
+**Deployed via:** Cloudflare Workers (`wrangler deploy`)
 
 ---
 
-## How to replace an image (same steps every time)
+## Site file map
 
-1. **Take your screenshot** — see the spec for each slot below
-2. **Save it** to the exact file path shown (create the folder if it doesn't exist)
-3. **Open the HTML file** in a text editor
-4. **Find the `<img>` tag** — search for the `data-replace="..."` attribute to locate it fast
-5. **Replace the `src="https://conversion.design/..."` URL** with the local path shown
-6. **Save and refresh** your browser to confirm it looks right
-7. **Deploy** — `wrangler deploy`
+```
+sales-ignition-site/
+├── index.html              ← Homepage (11 portfolio cards)
+├── style.css               ← Shared stylesheet for all case study pages
+│
+├── true-citrus.html        ← Case study: True Citrus
+├── miltons.html            ← Case study: Milton's Craft Bakers
+├── taxquotes.html          ← Case study: TaxQuotes
+├── emaildelivery.html      ← Case study: EmailDelivery.co
+├── little-hunter.html      ← Case study: Little Hunter
+├── tumblerware.html        ← Case study: Tumblerware
+├── hear-com.html           ← Case study: Hear.com
+├── blaze-n-chill.html      ← Case study: Blaze N Chill
+├── enchant-brands.html     ← Case study: Enchant Brands
+├── vurbmoto.html           ← Case study: Vurbmoto
+├── therapy-clean.html      ← Case study: Therapy Clean
+│
+├── worker.js               ← Cloudflare Worker entry point
+├── wrangler.toml           ← Cloudflare deployment config
+│
+└── images/
+    ├── steven-headshot.png         ← Your nav logo photo (replaces placeholder)
+    ├── steven-about.jpg            ← Your about section photo (replaces placeholder)
+    ├── case-study-preview.png      ← Homepage case band screenshot
+    ├── logos/                      ← Client logos for the scrolling strip
+    ├── testimonials/               ← Testimonial author photos
+    ├── portfolio/                  ← Homepage portfolio card preview images
+    └── case-studies/               ← Full-width images inside each case study page
+```
 
-### Example — before:
+---
+
+## Design & color reference
+
+### Global palette (index.html inline styles)
+
+| Variable | Value | Used for |
+|---|---|---|
+| `--bg` | `#ffffff` | Page background |
+| `--bg-alt` | `#f7f6f3` | Alternating sections |
+| `--text` | `#1a1a1a` | Body text |
+| `--accent` | `#e84c1e` | CTA buttons, links, arrows |
+| `--border` | `#e2e1de` | Card and section borders |
+
+### Portfolio card brand colors
+
+Each card has a unique background color. To change one, find the `.pcard--[slug]` class — the original 4 are in `index.html`, the 7 new ones are in `style.css`.
+
+| Brand | CSS class | Background | Text |
+|---|---|---|---|
+| True Citrus | `.pcard--true-citrus` | `#f5e230` lemon yellow | Dark |
+| Milton's Craft Bakers | `.pcard--miltons` | `#d4e8c2` natural green | Dark |
+| TaxQuotes | `.pcard--taxquotes` | `#1a2d5a` navy | Light |
+| EmailDelivery.co | `.pcard--emaildelivery` | `#0d1117` near-black | Light |
+| Little Hunter | `.pcard--little-hunter` | `#f97316` burnt orange | Dark |
+| Tumblerware | `.pcard--tumblerware` | `#0f766e` deep teal | Light |
+| Hear.com | `.pcard--hear-com` | `#1e40af` rich blue | Light |
+| Blaze N Chill | `.pcard--blaze-n-chill` | `#16a34a` deep green | Light |
+| Enchant Brands | `.pcard--enchant-brands` | `#7c3aed` deep violet | Light |
+| Vurbmoto | `.pcard--vurbmoto` | `#18181b` near-black | Light |
+| Therapy Clean | `.pcard--therapy-clean` | `#e0f2fe` light sky blue | Dark |
+
+---
+
+## Face & person images currently in use
+
+All currently hotlinked from conversion.design as working placeholders. Replace each with your own file at the path shown.
+
+| Location | Current placeholder | Replace with |
+|---|---|---|
+| Nav logo (all 12 pages) | `conversion.design/.../jaka_smid_conversion_designer.png` | `images/steven-headshot.png` |
+| About section photo | `conversion.design/.../jaka-smid.jpg` | `images/steven-about.jpg` |
+| Testimonial 1 author | `conversion.design/.../karlo_bradica.png` | `images/testimonials/client-1.png` |
+| Testimonial 2 author | `conversion.design/.../aaron_sustar.png` | `images/testimonials/client-2.png` |
+| Social proof avatar row | `conversion.design/.../customers2x.png` | `images/customers.png` |
+
+To replace the nav logo across all 12 pages in one command:
+
+```bash
+find . -name "*.html" -exec sed -i \
+  's|https://conversion.design/public/images/jaka_smid_conversion_designer.png|images/steven-headshot.png|g' {} \;
+```
+
+---
+
+## How to replace any image (same steps every time)
+
+1. Take your screenshot — see the spec for each slot below
+2. Save it to the exact file path shown (create the folder first if needed)
+3. Open the HTML file in any text editor
+4. Search `data-replace=` to jump straight to the image tag
+5. Replace the `src="https://conversion.design/..."` with the local path
+6. Remove the `data-replace` attribute once done
+7. Save, refresh browser to confirm it looks right
+8. Deploy: `wrangler deploy`
+
+**Before:**
 ```html
 <img src="https://conversion.design/public/images/wheelio/wheelio%20landing%20wireframes.png"
-  alt="Klaviyo flow wireframe" class="cs-image"
+  alt="Flow wireframe" class="cs-image"
   data-replace="images/case-studies/true-citrus/flow-wireframe.png">
 ```
 
-### Example — after:
+**After:**
 ```html
-<img src="images/case-studies/true-citrus/flow-wireframe.png"
-  alt="Klaviyo flow wireframe for True Citrus" class="cs-image">
-```
-
----
-
-## Image specifications
-
-- **Width:** 1400px is ideal for full-width section images (the site scales them to 100%)
-- **Format:** PNG for screenshots, JPG for photos — PNG preferred for dashboards/UI
-- **File size:** Compress to under 500KB per image using [Squoosh](https://squoosh.app) or [TinyPNG](https://tinypng.com)
-- **Screenshots:** Use a full-screen browser window at 1400px wide. On Mac, use Cmd+Shift+4 or a tool like [CleanShot X](https://cleanshot.com)
-
----
-
-## true-citrus.html — 4 images to replace
-
-**File:** `true-citrus.html`
-**Search for:** `data-replace="images/case-studies/true-citrus/..."`
-
----
-
-### Slot 1 of 4 — Flow architecture wireframe
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/true-citrus/flow-wireframe.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio/wheelio landing wireframes.png` |
-| **What to screenshot** | Your Klaviyo flow builder showing all automation flows for True Citrus — welcome series, abandoned cart, post-purchase, win-back. Zoom out so all flows are visible. |
-| **Tips** | In Klaviyo: go to Flows → select the flow → take a wide screenshot. Ideally show multiple flows side by side. |
-
-**In the HTML, find and update:**
-```html
-<!-- BEFORE -->
-<img src="https://conversion.design/public/images/wheelio/wheelio%20landing%20wireframes.png"
-  ...
-  data-replace="images/case-studies/true-citrus/flow-wireframe.png">
-
-<!-- AFTER -->
 <img src="images/case-studies/true-citrus/flow-wireframe.png"
   alt="True Citrus Klaviyo flow architecture" class="cs-image">
 ```
 
 ---
 
-### Slot 2 of 4 — Welcome series email design
+## Image specifications
 
 | | |
 |---|---|
-| **Save to** | `images/case-studies/true-citrus/email-welcome.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio/wheelio landing page design sales.png` |
-| **What to screenshot** | Full scroll capture of the welcome series email (top to bottom). Use your email client or a tool like [Litmus](https://litmus.com) to render it. |
-| **Tips** | Capture at ~700px wide (email width). Use browser DevTools to resize if needed. |
+| **Case study images** | 1400px wide, any height, PNG preferred |
+| **Portfolio card previews** | 800×500px (16:10), PNG or JPG |
+| **Logo strip** | ~200px wide, transparent PNG |
+| **Max file size** | 500KB per image — compress at squoosh.app |
+| **Screenshot tool** | GoFullPage (Chrome) for full-page captures |
 
 ---
 
-### Slot 3 of 4 — Abandoned cart email design
+## Homepage image slots
 
-| | |
+### Personal / face images
+See the face images table above.
+
+### Case band preview
+| Save to | What to put there |
 |---|---|
-| **Save to** | `images/case-studies/true-citrus/email-abandoned-cart.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio/wheelio landing page success story.png` |
-| **What to screenshot** | Full scroll capture of the abandoned cart email design — subject line through CTA button. |
+| `images/case-study-preview.png` | A Klaviyo or EmailDelivery.co dashboard screenshot showing a strong before/after result |
 
----
+### Portfolio card preview images
+These sit at the bottom of each homepage card. Add a screenshot to make each one appear.
 
-### Slot 4 of 4 — Revenue results
+| Brand | Save to | What to screenshot |
+|---|---|---|
+| True Citrus | `images/portfolio/true-citrus-klaviyo.png` | Klaviyo revenue chart or a polished email design |
+| Milton's | `images/portfolio/miltons-deliverability.png` | Inbox placement score or before/after |
+| TaxQuotes | `images/portfolio/taxquotes-nurture.png` | Sequence flow or landing page |
+| EmailDelivery.co | `images/portfolio/emaildelivery-tool.png` | emaildelivery.co homepage or score report |
+| Little Hunter | `images/portfolio/little-hunter.png` | Klaviyo flow or email design |
+| Tumblerware | `images/portfolio/tumblerware.png` | Klaviyo flow or email design |
+| Hear.com | `images/portfolio/hear-com.png` | Nurture sequence or inbox dashboard |
+| Blaze N Chill | `images/portfolio/blaze-n-chill.png` | Klaviyo flow or email design |
+| Enchant Brands | `images/portfolio/enchant-brands.png` | Multi-brand account or email design |
+| Vurbmoto | `images/portfolio/vurbmoto.png` | Deliverability dashboard or flow |
+| Therapy Clean | `images/portfolio/therapy-clean.png` | Recharge + Klaviyo flow or email design |
 
-| | |
+### Logo strip images
+The strip shows text fallbacks when logos are missing, so it works immediately. To add real logos, save transparent PNGs here — CSS applies grayscale automatically.
+
+| Brand | Save to |
 |---|---|
-| **Save to** | `images/case-studies/true-citrus/results.png` |
-| **Current placeholder** | `https://conversion.design/public/images/spin_rewriter_landing_page_design.png` |
-| **What to screenshot** | Klaviyo revenue dashboard showing the before/after or the YoY comparison. Go to Klaviyo → Analytics → Revenue and set date ranges. Screenshot the chart + the key metrics. Annotate with arrows or callout boxes showing the +34% / +$180k numbers. |
-| **Tips** | A side-by-side before/after is the most compelling. You can create a simple comparison layout in Canva or Figma. |
+| Toyota | `images/logos/toyota.png` |
+| Mercedes-Benz | `images/logos/mercedes.png` |
+| True Citrus | `images/logos/true-citrus.png` |
+| Milton's | `images/logos/miltons.png` |
+| TaxQuotes | `images/logos/taxquotes.png` |
+| Little Hunter | `images/logos/little-hunter.png` |
+| Tumblerware | `images/logos/tumblerware.png` |
 
 ---
 
-## miltons.html — 4 images to replace
-
-**File:** `miltons.html`
-**Search for:** `data-replace="images/case-studies/miltons/..."`
+## Case study pages — all image slots
 
 ---
 
-### Slot 1 of 4 — Deliverability audit report
+### true-citrus.html — 4 slots
 
-| | |
-|---|---|
-| **Save to** | `images/case-studies/miltons/audit-report.png` |
-| **Current placeholder** | `https://conversion.design/public/images/ebn_landing_page_design.png` |
-| **What to screenshot** | Your EmailDelivery.co audit report for miltonsbread.com showing the failing checks (the "before" state). Or an MXToolbox screenshot showing the SPF/DKIM/DMARC failures. |
-| **Tips** | If you no longer have the original failing state, recreate a mock-up or use a different domain as an example of what failures look like. |
-
----
-
-### Slot 2 of 4 — DNS & authentication setup
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/miltons/dns-setup.png` |
-| **Current placeholder** | `https://conversion.design/public/images/sendcloud.png` |
-| **What to screenshot** | The corrected DNS records — SPF, DKIM, and DMARC all green. Use [MXToolbox SuperTool](https://mxtoolbox.com/SuperTool.aspx) and screenshot the "all passing" validation results. |
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Flow architecture | `images/case-studies/true-citrus/flow-wireframe.png` | Klaviyo flow builder showing all automations. Zoom out so welcome, cart, post-purchase, and win-back are all visible. |
+| 2 — Welcome series email | `images/case-studies/true-citrus/email-welcome.png` | Full scroll capture of the welcome email (~700px wide) |
+| 3 — Abandoned cart email | `images/case-studies/true-citrus/email-abandoned-cart.png` | Full scroll capture of the abandoned cart email |
+| 4 — Revenue results | `images/case-studies/true-citrus/results.png` | Klaviyo revenue dashboard before/after. Annotate with +34% / +$180k callouts. |
 
 ---
 
-### Slot 3 of 4 — Warm-up progress
+### miltons.html — 4 slots
 
-| | |
-|---|---|
-| **Save to** | `images/case-studies/miltons/warmup-progress.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio_admin_dashboard_design.png` |
-| **What to screenshot** | InboxSmarts dashboard showing inbox placement climbing from 61% back to 96% over the warm-up period. The time-series chart works best here. |
-
----
-
-### Slot 4 of 4 — Final results
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/miltons/results.png` |
-| **Current placeholder** | `https://conversion.design/public/images/spin_rewriter_landing_page_design.png` |
-| **What to screenshot** | Final inbox placement at 96%. Side-by-side before/after is ideal. Can combine: EmailDelivery.co score before (61%) on the left, score after (96%) on the right, with a big arrow between them. |
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Deliverability audit | `images/case-studies/miltons/audit-report.png` | EmailDelivery.co or MXToolbox showing the failing state (61% inbox placement) |
+| 2 — DNS setup | `images/case-studies/miltons/dns-setup.png` | MXToolbox showing SPF/DKIM/DMARC all green after the fix |
+| 3 — Warm-up progress | `images/case-studies/miltons/warmup-progress.png` | InboxSmarts dashboard showing placement climbing back to 96% |
+| 4 — Final results | `images/case-studies/miltons/results.png` | Before (61%) → after (96%) side by side |
 
 ---
 
-## taxquotes.html — 4 images to replace
+### taxquotes.html — 4 slots
 
-**File:** `taxquotes.html`
-**Search for:** `data-replace="images/case-studies/taxquotes/..."`
-
----
-
-### Slot 1 of 4 — ActiveCampaign sequence flow map
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/taxquotes/flow-map.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio_landing_page_design.png` |
-| **What to screenshot** | The full ActiveCampaign automation showing all 10 emails in sequence with their delays and conditions visible. Go to Automations → select the TaxQuotes sequence → screenshot the full flow canvas. |
-| **Tips** | Zoom out enough to show all 10 steps. If it's very tall, use a full-page screenshot tool. |
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Sequence flow map | `images/case-studies/taxquotes/flow-map.png` | ActiveCampaign automation canvas showing all 10 emails with delays |
+| 2 — Email 1 opener | `images/case-studies/taxquotes/email-opener.png` | Urgency opener email, full scroll, subject line visible |
+| 3 — Deadline CTA email | `images/case-studies/taxquotes/email-cta.png` | Final deadline-push email with April tax deadline urgency |
+| 4 — Landing page | `images/case-studies/taxquotes/landing-page.png` | Full-page capture of the consultation booking landing page (use GoFullPage) |
 
 ---
 
-### Slot 2 of 4 — Email 1 — urgency opener
+### emaildelivery.html — 4 slots
 
-| | |
-|---|---|
-| **Save to** | `images/case-studies/taxquotes/email-opener.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio/wheelio landing page design sales.png` |
-| **What to screenshot** | Full scroll capture of Email 1 — the urgency/fear-based opener about unfiled taxes. Include the subject line and preview text if possible. |
-
----
-
-### Slot 3 of 4 — Deadline CTA email
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/taxquotes/email-cta.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio/wheelio landing page success story.png` |
-| **What to screenshot** | The final deadline-push email with the April tax deadline urgency and consultation booking CTA prominent. |
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Homepage | `images/case-studies/emaildelivery/homepage.png` | emaildelivery.co full-page scroll |
+| 2 — Score report | `images/case-studies/emaildelivery/score-report.png` | Run any domain through the tool, screenshot the full results |
+| 3 — Analytics dashboard | `images/case-studies/emaildelivery/analytics.png` | Cloudflare Workers analytics or your custom dashboard |
+| 4 — Retargeting funnel | `images/case-studies/emaildelivery/funnel.png` | Diagram of the Meta/LinkedIn/Google Display retargeting flow (build in Whimsical or Canva) |
 
 ---
 
-### Slot 4 of 4 — Landing page
+### little-hunter.html — 4 slots
 
-| | |
-|---|---|
-| **Save to** | `images/case-studies/taxquotes/landing-page.png` |
-| **Current placeholder** | `https://conversion.design/public/images/pirate_store_ecommerce_design.png` |
-| **What to screenshot** | Full-page scroll capture of the TaxQuotes consultation booking landing page. Ideally show mobile + desktop side by side, or just a tall full-page capture showing the business-hours live call detection feature. |
-| **Tips** | Use [GoFullPage](https://gofullpage.com/) Chrome extension to capture the full scrollable page as one image. |
-
----
-
-## emaildelivery.html — 4 images to replace
-
-**File:** `emaildelivery.html`
-**Search for:** `data-replace="images/case-studies/emaildelivery/..."`
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Flow architecture | `images/case-studies/little-hunter/klaviyo-flows.png` | Klaviyo flow builder showing all automations |
+| 2 — Welcome email | `images/case-studies/little-hunter/email-welcome.png` | Welcome series email full scroll |
+| 3 — Post-purchase email | `images/case-studies/little-hunter/email-post-purchase.png` | Post-purchase email full scroll |
+| 4 — Revenue results | `images/case-studies/little-hunter/results.png` | Klaviyo revenue before/after |
 
 ---
 
-### Slot 1 of 4 — Homepage
+### tumblerware.html — 4 slots
 
-| | |
-|---|---|
-| **Save to** | `images/case-studies/emaildelivery/homepage.png` |
-| **Current placeholder** | `https://conversion.design/public/images/vigo-preview.png` |
-| **What to screenshot** | Full-page scroll capture of emaildelivery.co homepage. |
-| **Tips** | Use GoFullPage Chrome extension for a clean full-page capture. |
-
----
-
-### Slot 2 of 4 — Score report
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/emaildelivery/score-report.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio/wheelio landing page design sales.png` |
-| **What to screenshot** | Run your own domain (or any domain) through the tool and screenshot the full score report output — all checks, scores, and recommendations visible. |
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Deliverability audit | `images/case-studies/tumblerware/audit.png` | EmailDelivery.co audit for tumblerware.com |
+| 2 — Klaviyo flows | `images/case-studies/tumblerware/flows.png` | All rebuilt Klaviyo flows |
+| 3 — Email designs | `images/case-studies/tumblerware/email-design.png` | Abandoned cart + post-purchase side by side |
+| 4 — Results | `images/case-studies/tumblerware/results.png` | Revenue dashboard before/after |
 
 ---
 
-### Slot 3 of 4 — Analytics dashboard
+### hear-com.html — 4 slots
 
-| | |
-|---|---|
-| **Save to** | `images/case-studies/emaildelivery/analytics.png` |
-| **Current placeholder** | `https://conversion.design/public/images/wheelio_admin_dashboard_design.png` |
-| **What to screenshot** | Your Cloudflare Workers analytics dashboard showing request volume and usage. Or your custom analytics dashboard deployed on Cloudflare Workers. |
-
----
-
-### Slot 4 of 4 — Retargeting funnel
-
-| | |
-|---|---|
-| **Save to** | `images/case-studies/emaildelivery/funnel.png` |
-| **Current placeholder** | `https://conversion.design/public/images/evolve_garden_ecommerce_design.png` |
-| **What to screenshot** | A diagram showing how warm traffic from emaildelivery.co is followed via retargeting to inboxsmarts.com across Meta, LinkedIn, and Google Display. You can build this diagram in [Whimsical](https://whimsical.com), Figma, or Canva in about 15 minutes. |
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Deliverability problem | `images/case-studies/hear-com/audit.png` | Audit report showing inbox issues at scale |
+| 2 — Nurture sequence | `images/case-studies/hear-com/sequence.png` | Full sequence map in ActiveCampaign or HubSpot |
+| 3 — Email designs | `images/case-studies/hear-com/email-design.png` | Patient nurture email screenshots |
+| 4 — Results | `images/case-studies/hear-com/results.png` | Inbox placement dashboard restored to 98% |
 
 ---
 
-## Folder structure to create
+### blaze-n-chill.html — 4 slots
+
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Segmentation | `images/case-studies/blaze-n-chill/segmentation.png` | Klaviyo segment builder showing new segment structure |
+| 2 — Flow architecture | `images/case-studies/blaze-n-chill/flows.png` | Full Klaviyo automation stack |
+| 3 — Email designs | `images/case-studies/blaze-n-chill/email-design.png` | Welcome and VIP email screenshots |
+| 4 — Results | `images/case-studies/blaze-n-chill/results.png` | Revenue and engagement before/after |
+
+---
+
+### enchant-brands.html — 4 slots
+
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Multi-brand strategy | `images/case-studies/enchant-brands/strategy.png` | Brand architecture diagram or Klaviyo account overview |
+| 2 — Flow architecture | `images/case-studies/enchant-brands/flows.png` | Klaviyo flows across the brand portfolio |
+| 3 — Email designs | `images/case-studies/enchant-brands/email-design.png` | Sample emails from multiple brand properties |
+| 4 — Results | `images/case-studies/enchant-brands/results.png` | Combined revenue dashboard across all brands |
+
+---
+
+### vurbmoto.html — 4 slots
+
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Deliverability crisis | `images/case-studies/vurbmoto/audit.png` | EmailDelivery.co showing 54% inbox placement (the before) |
+| 2 — DNS fix | `images/case-studies/vurbmoto/dns.png` | MXToolbox showing corrected SPF/DKIM/DMARC |
+| 3 — Klaviyo rebuild | `images/case-studies/vurbmoto/flows.png` | New flow architecture in Klaviyo |
+| 4 — Results | `images/case-studies/vurbmoto/results.png` | Inbox rate at 95% + revenue dashboard |
+
+---
+
+### therapy-clean.html — 4 slots
+
+| Slot | Save to | What to screenshot |
+|---|---|---|
+| 1 — Subscription flows | `images/case-studies/therapy-clean/flows.png` | Klaviyo + Recharge integration flow map |
+| 2 — Dunning sequence | `images/case-studies/therapy-clean/dunning.png` | Failed payment recovery email sequence in Klaviyo |
+| 3 — Email designs | `images/case-studies/therapy-clean/email-design.png` | Subscription loyalty and win-back email designs |
+| 4 — Results | `images/case-studies/therapy-clean/results.png` | Subscription retention and LTV dashboard |
+
+---
+
+## Full folder structure to create
 
 ```
 images/
+├── steven-headshot.png
+├── steven-about.jpg
+├── case-study-preview.png
+├── customers.png
+├── logos/
+│   ├── toyota.png
+│   ├── mercedes.png
+│   ├── true-citrus.png
+│   ├── miltons.png
+│   ├── taxquotes.png
+│   ├── little-hunter.png
+│   └── tumblerware.png
+├── testimonials/
+│   ├── client-1.png
+│   └── client-2.png
+├── portfolio/
+│   ├── true-citrus-klaviyo.png
+│   ├── miltons-deliverability.png
+│   ├── taxquotes-nurture.png
+│   ├── emaildelivery-tool.png
+│   ├── little-hunter.png
+│   ├── tumblerware.png
+│   ├── hear-com.png
+│   ├── blaze-n-chill.png
+│   ├── enchant-brands.png
+│   ├── vurbmoto.png
+│   └── therapy-clean.png
 └── case-studies/
     ├── true-citrus/
     │   ├── flow-wireframe.png
@@ -267,48 +345,83 @@ images/
     │   ├── email-opener.png
     │   ├── email-cta.png
     │   └── landing-page.png
-    └── emaildelivery/
-        ├── homepage.png
-        ├── score-report.png
-        ├── analytics.png
-        └── funnel.png
+    ├── emaildelivery/
+    │   ├── homepage.png
+    │   ├── score-report.png
+    │   ├── analytics.png
+    │   └── funnel.png
+    ├── little-hunter/
+    │   ├── klaviyo-flows.png
+    │   ├── email-welcome.png
+    │   ├── email-post-purchase.png
+    │   └── results.png
+    ├── tumblerware/
+    │   ├── audit.png
+    │   ├── flows.png
+    │   ├── email-design.png
+    │   └── results.png
+    ├── hear-com/
+    │   ├── audit.png
+    │   ├── sequence.png
+    │   ├── email-design.png
+    │   └── results.png
+    ├── blaze-n-chill/
+    │   ├── segmentation.png
+    │   ├── flows.png
+    │   ├── email-design.png
+    │   └── results.png
+    ├── enchant-brands/
+    │   ├── strategy.png
+    │   ├── flows.png
+    │   ├── email-design.png
+    │   └── results.png
+    ├── vurbmoto/
+    │   ├── audit.png
+    │   ├── dns.png
+    │   ├── flows.png
+    │   └── results.png
+    └── therapy-clean/
+        ├── flows.png
+        ├── dunning.png
+        ├── email-design.png
+        └── results.png
 ```
 
 ---
 
-## Quick-find cheat sheet
+## How to add a new portfolio entry
 
-To jump to any image tag in any HTML file, search for `data-replace=` — every placeholder
-image has this attribute with the exact local path you need to save your file to.
-
-```
-Ctrl+F (or Cmd+F) → search: data-replace
-```
-
-Each tag looks like this:
-```html
-<img src="https://conversion.design/..."   ← replace this URL
-  alt="..."
-  class="cs-image"
-  data-replace="images/case-studies/..."   ← save your file to this path
->
-```
-
-Once you've replaced all images for a page, you can remove the `data-replace` attribute —
-it's only there to help you find the slots.
+1. Copy any existing case study page as a starting point, e.g. `cp little-hunter.html new-client.html`
+2. Update the H1, eyebrow, description, meta bar, and all 4 image slots
+3. Add a `.pcard--new-client` color rule to `style.css`
+4. Add the card HTML block to `index.html` inside `.portfolio__grid`
+5. Add a link to `new-client.html` in the `.other-projects__grid` inside **every** existing case study page (11 files)
+6. Add the new image slots to this README
 
 ---
 
-## Recommended screenshot tools
+## Deploy
 
-| Tool | Use case | Link |
-|------|----------|------|
-| GoFullPage | Full-page scroll capture in Chrome | [gofullpage.com](https://gofullpage.com) |
-| CleanShot X (Mac) | Annotated screenshots with callouts | [cleanshot.com](https://cleanshot.com) |
-| Squoosh | Compress PNG/JPG before uploading | [squoosh.app](https://squoosh.app) |
-| Whimsical | Build simple funnel/flow diagrams | [whimsical.com](https://whimsical.com) |
-| Canva | Side-by-side before/after layouts | [canva.com](https://canva.com) |
+```bash
+cd sales-ignition-site
+wrangler deploy
+```
+
+Live within ~30 seconds at your Cloudflare Workers URL.
 
 ---
 
-*Sales Ignition LLC · Greenville, South Carolina*
+## Recommended tools
+
+| Tool | Use for | URL |
+|---|---|---|
+| GoFullPage | Full-page scroll captures in Chrome | gofullpage.com |
+| CleanShot X | Annotated screenshots (Mac) | cleanshot.com |
+| Squoosh | Compress images before uploading | squoosh.app |
+| Whimsical | Flow diagrams and funnel maps | whimsical.com |
+| Canva | Before/after comparison layouts | canva.com |
+| MXToolbox | SPF / DKIM / DMARC validation screenshots | mxtoolbox.com/SuperTool.aspx |
+
+---
+
+*Sales Ignition LLC · Greenville, South Carolina · hello@salesignition.com*
