@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steven — Email Deliverability & Revenue Expert | Sales Ignition</title>
+  <meta name="description" content="I help DTC and e-commerce brands fix deliverability, build Klaviyo flows that convert, and grow email revenue.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0f0f0f;
+      --bg-alt:       #161616;
+      --bg-card:      #1a1a1a;
+      --bg-hover:     #222222;
+      --border:       #2c2c2c;
+      --border-light: #383838;
+      --text:         #f2ede7;
+      --text-muted:   #999999;
+      --text-dim:     #555555;
+      --accent:       #f0c040;
+      --accent-dark:  #d4a020;
+      --accent-text:  #0f0f0f;
+      --link:         #f0c040;
+      --font:         'Open Sans', sans-serif;
+      --max:          1080px;
+      --radius:       6px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+    .eyebrow {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.18; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
+    h3 { font-size: 1.2rem; font-weight: 700; line-height: 1.35; color: var(--text); margin-bottom: 12px; }
+    p { margin-bottom: 18px; color: var(--text); }
+    p:last-child { margin-bottom: 0; }
+    p.muted { color: var(--text-muted); }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 700; }
+
+    .btn {
+      display: inline-block; background: var(--accent); color: var(--accent-text);
+      font-family: var(--font); font-size: 15px; font-weight: 800;
+      letter-spacing: 0.02em; padding: 14px 32px; border-radius: var(--radius);
+      text-decoration: none; transition: background 0.18s, transform 0.15s; white-space: nowrap;
+    }
+    .btn:hover { background: var(--accent-dark); text-decoration: none; transform: translateY(-1px); }
+    .btn--ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border-light);
+    }
+    .btn--ghost:hover { background: var(--bg-card); color: var(--text); }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .nav__inner { max-width: var(--max); margin: 0 auto; padding: 0 36px; display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+    .nav__logo { display: flex; align-items: center; gap: 11px; text-decoration: none; flex-shrink: 0; }
+    .nav__logo-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border-light); flex-shrink: 0; }
+    .nav__logo-fallback { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); display: none; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: var(--accent-text); flex-shrink: 0; }
+    .nav__logo-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .nav__logo-sub { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); }
+    .nav__links { display: flex; align-items: center; list-style: none; gap: 2px; flex: 1; justify-content: flex-end; }
+    .nav__links > li > a { display: block; font-size: 14px; font-weight: 600; color: var(--text-muted); padding: 7px 14px; border-radius: var(--radius); transition: color 0.15s, background 0.15s; text-decoration: none; white-space: nowrap; line-height: 1.3; text-align: center; }
+    .nav__links > li > a:hover { color: var(--text); background: var(--bg-card); }
+    .nav__links > li.nav__cta > a { background: var(--accent); color: var(--accent-text); font-weight: 800; }
+    .nav__links > li.nav__cta > a:hover { background: var(--accent-dark); }
+    .nav__dropdown { position: relative; }
+    .nav__dropdown > a::after { content: ' ▾'; font-size: 9px; opacity: 0.6; }
+    .nav__dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; min-width: 230px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 12px 40px rgba(0,0,0,0.5); padding: 6px; z-index: 300; }
+    .nav__dropdown:hover .nav__dropdown-menu { display: block; }
+    .nav__dropdown-menu a { display: block; padding: 9px 14px; font-size: 14px; font-weight: 500; color: var(--text-muted); border-radius: 4px; transition: color 0.12s, background 0.12s; }
+    .nav__dropdown-menu a:hover { color: var(--text); background: var(--bg-hover); text-decoration: none; }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: background 0.15s; }
+    .nav__hamburger:hover span { background: var(--text); }
+
+    /* HERO */
+    .hero { padding: 88px 0 72px; text-align: center; }
+    .hero h1 { max-width: 800px; margin: 0 auto 26px; }
+    .hero__sub { font-size: 1.1rem; color: var(--text-muted); max-width: 540px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+    .hero__proof { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .hero__avatars { display: flex; }
+    .hero__avatars .av { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--bg); background: var(--bg-card); margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .hero__avatars .av:first-child { margin-left: 0; }
+    .hero__avatars .av:nth-child(1) { background: #2d6a9f; }
+    .hero__avatars .av:nth-child(2) { background: #9b4444; }
+    .hero__avatars .av:nth-child(3) { background: #3d7a52; }
+    .hero__avatars .av:nth-child(4) { background: #7a5a2d; }
+    .hero__avatars .av:nth-child(5) { background: #5a3d7a; }
+    .hero__proof-text { font-size: 14px; color: var(--text-muted); line-height: 1.5; text-align: left; }
+    .hero__proof-text strong { color: var(--text); }
+
+    /* LOGO STRIP */
+    .logos { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; background: var(--bg); }
+    .logos__inner { padding: 24px 0; }
+    .logos__track { display: flex; align-items: center; width: max-content; animation: marquee 30s linear infinite; }
+    .logos__track:hover { animation-play-state: paused; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .logos__item { padding: 0 44px; flex-shrink: 0; display: flex; align-items: center; border-right: 1px solid var(--border); }
+    .logos__item:last-child { border-right: none; }
+    .logos__item img { height: 22px; width: auto; filter: brightness(0) invert(1) opacity(0.35); transition: opacity 0.2s; }
+    .logos__item:hover img { filter: brightness(0) invert(1) opacity(0.7); }
+    .logos__item span { font-size: 12px; font-weight: 700; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; transition: color 0.2s; }
+    .logos__item:hover span { color: var(--text-muted); }
+
+    /* SECTIONS */
+    .section { padding: 96px 0; }
+    .section--alt { background: var(--bg-alt); }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+    /* CHECK LIST */
+    .check-list { list-style: none; margin: 28px 0 40px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 16px; color: var(--text-muted); line-height: 1.5; }
+    .check-list li:first-child { border-top: 1px solid var(--border); }
+    .check-list li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* STAT CARDS */
+    .stat-stack { display: flex; flex-direction: column; gap: 16px; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 24px 28px; }
+    .stat-card__num { font-size: 2.4rem; font-weight: 800; color: var(--accent); line-height: 1; display: block; margin-bottom: 6px; }
+    .stat-card__label { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+
+    /* CASE BAND */
+    .case-band { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 0; }
+    .case-band__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .case-band__numbers { display: flex; gap: 48px; margin: 32px 0 36px; flex-wrap: wrap; }
+    .case-band__big { font-size: 3.2rem; font-weight: 800; color: var(--text); line-height: 1; display: block; }
+    .case-band__pct { font-size: 1.4rem; font-weight: 700; color: var(--accent); display: block; margin-top: 2px; }
+    .case-band__label { font-size: 13px; color: var(--text-muted); display: block; margin-top: 4px; }
+    .case-band__placeholder { aspect-ratio: 16/10; background: var(--bg-card); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 13px; border: 1px dashed var(--border-light); border-radius: 8px; }
+
+    /* TESTIMONIALS */
+    .testimonials__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 52px; }
+    .tcard { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 36px; }
+    .tcard__meta { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+    .tcard h3 { font-size: 1.05rem; margin-bottom: 18px; color: var(--text); }
+    .tcard p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 0; }
+    .tcard__author { display: flex; align-items: center; gap: 12px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--border); }
+    .tcard__author-img { width: 44px; height: 44px; border-radius: 50%; background: var(--bg-hover); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: var(--accent); flex-shrink: 0; border: 1px solid var(--border-light); overflow: hidden; }
+    .tcard__author-img img { width: 100%; height: 100%; object-fit: cover; }
+    .tcard__author-name { font-weight: 700; font-size: 15px; color: var(--text); }
+    .tcard__author-title { font-size: 13px; color: var(--text-muted); }
+
+    /* ABOUT */
+    .about__photo-placeholder { aspect-ratio: 3/4; background: var(--bg-card); border-radius: 8px; border: 1px dashed var(--border-light); display: flex; align-items: center; justify-content: center; text-align: center; color: var(--text-dim); font-size: 13px; line-height: 1.6; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag { background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--text-muted); }
+
+    /* PORTFOLIO */
+    .portfolio__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
+    .pcard { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .pcard:hover { border-color: var(--border-light); transform: translateY(-3px); }
+    .pcard__img { aspect-ratio: 16/10; overflow: hidden; background: var(--bg-hover); }
+    .pcard__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s; }
+    .pcard:hover .pcard__img img { transform: scale(1.04); }
+    .pcard__img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 13px; }
+    .pcard__body { padding: 28px 28px 32px; }
+    .pcard__stats { display: flex; gap: 28px; margin: 16px 0; }
+    .pcard__stat-num { font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; display: block; }
+    .pcard__stat-pct { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+    .pcard__stat-label { font-size: 12px; color: var(--text-dim); display: block; margin-top: 3px; }
+    .pcard__link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--accent); margin-top: 16px; text-decoration: none; }
+    .pcard__link:hover { text-decoration: underline; }
+    .pcard__link::after { content: '→'; }
+
+    /* CTA SECTION */
+    .cta-section { padding: 96px 0; text-align: center; }
+    .cta-section .container { max-width: 620px; }
+    .cta__list { list-style: none; max-width: 420px; margin: 28px auto 40px; text-align: left; }
+    .cta__list li { padding: 12px 0 12px 26px; border-bottom: 1px solid var(--border); position: relative; font-size: 16px; color: var(--text-muted); }
+    .cta__list li:first-child { border-top: 1px solid var(--border); }
+    .cta__list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+    /* CONTACT */
+    .contact-section { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 80px 0; text-align: center; }
+    .contact-section .container { max-width: 560px; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 28px 36px; text-align: center; font-size: 13px; color: var(--text-dim); }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: var(--text-muted); }
+
+    /* MOBILE */
+    @media (max-width: 820px) {
+      .nav__links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 16px 24px 20px; z-index: 500; }
+      .nav__links.open { display: flex; }
+      .nav__hamburger { display: flex; }
+      .two-col, .case-band__inner { grid-template-columns: 1fr; gap: 44px; }
+      .testimonials__grid, .portfolio__grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 0 52px; }
+      .section { padding: 64px 0; }
+      h1 { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">
+      <img src="images/steven-headshot.png" alt="Steven" class="nav__logo-avatar"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="nav__logo-fallback">SI</span>
+      <span class="nav__logo-name">Steven<span class="nav__logo-sub">Email Deliverability Expert</span></span>
+    </a>
+    <ul class="nav__links" id="nav-links">
+      <li class="nav__dropdown">
+        <a href="#">My Tools</a>
+        <div class="nav__dropdown-menu">
+          <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co — Audit Tool</a>
+          <a href="https://inboxsmarts.com" target="_blank">InboxSmarts.com — Warm-Up</a>
+          <a href="#stealflows">StealFlows — Klaviyo Templates</a>
+        </div>
+      </li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li class="nav__cta"><a href="#contact">Work With Me</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Email marketing · Klaviyo · Deliverability</span>
+    <h1>The Email Expert Turning Undelivered Messages Into Revenue</h1>
+    <p class="hero__sub">I help DTC and e-commerce brands fix deliverability, build flows that convert, and grow revenue through email that actually lands in the inbox.</p>
+    <div class="hero__actions">
+      <a class="btn" href="#contact">Work With Me</a>
+      <a class="btn btn--ghost" href="#portfolio">See My Work</a>
+    </div>
+    <div class="hero__proof">
+      <div class="hero__avatars">
+        <div class="av">T</div><div class="av">M</div><div class="av">TC</div><div class="av">MB</div><div class="av">LH</div>
+      </div>
+      <p class="hero__proof-text" style="margin:0;">
+        <strong>Toyota, Mercedes-Benz, True Citrus and 50+ others</strong> are already growing their email revenue.<br>
+        <a href="#testimonials">Read their stories</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO STRIP -->
+<div class="logos">
+  <div class="logos__inner">
+    <div class="logos__track">
+      <div class="logos__item"><img src="images/logos/toyota.png" alt="Toyota" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Toyota</span></div>
+      <div class="logos__item"><img src="images/logos/mercedes.png" alt="Mercedes-Benz" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Mercedes-Benz</span></div>
+      <div class="logos__item"><img src="images/logos/true-citrus.png" alt="True Citrus" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>True Citrus</span></div>
+      <div class="logos__item"><img src="images/logos/miltons.png" alt="Milton's" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Milton's</span></div>
+      <div class="logos__item"><img src="images/logos/taxquotes.png" alt="TaxQuotes" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>TaxQuotes</span></div>
+      <div class="logos__item"><img src="images/logos/little-hunter.png" alt="Little Hunter" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Little Hunter</span></div>
+      <div class="logos__item"><img src="images/logos/tumblerware.png" alt="Tumblerware" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Tumblerware</span></div>
+      <div class="logos__item"><img src="images/logos/toyota.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Toyota</span></div>
+      <div class="logos__item"><img src="images/logos/mercedes.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Mercedes-Benz</span></div>
+      <div class="logos__item"><img src="images/logos/true-citrus.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>True Citrus</span></div>
+      <div class="logos__item"><img src="images/logos/miltons.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Milton's</span></div>
+      <div class="logos__item"><img src="images/logos/taxquotes.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>TaxQuotes</span></div>
+      <div class="logos__item"><img src="images/logos/little-hunter.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Little Hunter</span></div>
+      <div class="logos__item"><img src="images/logos/tumblerware.png" alt="" onerror="this.style.display='none';this.nextSibling.style.display='inline';"><span>Tumblerware</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY WORK WITH ME -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">Why work with me?</span>
+        <h2>From DTC consultant to elite email deliverability expert</h2>
+        <p class="muted">I built Sales Ignition as a focused, one-person consultancy because I got tired of watching brands leave revenue on the table — not from a lack of email strategy, but because their emails weren't landing in the inbox.</p>
+        <p class="muted">After working with brands from Toyota dealerships to fast-growth DTC startups, I developed a proven system: fix deliverability first, then build flows that convert.</p>
+        <ul class="check-list">
+          <li>Klaviyo-certified with deep Shopify Plus expertise</li>
+          <li>Served brands from $1M to enterprise scale</li>
+          <li>Built emaildelivery.co & inboxsmarts.com — my own tools</li>
+          <li>Email strategy that bridges deliverability AND revenue</li>
+        </ul>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a class="btn" href="#contact">Let's Work Together</a>
+          <a class="btn btn--ghost" href="#testimonials">Read Client Stories</a>
+        </div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat-card">
+          <span class="stat-card__num">$1M+</span>
+          <span class="stat-card__label">in additional email revenue generated for clients</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__num">50+</span>
+          <span class="stat-card__label">e-commerce brands served, from DTC startups to enterprise</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__num">97%</span>
+          <span class="stat-card__label">average inbox placement rate after my deliverability audit</span>
+        </div>
+        <div class="stat-card" style="display:flex;align-items:center;gap:14px;padding:18px 24px;">
+          <div class="hero__avatars">
+            <div class="av">T</div><div class="av">M</div><div class="av">TC</div>
+          </div>
+          <p style="margin:0;font-size:13px;color:var(--text-muted);">
+            <strong style="color:var(--text);">Toyota, Mercedes-Benz, True Citrus</strong> and many more are already growing.<br>
+            <a href="#testimonials">Read their stories →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<div class="case-band">
+  <div class="container">
+    <div class="case-band__inner">
+      <div>
+        <span class="eyebrow">Case Study</span>
+        <h2>See how a single deliverability fix unlocked $240k/year for a DTC brand</h2>
+        <p class="muted">When emails don't land in the inbox, every dollar spent on acquisition is wasted. I prove the ROI of every engagement with clear before-and-after metrics.</p>
+        <p class="muted">No fluff, no vanity metrics — just real revenue impact, because that's all that matters.</p>
+        <div class="case-band__numbers">
+          <div>
+            <span class="case-band__big">+$240k</span>
+            <span class="case-band__pct">+48%</span>
+            <span class="case-band__label">additional annual email revenue</span>
+          </div>
+          <div>
+            <span class="case-band__big">96%</span>
+            <span class="case-band__label">inbox rate (up from 61%)</span>
+          </div>
+        </div>
+        <a class="btn" href="#portfolio">Read the full case study</a>
+      </div>
+      <div>
+        <img src="images/case-study-preview.png" alt="Case study"
+          style="width:100%;border-radius:8px;display:block;border:1px solid var(--border);"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="case-band__placeholder">📊 case-study-preview.png</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <span class="eyebrow">Testimonials</span>
+    <h2>Here's what brand owners and marketers say about me</h2>
+    <div class="testimonials__grid">
+      <div class="tcard">
+        <div class="tcard__meta">@client_handle · Jan 12, 2024</div>
+        <h3>"…Open rates jumped from 18% to 41% overnight."</h3>
+        <p>We'd been struggling with deliverability for over a year. Every agency gave us the same generic advice that didn't move the needle. Steven diagnosed the exact issue in 48 hours and had us fully restored in two weeks. <strong style="color:var(--text);">Our open rates jumped from 18% to 41% overnight</strong>, and the revenue impact was immediate and measurable.</p>
+        <div class="tcard__author">
+          <div class="tcard__author-img">
+            <img src="images/testimonials/client-1.png" alt="Jane Doe"
+              onerror="this.style.display='none';this.parentElement.textContent='JD';">
+          </div>
+          <div>
+            <div class="tcard__author-name">Jane Doe</div>
+            <div class="tcard__author-title">Founder, 8-figure DTC Brand</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard__meta">@client2_handle · Mar 5, 2024</div>
+        <h3>"…Our abandoned cart flow now generates 22% of total revenue."</h3>
+        <p>I knew our Klaviyo setup was underperforming but had no idea how bad it was. Steven rebuilt our entire abandoned cart and post-purchase flows from scratch, restructured segmentation, and fixed our sending domain at the same time. <strong style="color:var(--text);">That single flow now generates 22% of our total monthly revenue</strong> — the best ROI investment we've made.</p>
+        <div class="tcard__author">
+          <div class="tcard__author-img">
+            <img src="images/testimonials/client-2.png" alt="Mark Reynolds"
+              onerror="this.style.display='none';this.parentElement.textContent='MR';">
+          </div>
+          <div>
+            <div class="tcard__author-name">Mark Reynolds</div>
+            <div class="tcard__author-title">CMO, Fast-Growth DTC Startup</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section--alt" id="about">
+  <div class="container">
+    <div class="two-col" style="align-items:start;">
+      <div>
+        <img src="images/steven-about.jpg" alt="Steven"
+          style="width:100%;border-radius:8px;display:block;border:1px solid var(--border);"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="about__photo-placeholder">📸 steven-about.jpg<br><small>Recommended: 600×800px</small></div>
+        <div class="tag-cloud">
+          <span class="tag">Klaviyo</span><span class="tag">Email Deliverability</span>
+          <span class="tag">DTC Strategy</span><span class="tag">Shopify Plus</span>
+          <span class="tag">List Hygiene</span><span class="tag">Flow Automation</span>
+          <span class="tag">ActiveCampaign</span><span class="tag">HubSpot</span>
+          <span class="tag">DMARC / DKIM / SPF</span><span class="tag">Recharge</span>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">About Me</span>
+        <h2>So, who's Steven?</h2>
+        <p class="muted"><strong style="color:var(--text);">I stand out from other email marketers because I understand deliverability at a technical level AND strategy at a revenue level.</strong></p>
+        <p class="muted">That's why I know the difference between fixing symptoms and fixing causes. While most email agencies obsess over copy and design, I obsess over whether your emails are actually landing in the inbox first.</p>
+        <p class="muted">I run Sales Ignition as a focused, single-person consultancy out of South Carolina — which means you always work directly with me, never a junior account manager.</p>
+        <p class="muted">I also built <a href="https://emaildelivery.co" target="_blank">emaildelivery.co</a> and <a href="https://inboxsmarts.com" target="_blank">inboxsmarts.com</a> — tools that thousands of brands use to diagnose and fix deliverability issues.</p>
+        <h2 style="margin-top:40px;font-size:1.5rem;">So, listen — if you</h2>
+        <ul class="check-list">
+          <li>Are tired of email agencies that only care about design</li>
+          <li>Want real deliverability fixes, not band-aid solutions</li>
+          <li>Are looking for someone who understands both tech and revenue</li>
+        </ul>
+        <a class="btn" href="#contact" style="margin-top:12px;">Let's Work Together</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <span class="eyebrow">Portfolio</span>
+    <h2>Want to see my work in action?<br>Take a look at my portfolio…</h2>
+    <p class="muted" style="max-width:580px;">Most of my work is confidential, but I've convinced a select few clients to let me share the results below.</p>
+    <div class="portfolio__grid">
+      <div class="pcard">
+        <div class="pcard__img">
+          <img src="images/portfolio/true-citrus-klaviyo.png" alt="True Citrus"
+            onerror="this.style.display='none';this.nextSibling.style.display='flex';">
+          <div class="pcard__img-placeholder">📷 true-citrus-klaviyo.png</div>
+        </div>
+        <div class="pcard__body">
+          <span class="eyebrow">Klaviyo Automation Build</span>
+          <h3>True Citrus</h3>
+          <p class="muted" style="font-size:15px;">Full Klaviyo rebuild — welcome series, abandoned cart, post-purchase, and win-back flows. List segmentation overhaul and deliverability restoration included.</p>
+          <div class="pcard__stats">
+            <div><span class="pcard__stat-num">+$180k</span><span class="pcard__stat-label">additional annual revenue</span></div>
+            <div><span class="pcard__stat-pct">+34%</span><span class="pcard__stat-label">YoY revenue lift</span></div>
+          </div>
+          <a class="pcard__link" href="true-citrus.html">More about the project</a>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard__img">
+          <img src="images/portfolio/miltons-deliverability.png" alt="Milton's"
+            onerror="this.style.display='none';this.nextSibling.style.display='flex';">
+          <div class="pcard__img-placeholder">📷 miltons-deliverability.png</div>
+        </div>
+        <div class="pcard__body">
+          <span class="eyebrow">Deliverability Audit & Restoration</span>
+          <h3>Milton's Craft Bakers</h3>
+          <p class="muted" style="font-size:15px;">Complete deliverability restoration after a blacklisting event. SPF/DKIM/DMARC audit, inbox warm-up via InboxSmarts, and full list hygiene overhaul.</p>
+          <div class="pcard__stats">
+            <div><span class="pcard__stat-num">96%</span><span class="pcard__stat-label">inbox placement rate (restored)</span></div>
+          </div>
+          <a class="pcard__link" href="miltons.html">More about the project</a>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard__img">
+          <img src="images/portfolio/taxquotes-nurture.png" alt="TaxQuotes"
+            onerror="this.style.display='none';this.nextSibling.style.display='flex';">
+          <div class="pcard__img-placeholder">📷 taxquotes-nurture.png</div>
+        </div>
+        <div class="pcard__body">
+          <span class="eyebrow">Email Nurture Sequence</span>
+          <h3>TaxQuotes</h3>
+          <p class="muted" style="font-size:15px;">10-email nurture sequence targeting people with unfiled taxes, built ahead of the April tax deadline. ActiveCampaign-compatible, mobile-first landing pages included.</p>
+          <div class="pcard__stats">
+            <div><span class="pcard__stat-pct">+28%</span><span class="pcard__stat-label">consultation booking rate</span></div>
+          </div>
+          <a class="pcard__link" href="taxquotes.html">More about the project</a>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard__img">
+          <img src="images/portfolio/emaildelivery-tool.png" alt="EmailDelivery.co"
+            onerror="this.style.display='none';this.nextSibling.style.display='flex';">
+          <div class="pcard__img-placeholder">📷 emaildelivery-tool.png</div>
+        </div>
+        <div class="pcard__body">
+          <span class="eyebrow">Owned Product</span>
+          <h3>EmailDelivery.co</h3>
+          <p class="muted" style="font-size:15px;">A diagnostic scoring tool I built from scratch that helps DTC brands self-identify deliverability issues — SPF, DKIM, DMARC, blacklists, and sending reputation. Used by thousands of brands.</p>
+          <a class="pcard__link" href="emaildelivery.html">More about the project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS / CTA -->
+<section class="section section--alt cta-section">
+  <div class="container">
+    <span class="eyebrow">Results matter!</span>
+    <h2>and so does landing in the inbox</h2>
+    <p class="muted">If you're looking for an email expert who fixes deliverability, builds flows that convert, and shows you the revenue impact in black and white — I'm your person.</p>
+    <p class="muted">You already know I serve brands from Toyota to fast-growth DTC startups. And how I help them generate hundreds of thousands in extra revenue through email.</p>
+    <p class="muted">If you run a $1M+ e-commerce brand, I want to work with you.</p>
+    <ul class="cta__list">
+      <li>Improve deliverability and inbox placement rates</li>
+      <li>Build Klaviyo flows that generate revenue on autopilot</li>
+      <li>Grow and clean your email list</li>
+    </ul>
+    <a class="btn" href="#contact" style="font-size:17px;padding:18px 44px;">Let's Work Together →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <span class="eyebrow">Get In Touch</span>
+    <h2>Ready to grow your email revenue?</h2>
+    <p class="muted" style="margin-bottom:36px;">Tell me about your business. I'll review your current email setup and tell you exactly where the biggest opportunities are.</p>
+    <a class="btn" href="/cdn-cgi/l/email-protection#39515c555556794a58555c4a505e57504d505657175a5654" style="font-size:17px;padding:18px 44px;">Start the Conversation →</a>
+    <p style="margin-top:22px;font-size:14px;color:var(--text-dim);">Or email me at <a href="/cdn-cgi/l/email-protection#335b565f5f5c7340525f56405a545d5a475a5c5d1d505c5e"><span class="__cf_email__" data-cfemail="ef878a838380af9c8e838a9c868881869b868081c18c8082">[email&#160;protected]</span></a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Copyright &copy; 2024–2026 Sales Ignition LLC. All rights reserved. &nbsp;·&nbsp;
+  Greenville, South Carolina &nbsp;·&nbsp;
+  <a href="/cdn-cgi/l/email-protection#deb6bbb2b2b19eadbfb2bbadb7b9b0b7aab7b1b0f0bdb1b3"><span class="__cf_email__" data-cfemail="375f525b5b587744565b52445e50595e435e58591954585a">[email&#160;protected]</span></a>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/
