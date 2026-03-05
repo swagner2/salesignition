@@ -313,3 +313,60 @@ footer a:hover { color: var(--text-muted); }
   .section { padding: 64px 0; }
   h1 { font-size: 2.1rem; }
 }
+
+/* ── NEW PORTFOLIO CARD COLORS ───────────────────────────── */
+.pcard--little-hunter   { background: #f97316; }  /* burnt orange      */
+.pcard--tumblerware     { background: #0f766e; }  /* deep teal         */
+.pcard--hear-com        { background: #1e40af; }  /* rich blue         */
+.pcard--blaze-n-chill   { background: #16a34a; }  /* deep green        */
+.pcard--enchant-brands  { background: #7c3aed; }  /* deep violet       */
+.pcard--vurbmoto        { background: #18181b; }  /* near-black        */
+.pcard--therapy-clean   { background: #e0f2fe; }  /* light sky blue    */
+
+/* Light-text overrides for dark cards */
+.pcard--tumblerware .pcard__body .eyebrow,
+.pcard--hear-com .pcard__body .eyebrow,
+.pcard--blaze-n-chill .pcard__body .eyebrow,
+.pcard--enchant-brands .pcard__body .eyebrow,
+.pcard--vurbmoto .pcard__body .eyebrow { color: rgba(255,255,255,0.45); }
+
+.pcard--tumblerware .pcard__body h3,
+.pcard--hear-com .pcard__body h3,
+.pcard--blaze-n-chill .pcard__body h3,
+.pcard--enchant-brands .pcard__body h3,
+.pcard--vurbmoto .pcard__body h3 { color: #ffffff; }
+
+.pcard--tumblerware .pcard__body p,
+.pcard--hear-com .pcard__body p,
+.pcard--blaze-n-chill .pcard__body p,
+.pcard--enchant-brands .pcard__body p,
+.pcard--vurbmoto .pcard__body p { color: rgba(255,255,255,0.62); }
+
+.pcard--tumblerware .pcard__stat-num,
+.pcard--tumblerware .pcard__stat-pct,
+.pcard--hear-com .pcard__stat-num,
+.pcard--hear-com .pcard__stat-pct,
+.pcard--blaze-n-chill .pcard__stat-num,
+.pcard--blaze-n-chill .pcard__stat-pct,
+.pcard--enchant-brands .pcard__stat-num,
+.pcard--enchant-brands .pcard__stat-pct,
+.pcard--vurbmoto .pcard__stat-num,
+.pcard--vurbmoto .pcard__stat-pct { color: #ffffff; }
+
+.pcard--tumblerware .pcard__stat-label,
+.pcard--hear-com .pcard__stat-label,
+.pcard--blaze-n-chill .pcard__stat-label,
+.pcard--enchant-brands .pcard__stat-label,
+.pcard--vurbmoto .pcard__stat-label { color: rgba(255,255,255,0.45); }
+
+.pcard--tumblerware .pcard__link,
+.pcard--hear-com .pcard__link,
+.pcard--blaze-n-chill .pcard__link,
+.pcard--enchant-brands .pcard__link,
+.pcard--vurbmoto .pcard__link { color: rgba(255,255,255,0.8); }
+
+.pcard--tumblerware .pcard__link:hover,
+.pcard--hear-com .pcard__link:hover,
+.pcard--blaze-n-chill .pcard__link:hover,
+.pcard--enchant-brands .pcard__link:hover,
+.pcard--vurbmoto .pcard__link:hover { color: #ffffff; }
