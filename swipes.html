@@ -677,7 +677,11 @@
         <h3>200+ DTC Email Swipe Files in One Place</h3>
         <div class="price-was">$97.99</div>
         <div class="price-now">$47</div>
-        <div class="save-badge">51% OFF — but only TODAY, on FRIDAY</div>
+        <div class="save-badge" id="save-badge">51% OFF — but only TODAY, on <span id="today-day">FRIDAY</span></div>
+        <script>
+          const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+          document.getElementById('today-day').textContent = days[new Date().getDay()];
+        </script>
         <div class="price-day">&nbsp;</div>
         <div class="pc-intro">With this swipe file, you will get:</div>
         <ul class="plist">
