@@ -162,25 +162,44 @@
     .avatars img:first-child { margin-left: 0; }
     .av-count { font-size: 12px; color: rgba(255,255,255,0.45); margin-left: 8px; }
 
-    /* ─── SCREENSHOTS ─── */
+    /* ─── SCREENSHOTS MARQUEE ─── */
     .screenshots {
       background: var(--dark);
-      padding: 28px 0 0;
+      padding: 28px 0;
+      overflow: hidden;
+      /* Fade edges */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
     }
-    .ss-track {
+
+    .ss-marquee {
       display: flex;
-      gap: 10px;
-      padding: 0 20px 28px;
-      overflow-x: auto;
-      scrollbar-width: none;
+      width: max-content;
+      animation: marquee-scroll 40s linear infinite;
     }
-    .ss-track::-webkit-scrollbar { display: none; }
-    .ss-track img {
-      height: 330px;
+    .ss-marquee:hover { animation-play-state: paused; }
+
+    /* One set of images — JS duplicates it for seamless loop */
+    .ss-set {
+      display: flex;
+      gap: 12px;
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+
+    .ss-set img {
+      height: 320px;
       width: auto;
       flex-shrink: 0;
       border-radius: 8px;
       object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* ─── WARN SECTION ─── */
@@ -507,21 +526,46 @@
     <span class="av-count">+1,841</span>
   </div>
 
-  <!-- SCREENSHOTS STRIP -->
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCREENSHOT MARQUEE STRIP
+       ─────────────────────────────────────────────────────────────
+       TO ADD A NEW IMAGE: paste a new <img> tag inside .ss-set below.
+       The JS will automatically clone the set to keep the loop seamless.
+       Example: <img src="https://your-domain.com/email-screenshot.png" alt="Email name" />
+       ═══════════════════════════════════════════════════════════════ -->
   <div class="screenshots">
-    <div class="ss-track">
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots10.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots09-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots08-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots07-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots06.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots05-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots04-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots03-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots02-1.png" alt="" />
-      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots01-1.png" alt="" />
+    <div class="ss-marquee" id="marquee">
+      <div class="ss-set" id="ss-original">
+        <!-- ↓↓↓ ADD YOUR IMAGES HERE ↓↓↓ -->
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots10.png" alt="Email template 1" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots09-1.png" alt="Email template 2" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots08-1.png" alt="Email template 3" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots07-1.png" alt="Email template 4" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots06.png" alt="Email template 5" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots05-1.png" alt="Email template 6" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots04-1.png" alt="Email template 7" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots03-1.png" alt="Email template 8" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots02-1.png" alt="Email template 9" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots01-1.png" alt="Email template 10" />
+        <!-- ↑↑↑ ADD YOUR IMAGES HERE ↑↑↑ -->
+      </div>
+      <!-- JS clones the set above for seamless infinite loop — do not add a second set manually -->
     </div>
   </div>
+
+  <script>
+    // Duplicate the image set so the marquee loops seamlessly.
+    // This runs automatically — no changes needed when you add images.
+    (function() {
+      const original = document.getElementById('ss-original');
+      const marquee  = document.getElementById('marquee');
+      if (!original || !marquee) return;
+      const clone = original.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.setAttribute('aria-hidden', 'true');
+      marquee.appendChild(clone);
+    })();
+  </script>
 
   <!-- YELLOW WARNING SECTION -->
   <div class="warn">
@@ -702,8 +746,4 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 Sales Ignition LLC · <a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="mailto:hello@salesignition.co">Contact</a></p>
-  </footer>
-
-</body>
-</html>
+    <p>© 2026 Sales Ignition LLC · <a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3ccffede0e9ffe5ebe2e5f8e5e3e2a2efe3">
