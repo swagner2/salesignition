@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>200+ DTC Email Swipe Files in One Place – Sales Ignition</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:      #07091c;
+      --dark2:     #0c0e22;
+      --card-dark: #10132a;
+      --yellow:    #f5c116;
+      --green:     #3bc972;
+      --green-dk:  #29a85a;
+      --white:     #ffffff;
+      --offwhite:  #f7f7f7;
+      --text:      #1a1a2e;
+      --font:      'Google Sans', 'Product Sans', Roboto, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.65;
+      background: var(--white);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      background: var(--dark);
+      color: var(--yellow);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      padding: 9px 16px;
+    }
+    .topbar .code {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+
+    /* ─── AUTHOR BAR ─── */
+    .author-bar {
+      background: var(--white);
+      border-bottom: 1px solid #eaeaea;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 20px 10px;
+      text-align: center;
+    }
+    .author-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .author-photo {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .author-name { font-weight: 700; font-size: 14px; color: #111; }
+    .author-title { font-size: 12px; color: #999; }
+    .product-tagline {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #555;
+    }
+    .rating-row img { height: 14px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--dark);
+      padding: 52px 24px 56px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6.8vw, 76px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      max-width: 900px;
+      margin: 0 auto 22px;
+    }
+    .hero h1 .y { color: var(--yellow); }
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 580px;
+      margin: 0 auto 34px;
+      line-height: 1.75;
+    }
+    .hero-sub strong { color: #fff; }
+    .btn-green {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 30px;
+      border-radius: 6px;
+      transition: background .18s, transform .12s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-green:hover { background: var(--green-dk); transform: translateY(-2px); }
+    .hero-note {
+      margin-top: 15px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.42);
+    }
+    .hero-note a { color: rgba(255,255,255,0.65); text-decoration: underline; }
+
+    /* ─── SP STRIP ─── */
+    .sp-strip {
+      background: var(--dark2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .sp-left { display: flex; align-items: center; gap: 10px; }
+    .sp-num { font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
+    .sp-stars img { width: 78px; display: block; margin-top: 4px; }
+    .sp-caption { font-size: 14px; color: rgba(255,255,255,0.6); max-width: 340px; }
+    .sp-caption a { color: var(--green); font-weight: 600; }
+    .avatars { display: flex; align-items: center; }
+    .avatars img {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--dark2);
+      margin-left: -9px;
+      object-fit: cover;
+    }
+    .avatars img:first-child { margin-left: 0; }
+    .av-count { font-size: 12px; color: rgba(255,255,255,0.45); margin-left: 8px; }
+
+    /* ─── SCREENSHOTS ─── */
+    .screenshots {
+      background: var(--dark);
+      padding: 28px 0 0;
+    }
+    .ss-track {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px 28px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .ss-track::-webkit-scrollbar { display: none; }
+    .ss-track img {
+      height: 330px;
+      width: auto;
+      flex-shrink: 0;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* ─── WARN SECTION ─── */
+    .warn {
+      background: var(--yellow);
+      padding: 44px 24px 52px;
+      text-align: center;
+    }
+    .warn-card {
+      background: var(--dark);
+      border-radius: 14px;
+      padding: 38px 40px;
+      max-width: 740px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .warn-arrow {
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 22px solid transparent;
+      border-right: 22px solid transparent;
+      border-bottom: 26px solid var(--dark);
+    }
+    .warn-card h2 {
+      font-size: clamp(22px, 3.8vw, 38px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .warn-card h2 .yw {
+      color: var(--yellow);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .warn-card p { font-size: 15px; color: rgba(255,255,255,0.68); line-height: 1.75; margin-bottom: 14px; }
+    .warn-card p a { color: var(--green); font-weight: 600; text-decoration: underline; }
+
+    /* ─── WHITE SECTION ─── */
+    .white-sec { background: #fff; padding: 76px 24px; }
+    .ws { max-width: 820px; margin: 0 auto; }
+    .ws h2 {
+      font-size: clamp(28px, 4.5vw, 52px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 26px;
+    }
+    .ws p { font-size: 16px; color: #555; line-height: 1.75; margin-bottom: 16px; }
+    .ws p strong { color: #222; }
+
+    /* ─── DARK EXAMPLES ─── */
+    .examples {
+      background: var(--dark);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .ex-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .examples h2 {
+      font-size: clamp(28px, 5vw, 56px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      max-width: 720px;
+      margin: 0 auto 16px;
+    }
+    .examples h2 .y { color: var(--yellow); }
+    .examples p { font-size: 15px; color: rgba(255,255,255,0.58); max-width: 580px; margin: 0 auto 40px; }
+    .ex-mockup {
+      max-width: 880px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.55);
+    }
+    .ex-mockup img { width: 100%; }
+
+    /* ─── BENEFITS CARD ─── */
+    .benefits-wrap { background: var(--dark); padding: 4px 24px 64px; }
+    .benefits-card {
+      background: var(--card-dark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 44px 40px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+    @media(max-width:700px){ .benefits-card{ flex-direction: column; } }
+    .bl { flex: 1; }
+    .bl h3 {
+      font-size: clamp(20px,3vw,28px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 26px;
+      line-height: 1.3;
+    }
+    .blist { list-style: none; margin-bottom: 28px; }
+    .blist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 14px;
+      color: rgba(255,255,255,0.73);
+      line-height: 1.6;
+    }
+    .blist li:last-child { border-bottom: none; }
+    .blist li strong { color: #fff; }
+    .chk {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .bl .body { font-size: 14px; color: rgba(255,255,255,0.62); line-height: 1.75; margin-bottom: 24px; }
+    .bl .body strong { color: #fff; }
+    .br { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .br img { width: 120px; }
+
+    /* ─── CTA REPEAT ─── */
+    .cta2 { background: var(--dark); padding: 4px 24px 56px; text-align: center; }
+    .cta2 .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .cta2 .n { font-size: 24px; font-weight: 700; color: #fff; }
+    .cta2 .t { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* ─── QUOTE ─── */
+    .quote-sec { background: #fff; padding: 76px 24px; }
+    .qi {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      gap: 52px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .qt { flex: 1; min-width: 280px; }
+    .qt blockquote {
+      font-size: clamp(17px,2.5vw,24px);
+      font-style: italic;
+      color: #222;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      padding-left: 20px;
+      border-left: 3px solid var(--yellow);
+    }
+    .qt .attr { font-size: 13px; color: #999; }
+    .qt .attr strong { color: #333; }
+    .qimg { flex-shrink: 0; }
+    .qimg img { width: 210px; border-radius: 10px; object-fit: cover; }
+
+    /* ─── WHY ─── */
+    .why { background: var(--offwhite); padding: 68px 24px; }
+    .why-in { max-width: 820px; margin: 0 auto; }
+    .why-in h2 { font-size: clamp(28px,4vw,44px); font-weight: 700; color: var(--text); margin-bottom: 22px; letter-spacing: -0.02em; }
+    .why-in p { font-size: 16px; color: #555; line-height: 1.75; margin-bottom: 16px; }
+    .why-in p strong { color: #222; }
+
+    /* ─── PRICING HEADER ─── */
+    .ph { background: var(--dark); padding: 56px 24px 0; text-align: center; }
+    .ph-label { font-size: 12px; color: rgba(255,255,255,0.38); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+    .ph h2 { font-size: clamp(32px,5.5vw,66px); font-weight: 700; color: #fff; line-height: 1.06; letter-spacing: -0.025em; max-width: 820px; margin: 0 auto; }
+    .ph h2 .y { color: var(--yellow); }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--dark); padding: 40px 24px 76px; }
+    .pg {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .pc {
+      background: #fff;
+      border-radius: 14px;
+      padding: 36px 30px;
+    }
+    .pc.feat { border: 2px solid var(--yellow); }
+    .pc h3 { font-size: 13px; font-weight: 600; color: #999; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
+    .price-was { font-size: 15px; color: #bbb; text-decoration: line-through; margin-bottom: 2px; }
+    .price-now { font-size: clamp(52px,8vw,72px); font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .save-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #000;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 8px 22px;
+      border-radius: 100px;
+      margin-bottom: 8px;
+    }
+    .price-day { font-size: 13px; color: #aaa; margin-bottom: 22px; }
+    .pc-intro { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 14px; }
+    .plist { list-style: none; margin-bottom: 28px; }
+    .plist li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.55;
+    }
+    .plist li:last-child { border-bottom: none; }
+    .plist li strong { color: #111; }
+    .pchk { width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .btn-green-full { display: block; width: 100%; text-align: center; background: var(--green); color: #fff; font-family: var(--font); font-weight: 700; font-size: 15px; padding: 15px; border-radius: 6px; border: none; cursor: pointer; transition: background .18s; }
+    .btn-green-full:hover { background: var(--green-dk); }
+    .btn-dark-full { display: block; width: 100%; text-align: center; background: var(--dark); color: #fff; font-family: var(--font); font-weight: 700; font-size: 15px; padding: 15px; border-radius: 6px; border: none; cursor: pointer; }
+    .pay-note { font-size: 11px; color: #aaa; text-align: center; margin-top: 10px; line-height: 1.55; }
+    .pay-icons img { height: 30px; margin: 8px auto 0; }
+    .secure img { height: 38px; margin: 14px auto 0; }
+
+    /* ─── REVIEWS ─── */
+    .reviews { background: var(--dark); padding: 64px 24px; }
+    .rev-in { max-width: 860px; margin: 0 auto; }
+    .rev-top { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .rev-num { font-size: 52px; font-weight: 700; color: #fff; line-height: 1; }
+    .rev-stars img { width: 88px; display: block; margin-bottom: 4px; }
+    .rev-cnt { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .rev-av-row { display: flex; align-items: center; gap: 8px; }
+    .rev-av-row .avatars img { width: 36px; height: 36px; border-color: var(--dark); }
+    .rev-av-cnt { font-size: 12px; color: rgba(255,255,255,0.4); margin-left: 8px; }
+
+    /* ─── GUARANTEE ─── */
+    .guarantee { background: #fff; padding: 76px 24px; }
+    .gi { max-width: 780px; margin: 0 auto; display: flex; gap: 44px; align-items: flex-start; flex-wrap: wrap; }
+    .gb img { width: 130px; flex-shrink: 0; }
+    .gt { flex: 1; min-width: 280px; }
+    .gt h2 { font-size: clamp(22px,3.5vw,32px); font-weight: 700; color: var(--text); margin-bottom: 16px; line-height: 1.2; }
+    .gt p { font-size: 15px; color: #555; line-height: 1.75; }
+    .gt p strong { color: #222; }
+    .gt p + p { margin-top: 14px; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.38); }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+    footer a:hover { color: var(--yellow); }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    🔥 Exclusive launch offer for 🇺🇸 DTC Founders: Use code <span class="code">STEAL50</span> for EXTRA 10% OFF — Today Only
+  </div>
+
+  <!-- AUTHOR BAR -->
+  <div class="author-bar">
+    <div class="author-inner">
+      <!-- REPLACE_IMAGE: author photo -->
+      <img class="author-photo" src="https://www.conversion.care/wp-content/uploads/2023/10/image-13-3.png" alt="Steven – Sales Ignition" />
+      <div>
+        <div class="author-name">Steven · Sales Ignition</div>
+        <div class="author-title">DTC Email Marketing Specialist</div>
+      </div>
+    </div>
+    <div class="product-tagline">200+ DTC Email Swipe Files in One Place</div>
+    <div class="rating-row">
+      <img src="https://www.conversion.care/wp-content/uploads/2023/10/yellow-strs.svg" alt="stars" />
+      <strong>4.93</strong> based on 112 reviews
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Steal The<br><span class="y">Highest-Converting</span><br>DTC Emails From 7-Figure Brands</h1>
+    <p class="hero-sub">
+      Get instant access to 200+ email templates from the world's best-performing DTC brands. This collection lets you instantly <strong>swipe and send the highest-converting flows,</strong> saving time and driving revenue without the guesswork.
+    </p>
+    <a href="#checkout-btn" class="btn-green">Get 200+ DTC Email Swipe Files NOW!</a>
+    <div class="hero-note">
+      All flows pre-mapped for Klaviyo · Instant download · <a href="#checkout-btn">See what's inside ↓</a>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF STRIP -->
+  <div class="sp-strip">
+    <div class="sp-left">
+      <div class="sp-num">1,847</div>
+      <div class="sp-stars"><img src="https://www.conversion.care/wp-content/uploads/2023/12/yellow-strs.svg" alt="stars" /></div>
+    </div>
+    <div class="sp-caption">
+      DTC founders are already seeing higher open rates and email revenue thanks to this swipe file.
+      <a href="#checkout-btn"><strong>Join them now!</strong></a>
+    </div>
+    <div class="avatars">
+      <img src="https://www.conversion.care/wp-content/uploads/2024/08/kannan.jpeg" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/08/sergio.jpeg" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/08/oyekunle.jpeg" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2023/10/ela.jpeg" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2023/12/File-118.jpg" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2023/11/dejan-lukic.jpeg" alt="" />
+    </div>
+    <span class="av-count">+1,841</span>
+  </div>
+
+  <!-- SCREENSHOTS STRIP -->
+  <div class="screenshots">
+    <div class="ss-track">
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots10.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots09-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots08-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots07-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots06.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots05-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots04-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots03-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots02-1.png" alt="" />
+      <img src="https://www.conversion.care/wp-content/uploads/2024/10/screenshots01-1.png" alt="" />
+    </div>
+  </div>
+
+  <!-- YELLOW WARNING SECTION -->
+  <div class="warn">
+    <div class="warn-card">
+      <div class="warn-arrow"></div>
+      <h2>Stop Trying To <span class="yw">Write Emails From Scratch!</span></h2>
+      <p>Most DTC founders are spending hours staring at blank Klaviyo flows — guessing at subject lines, copy structures, and send timing without knowing what actually converts.</p>
+      <p>This trial-and-error approach kills deliverability, tanks open rates, and leaves thousands of dollars in monthly revenue sitting on the table while your list goes cold.</p>
+      <p>While creativity is important, building a profitable email channel often means <strong style="color:#fff;">learning from brands that have already succeeded.</strong> <a href="#checkout-btn">Learn from those who are already seeing results.</a></p>
+    </div>
+  </div>
+
+  <!-- WHITE SECTION: A/B TESTING -->
+  <div class="white-sec">
+    <div class="ws">
+      <h2>Top DTC Brands Invested Millions in A/B Testing So You Don't Have To</h2>
+      <p>Brands like AG1, True Classic, OLIPOP, Chubbies, and SKIMS have already spent millions perfecting their email programs — so now you don't have to. With this swipe file, you'll know exactly which email structures drive more revenue per send and higher LTV. Just copy, adapt, and profit.</p>
+      <p>Stop burning your ad budget driving traffic to a list you're not monetizing. Fix your email flows, increase your email-attributed revenue, and watch your Klaviyo dashboard light up!</p>
+      <p>Get everything in one glance</p>
+    </div>
+  </div>
+
+  <!-- 200 EXAMPLES SECTION -->
+  <div class="examples">
+    <div class="ex-label">Get everything in one place</div>
+    <h2>200 Real-Life <span class="y">DTC Email Templates</span><br>Making Brands Money Right Now</h2>
+    <p>Stop guessing — simply replicate the proven email strategies of 7-figure DTC brands and adapt them to your brand in minutes.</p>
+    <div class="ex-mockup">
+      <!-- REPLACE_IMAGE: swap with your own swipe file preview/mockup image -->
+      <img src="https://www.conversion.care/wp-content/uploads/2023/12/emails.png" alt="DTC Email Swipe File Preview" />
+    </div>
+  </div>
+
+  <!-- BENEFITS CARD -->
+  <div class="benefits-wrap">
+    <div class="benefits-card">
+      <div class="bl">
+        <h3>Here's How This Bundle of DTC Emails Will Boost Your Revenue:</h3>
+        <ul class="blist">
+          <li><span class="chk">✓</span><div><strong>Instantly improve your email revenue</strong> by replacing guesswork flows with copy frameworks proven by brands doing $10M+/yr.</div></li>
+          <li><span class="chk">✓</span><div><strong>Increase open &amp; click rates</strong> by copying 200+ tested subject lines from welcome flows to flash sale broadcasts.</div></li>
+          <li><span class="chk">✓</span><div><strong>Maximize customer LTV</strong> with post-purchase, cross-sell, and loyalty sequences built into the world's best DTC email programs.</div></li>
+          <li><span class="chk">✓</span><div>Save 40+ hours of guesswork — <strong>just open, adapt, and send</strong> what's proven to work.</div></li>
+        </ul>
+        <div class="body">
+          You're getting the <strong>exact email blueprint</strong> that 7- and 8-figure DTC brands use to drive 30–50% of their total revenue from email alone — fully mapped for Klaviyo with flow logic, timing, and send-time notes included.
+        </div>
+        <a href="#checkout-btn" class="btn-green">Get 200+ DTC Email Swipe Files NOW!</a>
+      </div>
+      <div class="br">
+        <!-- REPLACE_IMAGE: swap with your own badge/stamp image -->
+        <img src="https://www.conversion.care/wp-content/uploads/2023/10/no-bullshit.png" alt="No BS – Just Results" />
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA REPEAT -->
+  <div class="cta2">
+    <div class="row">
+      <span class="n">1,847</span>
+      <img src="https://www.conversion.care/wp-content/uploads/2023/12/yellow-strs.svg" alt="stars" style="width:80px;" />
+      <span class="t">DTC founders are already seeing higher email revenue</span>
+      <div class="avatars">
+        <img src="https://www.conversion.care/wp-content/uploads/2024/08/kannan.jpeg" alt="" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/08/sergio.jpeg" alt="" />
+        <img src="https://www.conversion.care/wp-content/uploads/2024/08/oyekunle.jpeg" alt="" />
+        <img src="https://www.conversion.care/wp-content/uploads/2023/12/File-118.jpg" alt="" />
+        <img src="https://www.conversion.care/wp-content/uploads/2023/11/dejan-lukic.jpeg" alt="" />
+      </div>
+      <span class="av-count">+1,841</span>
+    </div>
+  </div>
+
+  <!-- QUOTE SECTION -->
+  <div class="quote-sec">
+    <div class="qi">
+      <div class="qt">
+        <blockquote>"Your online store sends emails every day. Make sure they're the ones people actually open."</blockquote>
+        <div class="attr"><strong>Steven · Sales Ignition</strong><br>DTC Email Marketing Specialist</div>
+      </div>
+      <div class="qimg">
+        <!-- REPLACE_IMAGE: swap with your own headshot photo -->
+        <img src="https://www.conversion.care/wp-content/uploads/2024/10/jaka-smid-quote-1.png" alt="Steven" />
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY IT WORKS -->
+  <div class="why">
+    <div class="why-in">
+      <h2>Why it works?</h2>
+      <p>We live in a world where attention is the scarcest resource, and the fastest way to earn it in your subscriber's inbox is to send emails people actually want to open.</p>
+      <p>By studying and "stealing" the best-performing email structures from top DTC brands, you bypass years of slow trial-and-error. These companies have already invested millions of dollars and thousands of sends to perfect what works — <strong>why not apply those insights to your own store and get results faster?</strong></p>
+    </div>
+  </div>
+
+  <!-- PRICING HEADER -->
+  <div class="ph">
+    <div class="ph-label">Get 200+ DTC email swipe files in one place</div>
+    <h2>Start Selling Like The <span class="y">Top DTC Brands</span> Today!</h2>
+  </div>
+
+  <!-- PRICING -->
+  <div id="pricing">
+    <div class="pg">
+
+      <!-- CARD 1 -->
+      <div class="pc feat">
+        <h3>200+ DTC Email Swipe Files in One Place</h3>
+        <div class="price-was">$97.99</div>
+        <div class="price-now">$47</div>
+        <div class="save-badge">51% OFF — but only TODAY, on FRIDAY</div>
+        <div class="price-day">&nbsp;</div>
+        <div class="pc-intro">With this swipe file, you will get:</div>
+        <ul class="plist">
+          <li><span class="pchk">✓</span><div><strong>Instantly improve your email revenue</strong> by replacing guesswork flows with frameworks used by 7-figure DTC brands.</div></li>
+          <li><span class="pchk">✓</span><div><strong>Increase open &amp; click rates</strong> by copying 200+ tested subject lines, from welcome flows to win-back campaigns.</div></li>
+          <li><span class="pchk">✓</span><div><strong>Maximize customer LTV</strong> with post-purchase, cross-sell, and loyalty sequences built into top-performing email programs.</div></li>
+          <li><span class="pchk">✓</span><div>Save hours of guesswork — <strong>just open, adapt, and send</strong> what's proven to work.</div></li>
+        </ul>
+        <a id="checkout-btn" href="https://saleignite.spiffy.co/checkout/dtc-email-swipe-file" class="btn-green-full">Get 200+ DTC Email Swipe Files NOW!</a>
+        <div class="pay-note">You will be redirected to a secure checkout where you can pay with:</div>
+        <div class="pay-icons">
+          <!-- REPLACE_IMAGE: payment methods image -->
+          <img src="https://www.conversion.care/wp-content/uploads/2023/10/image-25-1.png" alt="Payment options" />
+        </div>
+        <div class="pay-note">After payment, you will get your swipe file immediately via email.</div>
+        <div class="secure">
+          <!-- REPLACE_IMAGE: security badge -->
+          <img src="https://www.conversion.care/wp-content/uploads/2023/10/image-26-1.png" alt="Secure checkout" />
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="reviews">
+    <div class="rev-in">
+      <div class="rev-top">
+        <div class="rev-num">4.93</div>
+        <div>
+          <div class="rev-stars"><img src="https://www.conversion.care/wp-content/uploads/2023/12/yellow-strs.svg" alt="stars" /></div>
+          <div class="rev-cnt">Based on 112 ratings</div>
+        </div>
+      </div>
+      <div class="rev-av-row">
+        <div class="avatars">
+          <img src="https://www.conversion.care/wp-content/uploads/2024/08/kannan.jpeg" alt="" />
+          <img src="https://www.conversion.care/wp-content/uploads/2024/08/member.svg" alt="" />
+          <img src="https://www.conversion.care/wp-content/uploads/2024/08/sergio.jpeg" alt="" />
+          <img src="https://www.conversion.care/wp-content/uploads/2024/08/oyekunle.jpeg" alt="" />
+          <img src="https://www.conversion.care/wp-content/uploads/2024/04/ziga.jpeg" alt="" />
+          <img src="https://www.conversion.care/wp-content/uploads/2023/12/File-118.jpg" alt="" />
+          <img src="https://www.conversion.care/wp-content/uploads/2023/11/dejan-lukic.jpeg" alt="" />
+        </div>
+        <span class="rev-av-cnt">+1,841</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee">
+    <div class="gi">
+      <div class="gb">
+        <!-- REPLACE_IMAGE: guarantee badge -->
+        <img src="https://www.conversion.care/wp-content/uploads/2023/10/image-27-3.png" alt="14-Day Money-Back Guarantee" />
+      </div>
+      <div class="gt">
+        <h2>14-Day Result-Driven Money-Back Guarantee</h2>
+        <p>I'm confident that this email swipe file will be a game-changer for your DTC brand. I've invested years studying, curating, and documenting the highest-converting email strategies from top-performing brands to drive real results for you.</p>
+        <p>That's why I'm offering a result-driven 14-day money-back guarantee. If you implement at least two of the email frameworks shown in this swipe file and don't see any measurable improvement in your open rates, click rates, or email revenue — simply reach out to me. <strong>I will refund 100% of your money.</strong> Your success is my priority, and I stand by the value this swipe file will bring to you and your business.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Sales Ignition LLC · <a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="mailto:hello@salesignition.co">Contact</a></p>
+  </footer>
+
+</body>
+</html>
