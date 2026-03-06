@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StealFlows — Klaviyo Email Templates That Already Convert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --font: 'Outfit', 'Google Sans', sans-serif;
+  --orange: #F5620F;
+  --orange-hover: #d9510c;
+  --dark: #1a1a1a;
+  --dark-section: #151c2b;
+  --text: #2d2d2d;
+  --muted: #6b7280;
+  --light-bg: #f8f9fa;
+  --border: #e5e7eb;
+  --white: #ffffff;
+  --green: #16a34a;
+  --yellow: #eab308;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.announce-bar {
+  background: var(--dark-section);
+  color: #a0aec0;
+  font-size: 13px;
+  text-align: center;
+  padding: 8px 16px;
+}
+.announce-bar a { color: #fff; text-decoration: underline; }
+
+nav {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo { font-size: 20px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.5px; }
+.nav-role { font-size: 13px; color: var(--muted); }
+.nav-cta {
+  background: var(--orange);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--orange-hover); }
+
+.hero {
+  background: #fff;
+  padding: 64px 24px 52px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-inner { max-width: 780px; margin: 0 auto; }
+.hero h1 {
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--orange);
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 4px;
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 580px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.hero-sub strong { color: var(--text); font-weight: 600; }
+
+.btn-hero {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 17px 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 4px 14px rgba(245, 98, 15, 0.35);
+}
+.btn-hero:hover { background: var(--orange-hover); transform: translateY(-1px); }
+
+.btn-link {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 16px;
+}
+
+.hero-badge {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.hero-badge img { height: 28px; object-fit: contain; }
+.hero-badge span { font-size: 13px; color: var(--muted); }
+
+.hero-proof {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.hero-proof img { height: 36px; object-fit: contain; }
+.proof-label { font-size: 14px; color: var(--muted); text-align: left; }
+.proof-label strong { color: var(--dark); display: block; font-size: 20px; font-weight: 800; line-height: 1; }
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.stat-item {
+  flex: 1;
+  min-width: 130px;
+  padding: 24px 16px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 32px; font-weight: 800; color: var(--dark); letter-spacing: -1px; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.story { padding: 64px 24px; }
+.story-inner { max-width: 720px; margin: 0 auto; }
+.story-inner p { margin-bottom: 18px; color: #4b5563; font-size: 17px; }
+.story-inner p strong { color: var(--dark); font-weight: 600; }
+.story-link { color: var(--orange); text-decoration: underline; }
+
+.however-divider {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 44px 0 0;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.however-block { margin-top: 20px; }
+.however-block h2 {
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: var(--dark);
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.warning-section {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 60px 24px;
+}
+.warning-inner { max-width: 720px; margin: 0 auto; }
+.warning-icon { font-size: 44px; margin-bottom: 14px; display: block; }
+.warning-inner h3 {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+.warning-inner h3 em { font-style: italic; color: var(--orange); }
+.warning-inner p { color: #94a3b8; margin-bottom: 16px; line-height: 1.7; font-size: 16px; }
+.warning-inner p strong { color: #e2e8f0; }
+.price-note { color: #475569 !important; font-size: 15px !important; }
+.btn-warning {
+  display: inline-block;
+  margin-top: 20px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 34px;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(245,98,15,0.4);
+}
+.btn-warning:hover { background: var(--orange-hover); }
+
+.features-intro { padding: 64px 24px 32px; }
+.features-intro-inner { max-width: 720px; margin: 0 auto; }
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.features-intro h2 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.features-intro h2 em {
+  font-style: italic;
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.features-intro p { color: var(--muted); font-size: 16px; }
+
+.feature-row { padding: 52px 24px; border-top: 1px solid var(--border); }
+.feature-row.alt { background: var(--light-bg); }
+.feature-row-inner { max-width: 720px; margin: 0 auto; }
+.feature-row h3 {
+  font-size: clamp(19px, 3vw, 25px);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--dark);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.feature-row p { color: #4b5563; margin-bottom: 28px; font-size: 16px; }
+.feature-row img {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.showcase {
+  padding: 60px 24px;
+  background: var(--light-bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.showcase h2 {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.showcase p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+.showcase img { width: 100%; max-width: 860px; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+.bio-section { padding: 64px 24px; border-top: 1px solid var(--border); }
+.bio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 52px;
+  align-items: start;
+}
+@media (max-width: 640px) { .bio-inner { grid-template-columns: 1fr; } }
+.bio-photo { width: 100%; border-radius: 8px; object-fit: cover; border: 1px solid var(--border); }
+.bio-text h2 {
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--dark);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.bio-text p { color: #4b5563; margin-bottom: 16px; font-size: 16px; }
+.bio-text p strong { color: var(--dark); }
+
+.pricing-section {
+  background: var(--dark-section);
+  color: #e2e8f0;
+  padding: 72px 24px;
+}
+.pricing-header { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.pricing-header .eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: #475569; margin-bottom: 12px;
+}
+.pricing-header h2 {
+  font-size: clamp(26px, 5vw, 46px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.pricing-header h2 em { color: var(--orange); font-style: italic; }
+.pricing-header .sub { font-size: 16px; color: #64748b; }
+
+.pricing-grid {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 680px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.pricing-card {
+  background: #1e293b;
+  border: 1px solid #2d3f57;
+  border-radius: 10px;
+  padding: 36px 30px;
+  position: relative;
+}
+.pricing-card.featured {
+  background: #fff;
+  color: var(--text);
+  border: 2px solid var(--orange);
+}
+.featured-tag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.card-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.card-name { font-size: 21px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.25; }
+.pricing-card.featured .card-name { color: var(--dark); }
+.card-desc { font-size: 14px; color: #64748b; margin-bottom: 24px; line-height: 1.5; }
+.pricing-card.featured .card-desc { color: var(--muted); }
+
+.price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.price-now { font-size: 50px; font-weight: 800; letter-spacing: -2px; color: #fff; line-height: 1; }
+.pricing-card.featured .price-now { color: var(--dark); }
+.price-was { font-size: 20px; color: #475569; text-decoration: line-through; }
+.pricing-card.featured .price-was { color: #9ca3af; }
+.price-save {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; margin-bottom: 22px; letter-spacing: 0.3px;
+  background: rgba(22,163,74,0.12); color: #4ade80;
+}
+.pricing-card.featured .price-save { background: #dcfce7; color: var(--green); }
+
+.card-feats { list-style: none; margin-bottom: 28px; }
+.card-feats li {
+  font-size: 14px; color: #94a3b8;
+  padding: 8px 0; border-bottom: 1px solid #2d3f57;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.pricing-card.featured .card-feats li { color: #4b5563; border-color: var(--border); }
+.card-feats li:last-child { border-bottom: none; }
+.card-feats li::before { content: '✓'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+.card-feats li.bonus { color: var(--orange) !important; }
+.card-feats li.bonus::before { content: '★'; }
+
+.card-cta {
+  display: block; text-align: center;
+  font-size: 15px; font-weight: 700;
+  padding: 15px; border-radius: 5px;
+  text-decoration: none; transition: all 0.15s;
+}
+.card-cta-primary { background: var(--orange); color: #fff; box-shadow: 0 4px 12px rgba(245,98,15,0.4); }
+.card-cta-primary:hover { background: var(--orange-hover); }
+.card-cta-ghost { background: transparent; color: #e2e8f0; border: 1px solid #2d3f57; }
+.card-cta-ghost:hover { border-color: #64748b; }
+
+.pricing-note { text-align: center; font-size: 13px; color: #475569; margin-top: 20px; max-width: 960px; margin-left: auto; margin-right: auto; }
+
+/* Entry pack strip */
+.entry-strip {
+  max-width: 960px;
+  margin: 20px auto 0;
+  background: #1e293b;
+  border: 1px solid #2d3f57;
+  border-radius: 8px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.entry-strip-left { }
+.entry-strip-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
+.entry-strip-name { font-size: 17px; font-weight: 700; color: #fff; }
+.entry-strip-desc { font-size: 13px; color: #64748b; margin-top: 2px; }
+.entry-strip-right { display: flex; align-items: baseline; gap: 10px; flex-shrink: 0; }
+.entry-price { font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -1px; }
+.entry-was { font-size: 16px; color: #475569; text-decoration: line-through; }
+.entry-cta {
+  display: inline-block;
+  background: transparent;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 1px solid #2d3f57;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-left: 8px;
+  transition: border-color 0.15s;
+}
+.entry-cta:hover { border-color: #64748b; }
+
+.trust-section {
+  background: var(--dark-section);
+  border-top: 1px solid #1e293b;
+  padding: 28px 24px 36px;
+  text-align: center;
+}
+.trust-section img.trust-img { max-width: 380px; width: 100%; opacity: 0.55; }
+.stars-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.stars-num { font-size: 26px; font-weight: 800; color: #fff; }
+.stars-icons { color: var(--yellow); font-size: 18px; }
+.stars-label { font-size: 13px; color: #64748b; }
+.stars-badges img { height: 26px; opacity: 0.4; }
+
+.guarantee-section {
+  background: var(--dark-section);
+  padding: 52px 24px;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+}
+.guarantee-inner { max-width: 620px; margin: 0 auto; }
+.guarantee-section img.g-img { width: 130px; border-radius: 50%; margin-bottom: 20px; }
+.guarantee-section h3 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: #fff; margin-bottom: 12px; }
+.guarantee-section p { color: #94a3b8; font-size: 15px; max-width: 500px; margin: 0 auto; }
+
+.testi-section { padding: 72px 24px; border-top: 1px solid var(--border); }
+.testi-inner { max-width: 720px; margin: 0 auto; }
+.testi-section h2 {
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 800; letter-spacing: -0.6px;
+  color: var(--dark); margin-bottom: 36px; line-height: 1.2;
+}
+.testi-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+  margin-bottom: 18px;
+  background: var(--light-bg);
+}
+.testi-text { font-size: 16px; color: #4b5563; margin-bottom: 20px; line-height: 1.65; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: #e5e7eb; display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 700; color: #6b7280; flex-shrink: 0;
+}
+.testi-name { font-weight: 700; color: var(--dark); font-size: 14px; }
+.testi-role { font-size: 13px; color: var(--muted); }
+
+.faq-section { padding: 72px 24px; border-top: 1px solid var(--border); }
+.faq-inner { max-width: 720px; margin: 0 auto; }
+.faq-section h2 {
+  font-size: clamp(24px, 4vw, 34px); font-weight: 800;
+  letter-spacing: -0.6px; color: var(--dark); margin-bottom: 8px;
+}
+.faq-intro { color: var(--muted); margin-bottom: 36px; font-size: 16px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
+.faq-num { font-size: 18px; margin-bottom: 4px; }
+.faq-q { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.3px; line-height: 1.3; }
+.faq-a { font-size: 15px; color: #4b5563; line-height: 1.7; }
+
+.final-cta {
+  background: #0f172a;
+  padding: 72px 24px;
+  text-align: center;
+  border-top: 1px solid #1e293b;
+}
+.final-cta-inner { max-width: 700px; margin: 0 auto; }
+.final-cta .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #334155; margin-bottom: 18px; }
+.final-cta h2 {
+  font-size: clamp(26px, 5vw, 46px); font-weight: 800;
+  letter-spacing: -1px; color: #fff; margin-bottom: 14px; line-height: 1.15;
+}
+.final-cta h2 em { color: var(--orange); font-style: italic; }
+.final-cta p { color: #64748b; font-size: 16px; margin-bottom: 32px; }
+.final-proof {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; margin-top: 20px; flex-wrap: wrap;
+}
+.final-proof img { height: 30px; object-fit: contain; }
+.final-proof .stars { color: var(--yellow); font-size: 17px; }
+.final-proof span { font-size: 13px; color: #475569; }
+
+footer {
+  background: var(--dark-section);
+  border-top: 1px solid #1e293b;
+  padding: 28px 24px;
+  text-align: center;
+}
+.footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
+.footer-links a { font-size: 13px; color: #475569; text-decoration: none; }
+.footer-links a:hover { color: #e2e8f0; }
+.footer-copy { font-size: 12px; color: #334155; }
+
+.sticky-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fff; border-top: 2px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  z-index: 99;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.sticky-bar.show { transform: translateY(0); }
+.sticky-price { font-size: 26px; font-weight: 800; color: var(--dark); letter-spacing: -1px; }
+.sticky-was { font-size: 15px; color: var(--muted); text-decoration: line-through; margin-left: 8px; }
+.sticky-stars { color: var(--yellow); font-size: 15px; }
+@media (max-width: 500px) { .sticky-stars { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  Limited launch pricing — <a href="#pricing">save up to 55% today only</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div>
+      <div class="nav-logo">StealFlows</div>
+      <div class="nav-role">Steven · Email Strategist</div>
+    </div>
+    <a href="#pricing" class="nav-cta">Get Templates</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Don't let broken email flows <em>kill your revenue!</em></h1>
+    <p class="hero-sub">
+      Discover plug-and-play Klaviyo templates <strong>reverse-engineered from the fastest-growing DTC brands</strong> — so you can go live in 72 hours, not 6 weeks.
+    </p>
+    <a href="#pricing" class="btn-hero">Get the Starter Bundle — $75!</a>
+    <a href="#what-you-get" class="btn-link">See what's included</a>
+
+    <!-- REPLACE: klaviyo-compat-badge.png — "Compatible with Klaviyo" badge or Figma + Klaviyo logo lockup -->
+    <div class="hero-badge">
+      <img src="https://www.conversion.care/wp-content/uploads/2023/10/figma1-1.png" alt="Klaviyo compatible" id="img-compat-badge">
+    </div>
+
+    <div class="hero-proof">
+      <!-- REPLACE: social-proof-avatars.png — row of customer face avatars, ~400x80px transparent PNG -->
+      <img src="https://www.conversion.care/wp-content/uploads/2023/10/customers-template2x.png" alt="DTC founders using StealFlows" id="img-proof-avatars">
+      <div class="proof-label">
+        <strong>500+</strong>
+        DTC brands already using these
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS ROW -->
+<div class="stats-row">
+  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Brands studied</div></div>
+  <div class="stat-item"><div class="stat-num">47%</div><div class="stat-label">Avg open rate lift</div></div>
+  <div class="stat-item"><div class="stat-num">7-fig</div><div class="stat-label">Brands researched</div></div>
+  <div class="stat-item"><div class="stat-num">72hr</div><div class="stat-label">Avg setup time</div></div>
+</div>
+
+<!-- STORY -->
+<div class="story">
+  <div class="story-inner">
+    <p>
+      For years, I've been inside the email programs of DTC brands at every stage of growth — running deliverability audits, rebuilding flow architecture from scratch, and coaching founders through the process of turning their email list from a neglected asset into a predictable revenue channel.
+    </p>
+    <p>
+      After auditing hundreds of Klaviyo accounts — including clients at the $1M, $10M, and $50M+ revenue level — I kept seeing the same thing: <strong>massive revenue left on the table because email flows were either broken, non-existent, or built from generic templates that looked pretty but didn't convert.</strong>
+    </p>
+    <p>
+      That's why I started reverse-engineering the exact sequences that were actually moving the needle: welcome flows generating 4x revenue, abandon cart sequences recovering 15–20% of lost carts, subscription retention flows cutting churn by double digits. The result is a <a href="#what-you-get" class="story-link">library of 123 Klaviyo templates distilled from what already works.</a>
+    </p>
+    <p>
+      My retainer clients pay $2,500/month for this level of thinking. <strong>These templates put the same framework in your hands for a one-time fee.</strong>
+    </p>
+
+    <div class="however-divider">HOWEVER</div>
+    <div class="however-block">
+      <h2>Most DTC founders still needed help with the actual structure of their Klaviyo flows</h2>
+      <p>Knowing you need better email automation isn't the same as knowing <em>how</em> to build it. The trigger logic, timing gaps, copy frameworks, and segment exclusions — these are what separate email programs that compound over time from ones that flatline.</p>
+      <p>That's why I took everything I've learned from designing email programs that generate consistent 5–8× ROI and built it into plug-and-play templates. <strong>Skip the guesswork. Skip the agency. Start with what already works.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- WARNING -->
+<div class="warning-section">
+  <div class="warning-inner">
+    <span class="warning-icon">🔥</span>
+    <h3>Hiring a freelancer for your Klaviyo flows is usually a <em>VERY RISKY MOVE!</em></h3>
+    <p>About 95% of email designers focus on making things look good. But when it comes to automation, aesthetics aren't the problem. The issue is architecture: what triggers what, when to send, how to suppress, and why the first email in a welcome series should never open with a discount.</p>
+    <p>Not only is there a real risk they won't improve your conversion rates — <strong>a poorly architected flow can damage your deliverability, inflate your unsubscribes, and suppress engagement across your entire list.</strong></p>
+    <p>Why risk it? Opt for Klaviyo templates that already have the conversion logic built in — proven across real brands generating millions in email revenue.</p>
+    <p class="price-note">While my consulting starts at $2,500/month, you can access the same level of expertise for just $75.</p>
+    <a href="#pricing" class="btn-warning">Get the Starter Bundle — $75!</a>
+  </div>
+</div>
+
+<!-- FEATURES INTRO -->
+<div class="features-intro" id="what-you-get">
+  <div class="features-intro-inner">
+    <div class="section-eyebrow">What's inside</div>
+    <h2>StealFlows is your <em>ultimate Klaviyo email source</em> because it includes:</h2>
+    <p>Over 123 dedicated templates across every flow type a 7-figure DTC brand runs — carefully designed to cover every stage of the customer lifecycle with conversions in mind.</p>
+  </div>
+</div>
+
+<!-- FEATURE 1 -->
+<div class="feature-row">
+  <div class="feature-row-inner">
+    <h3>Over 123 dedicated templates — desktop &amp; mobile for every flow type</h3>
+    <p>Carefully designed to cover every detail of your store's email program. With conversion logic baked in, you'll know exactly how each flow should look to maximize open rates and revenue per email — welcome series, post-purchase, win-back, and more.</p>
+    <!-- REPLACE: feature-01-all-templates.png — wide screenshot of all 123 templates in Klaviyo or Figma artboard grid overview, 1400x700px+ -->
+    <img src="https://www.conversion.care/wp-content/uploads/2023/04/artboards2x.png" alt="All 123 Klaviyo email templates" id="img-feature-01">
+  </div>
+</div>
+
+<!-- FEATURE 2 -->
+<div class="feature-row alt">
+  <div class="feature-row-inner">
+    <h3>Over 50 abandon recovery sequences for maximizing recovered revenue</h3>
+    <p>Discover the power of proven abandon sequences modeled from brands recovering <strong>15–20% of abandoned revenue</strong>. Browse abandon, cart abandon, checkout abandon — each with timing gaps, subject line approaches, and incentive structure based on hundreds of real A/B tests at DTC brands doing $10M+/year.</p>
+    <!-- REPLACE: feature-02-abandon-flows.png — screenshot of abandon cart or browse abandon flow in Klaviyo flow builder, 1400x700px+ -->
+    <img src="https://www.conversion.care/wp-content/uploads/2023/04/craov2x.png" alt="Abandon revenue recovery sequences" id="img-feature-02">
+  </div>
+</div>
+
+<!-- FEATURE 3 -->
+<div class="feature-row">
+  <div class="feature-row-inner">
+    <h3>The complete subscription lifecycle — from onboarding to win-back</h3>
+    <p>Every detail of the subscriber journey — from first-order onboarding to skip-cancel prevention, pause retention, renewal nudges, and reactivation — is expertly crafted to guide subscribers through the lifecycle smoothly, maximizing LTV without harming experience. Built for Recharge + Klaviyo.</p>
+    <!-- REPLACE: feature-03-subscription-flows.png — screenshot of subscription lifecycle flow in Klaviyo or visual flow map, 1400x700px+ -->
+    <img src="https://www.conversion.care/wp-content/uploads/2023/04/checkout2x.png" alt="Subscription lifecycle flow" id="img-feature-03">
+  </div>
+</div>
+
+<!-- FEATURE 4 -->
+<div class="feature-row alt">
+  <div class="feature-row-inner">
+    <h3>Unlock strategic insights with 100+ detailed expert annotations</h3>
+    <p>Learn from me as I explain the importance of each design element, how to implement it, and <em>why</em> it works. These annotations — covering subject line structure, CTA placement, copy length, and timing — are worth thousands of dollars in consulting. An exclusive look into conversion thinking applied to real email architecture.</p>
+    <!-- REPLACE: feature-04-annotations.png — screenshot of email template with visible annotation/comment layer showing strategic notes, 1400x700px+ -->
+    <img src="https://www.conversion.care/wp-content/uploads/2023/04/comments2x.png" alt="Expert strategic annotations" id="img-feature-04">
+  </div>
+</div>
+
+<!-- FEATURE 5 -->
+<div class="feature-row">
+  <div class="feature-row-inner">
+    <h3>Master revenue-driving copy with pre-written swipe file frameworks</h3>
+    <p>Benefit from comprehensive copy frameworks I've built for product emails, welcome sequences, urgency countdowns, microcopy, and more. Not placeholder text — actual working copy with fill-in-the-blank slots for your brand. Empower your email program with copy that sells from day one.</p>
+    <!-- REPLACE: feature-05-copy-swipe.png — screenshot of copy swipe file or email with copy framework annotations visible, 1400x700px+ -->
+    <img src="https://www.conversion.care/wp-content/uploads/2023/04/copy2x.png" alt="Copy framework swipe files" id="img-feature-05">
+  </div>
+</div>
+
+<!-- SHOWCASE -->
+<div class="showcase">
+  <div class="section-eyebrow">Inside the full library</div>
+  <h2>Everything a 7-figure DTC brand runs. Built, tested, ready.</h2>
+  <p>All 123 templates across every flow type. One-time download. Yours forever.</p>
+  <!-- REPLACE: full-library-showcase.png — wide hero image of the full template library in a dashboard/grid view, 1600x800px+ -->
+  <img src="https://www.conversion.care/wp-content/uploads/2023/10/image-33.png" alt="Full StealFlows template library" id="img-library">
+</div>
+
+<!-- BIO -->
+<div class="bio-section">
+  <div class="bio-inner">
+    <div>
+      <!-- REPLACE: bio-photo.jpg — your professional headshot, portrait orientation (3:4 ratio), 600x800px+ -->
+      <img src="https://www.conversion.care/wp-content/uploads/2023/04/jaka-smid@2x.jpeg" alt="Steven" class="bio-photo" id="img-bio">
+    </div>
+    <div class="bio-text">
+      <h2>Why the hell should you trust me?</h2>
+      <p>
+        As I mentioned above, I've helped DTC brands at every stage of growth build email programs that actually compound. I'm Steven — founder of Sales Ignition, an email marketing consultancy working exclusively with e-commerce brands doing $1M+ in revenue.
+      </p>
+      <p>
+        My clients include Toyota, Mercedes-Benz, True Citrus, and Milton's Craft Bakers, alongside fast-growing DTC brands building real subscription businesses from scratch.
+      </p>
+      <p>
+        I've been obsessed with what actually moves the needle — not what looks good in a screenshot. <strong>I've built two separate businesses around email strategy and deliverability</strong> and have helped online store owners generate consistent 5–8× ROI from their lists over the last several years.
+      </p>
+      <p>
+        I have a deep understanding of what affects email performance — deliverability, architecture, timing, copy, segmentation — and I'm happy to share everything I know with you.
+      </p>
+      <p>Unlock $2,500/month worth of strategic thinking for just $75.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <div class="pricing-header">
+    <div class="eyebrow">Choose your bundle</div>
+    <h2>Dominate your market with the most potent <em>conversion-boosting</em> Klaviyo template</h2>
+    <p class="sub">One-time download. No subscription. Yours forever. Free updates included.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- FEATURED: STARTER BUNDLE -->
+    <div class="pricing-card featured">
+      <div class="featured-tag">★ MOST POPULAR</div>
+      <div class="card-tier">Best Value</div>
+      <div class="card-name">Klaviyo Starter Bundle</div>
+      <p class="card-desc">50 templates covering your core flows. Everything a new Klaviyo brand needs to compete from day one.</p>
+      <div class="price-row">
+        <span class="price-now">$75</span>
+        <span class="price-was">$150</span>
+      </div>
+      <div class="price-save">50% OFF — but only here and now — ONE TIME OFFER!</div>
+      <ul class="card-feats">
+        <li>50 email templates across 6 flow types</li>
+        <li>Welcome, abandon cart, post-purchase flows</li>
+        <li>Win-back + browse abandonment</li>
+        <li>Promotional email templates</li>
+        <li>Klaviyo HTML import files included</li>
+        <li>Desktop + mobile for every template</li>
+        <li class="bonus">FREE BONUS: Copy framework swipe file</li>
+      </ul>
+      <!-- REPLACE: YOUR_CHECKOUT_URL_STARTER_BUNDLE → your GoHighLevel or checkout URL -->
+      <a href="YOUR_CHECKOUT_URL_STARTER_BUNDLE" class="card-cta card-cta-primary">Buy the Starter Bundle now!</a>
+      <p style="font-size:12px; color:#9ca3af; text-align:center; margin-top:10px;">Instant access after checkout. 30-day guarantee.</p>
+    </div>
+
+    <!-- FULL LIBRARY -->
+    <div class="pricing-card">
+      <div class="card-tier">Full Library</div>
+      <div class="card-name">Foundational Flows — Complete Set</div>
+      <p class="card-desc">All 123 templates. Every flow type a 7-figure DTC brand runs. Built, tested, ready.</p>
+      <div class="price-row">
+        <span class="price-now">$450</span>
+        <span class="price-was">$1,000</span>
+      </div>
+      <div class="price-save">55% OFF</div>
+      <ul class="card-feats">
+        <li>123 total templates</li>
+        <li>Subscription-specific flow set</li>
+        <li>VIP and loyalty tier flows</li>
+        <li>Seasonal + flash sale templates</li>
+        <li>SMS companion copy for key flows</li>
+        <li>Full Klaviyo flow architecture map</li>
+        <li class="bonus">FREE BONUS: Deliverability audit checklist</li>
+      </ul>
+      <!-- REPLACE: YOUR_CHECKOUT_URL_FULL_LIBRARY → your GoHighLevel or checkout URL -->
+      <a href="YOUR_CHECKOUT_URL_FULL_LIBRARY" class="card-cta card-cta-ghost">Get Full Library</a>
+    </div>
+  </div>
+
+  <!-- Entry pack strip -->
+  <div class="entry-strip">
+    <div class="entry-strip-left">
+      <div class="entry-strip-tier">Entry Pack</div>
+      <div class="entry-strip-name">Welcome Series Starter Pack</div>
+      <div class="entry-strip-desc">5-email welcome series · Klaviyo flow map · Copy swipe file · Desktop + mobile</div>
+    </div>
+    <div class="entry-strip-right">
+      <span class="entry-price">$47</span>
+      <span class="entry-was">$97</span>
+      <!-- REPLACE: YOUR_CHECKOUT_URL_WELCOME_SERIES → your GoHighLevel or checkout URL -->
+      <a href="YOUR_CHECKOUT_URL_WELCOME_SERIES" class="entry-cta">Get Starter Pack</a>
+    </div>
+  </div>
+
+  <p class="pricing-note">★ 30-day money-back guarantee · No questions asked · Instant access after purchase</p>
+</div>
+
+<!-- TRUST BADGES -->
+<div class="trust-section">
+  <!-- REPLACE: trust-badges.png — payment security / Stripe / Norton / SSL badge row, ~380x80px -->
+  <img src="https://www.conversion.care/wp-content/uploads/2023/10/image-26-1.png" alt="Secure checkout badges" class="trust-img" id="img-trust">
+  <div class="stars-row">
+    <span class="stars-num">4.9</span>
+    <span class="stars-icons">★★★★★</span>
+    <span class="stars-label">Based on customer reviews</span>
+    <!-- REPLACE: review-logos.png — Trustpilot / Google Reviews / G2 badge row -->
+    <span class="stars-badges"><img src="https://www.conversion.care/wp-content/uploads/2023/10/Group-574.png" alt="Review platforms" id="img-review-logos"></span>
+  </div>
+</div>
+
+<!-- GUARANTEE -->
+<div class="guarantee-section">
+  <div class="guarantee-inner">
+    <!-- REPLACE: guarantee-seal.png — money-back guarantee badge or seal, ~260x260px circular -->
+    <img src="https://www.conversion.care/wp-content/uploads/2023/10/image-27-3.png" alt="30-day money back guarantee" class="g-img" id="img-guarantee">
+    <h3>Full 30-Day Money-Back Guarantee</h3>
+    <p>
+      I'm confident StealFlows will be a game-changer for your email program — and I understand the importance of peace of mind. That's why I'm giving you a no-questions-asked 30-day money-back guarantee. If for whatever reason you feel these aren't for you, message my team. I'll refund 100% of your money, immediately, with zero strings attached.
+    </p>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-section">
+  <div class="testi-inner">
+    <div class="section-eyebrow">From DTC founders like you</div>
+    <h2>They said it best.</h2>
+
+    <div class="testi-card">
+      <p class="testi-text">"We had zero flows live. Downloaded the Starter Bundle on a Tuesday, had a working welcome series live by Thursday. First week it generated more email revenue than we'd made the entire previous month."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Marcus T.</div>
+          <div class="testi-role">Founder · Supplement Brand · Klaviyo Beginner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <p class="testi-text">"I was about to hire an agency for $3K/month to build our flows. These templates are exactly what the agency would have built me — and I got them for $75. The Klaviyo flow map alone saved me weeks of back and forth."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">J</div>
+        <div>
+          <div class="testi-name">Jess M.</div>
+          <div class="testi-role">Co-Founder · DTC Skincare · $2M Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <p class="testi-text">"The subscription retention flows are the real deal. We run a monthly box and our churn dropped 14% in the first 60 days after switching to these sequences. It's not magic — it's just the right structure at the right time."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">D</div>
+        <div>
+          <div class="testi-name">Derek L.</div>
+          <div class="testi-role">CEO · Subscription Box Brand · 4,200 Subscribers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-inner">
+    <div class="section-eyebrow">Got some remaining questions?</div>
+    <h2>Quick Answers.</h2>
+    <p class="faq-intro">That's completely normal. I'll check 15 reviews before ordering a $50 product. You probably do, too. That's why I put together the most common questions below.</p>
+
+    <div class="faq-item">
+      <div class="faq-num">1️⃣</div>
+      <div class="faq-q">I've bought email templates before. How is StealFlows different?</div>
+      <div class="faq-a">Most template packs are built by designers who've never run a real email program. StealFlows templates are built backward from performance data — informed by auditing hundreds of live Klaviyo accounts. The difference shows up in the trigger logic, copy frameworks, and strategic annotations. Not just the visual design.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-num">2️⃣</div>
+      <div class="faq-q">What file format do I get after purchase?</div>
+      <div class="faq-a">HTML email files that import directly into Klaviyo — no design tool required. Plus a Figma source file for visual customization. Both desktop and mobile versions are included with every template. The Klaviyo flow architecture map is included as a PDF. You'll have instant access immediately after checkout.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-num">3️⃣</div>
+      <div class="faq-q">Do I need Klaviyo already configured?</div>
+      <div class="faq-a">You need a Klaviyo account (free tier works) and your Shopify store connected. That's it. The included setup guide walks you through every step — triggers, filters, time delays, segment exclusions — so you can go live without any external help.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-num">4️⃣</div>
+      <div class="faq-q">I sell a subscription product. Will these work for my brand?</div>
+      <div class="faq-a">Yes — the Full Library includes a dedicated subscription flow set covering onboarding, skip-cancel prevention, pause retention, renewal nudges, and win-back sequences. I built these specifically with Recharge + Klaviyo integrations in mind.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-num">5️⃣</div>
+      <div class="faq-q">Is this a subscription or one-time purchase?</div>
+      <div class="faq-a">One-time purchase. Yours forever. No monthly fees, no expiration, no surprises. You also get free updates when new templates are added to the pack you purchased.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-num">6️⃣</div>
+      <div class="faq-q">What if I don't have a developer to implement everything?</div>
+      <div class="faq-a">No problem. The HTML files import directly into Klaviyo — no developer required. The included flow map walks you through wiring up every trigger and time delay yourself. Most customers are live within 72 hours of purchase without any outside help.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <p class="eyebrow">AND IF YOU'RE ALL CAUGHT UP...</p>
+    <h2>It's time for you to improve your <em>email revenue and conversion rates</em> today!</h2>
+    <p>Every day you're sending broken flows or nothing at all, the brand that downloaded these last Tuesday is pulling ahead.</p>
+    <a href="#pricing" class="btn-hero" style="font-size:18px; padding:19px 48px;">Get the Starter Bundle — $75!</a>
+
+    <div class="final-proof">
+      <span style="font-size:18px; font-weight:800; color:#fff;">500+</span>
+      <span class="stars">★★★★★</span>
+      <span>DTC founders already using these · 30-day money-back guarantee</span>
+    </div>
+    <!-- REPLACE: final-avatars.png — same customer avatar row used in hero section -->
+    <div style="margin-top:16px;">
+      <img src="https://www.conversion.care/wp-content/uploads/2023/10/customers-template2x.png" alt="" id="img-final-avatars" style="height:34px; object-fit:contain; opacity:0.6;">
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#">Templates</a>
+    <a href="#">About</a>
+    <!-- REPLACE: update email below -->
+    <a href="mailto:YOUR_EMAIL@yourdomain.com">Contact</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Return Policy</a>
+  </div>
+  <!-- REPLACE: update email below -->
+  <div class="footer-copy" style="margin-top:10px;">Get in touch: your@email.com</div>
+  <div class="footer-copy" style="margin-top:6px;">© 2026 StealFlows. All rights reserved. Not affiliated with Klaviyo, Inc.</div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <div>
+    <span class="sticky-price">$75</span>
+    <span class="sticky-was">$150</span>
+  </div>
+  <span class="sticky-stars">★★★★★ 30-day guarantee</span>
+  <!-- REPLACE: YOUR_CHECKOUT_URL_STARTER_BUNDLE → actual checkout URL -->
+  <a href="YOUR_CHECKOUT_URL_STARTER_BUNDLE" class="btn-hero" style="padding:11px 24px; font-size:15px;">Get Starter Bundle →</a>
+</div>
+
+<script>
+  const bar = document.getElementById('sticky-bar');
+  window.addEventListener('scroll', () => {
+    bar.classList.toggle('show', window.scrollY > 500);
+  });
+</script>
+
+</body>
+</html>
