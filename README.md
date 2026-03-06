@@ -425,3 +425,137 @@ Live within ~30 seconds at your Cloudflare Workers URL.
 ---
 
 *Sales Ignition LLC · Greenville, South Carolina · hello@salesignition.com*
+
+
+# Adding Images to the Email Template Crawler
+
+The scrolling strip on the landing page is an infinite marquee — images crawl slowly left on a loop. Adding your own email screenshots is a one-step process.
+
+---
+
+## Where to Find It in the HTML
+
+Open `dtc-email-swipe-file.html` and search for:
+
+```
+↓↓↓ ADD YOUR IMAGES HERE ↓↓↓
+```
+
+You'll land here:
+
+```html
+<!-- ↓↓↓ ADD YOUR IMAGES HERE ↓↓↓ -->
+<img src="https://www.conversion.care/..." alt="Email template 1" />
+<img src="https://www.conversion.care/..." alt="Email template 2" />
+<!-- add your new line here -->
+<!-- ↑↑↑ ADD YOUR IMAGES HERE ↑↑↑ -->
+```
+
+Paste your new `<img>` tag anywhere inside those two comment markers. That's it — the loop updates automatically.
+
+---
+
+## Step-by-Step: Adding a New Image
+
+### Step 1 — Host your image
+
+Upload your screenshot to any image host. Recommended options:
+
+| Option | Free? | Notes |
+|--------|-------|-------|
+| **Cloudflare Images** | Paid (cheap) | Best for production — fast CDN, no hotlink issues |
+| **Cloudinary** | Free tier | Auto-resizes, great for testing |
+| **imgbb.com** | Free | Quick and easy, no account required |
+| **Your own domain** | — | e.g. `https://stealflows.com/images/welcome-email.png` |
+
+Once uploaded, copy the full image URL (starts with `https://`).
+
+---
+
+### Step 2 — Add the `<img>` tag
+
+Paste this inside the marked section:
+
+```html
+<img src="YOUR_IMAGE_URL_HERE" alt="Brief description of the email" />
+```
+
+**Real example:**
+```html
+<img src="https://stealflows.com/images/welcome-flow-email-1.png" alt="Welcome flow email 1" />
+```
+
+---
+
+### Step 3 — Save and refresh
+
+Save the file and reload the page in your browser. Your image will appear in the crawl immediately.
+
+---
+
+## Image Guidelines
+
+| Property | Recommendation |
+|----------|---------------|
+| **Height** | The strip displays all images at `320px` tall — width scales automatically |
+| **Aspect ratio** | Portrait (phone screenshots) or landscape (desktop email views) both work |
+| **Format** | `.png` or `.jpg` — PNG preferred for email screenshots (sharper text) |
+| **File size** | Keep under 300KB per image for fast loading. Use [Squoosh](https://squoosh.app) to compress |
+| **Min width** | At least 200px wide so images don't look too narrow in the strip |
+
+---
+
+## Adjusting the Scroll Speed
+
+Find this line in the CSS (search for `marquee-scroll`):
+
+```css
+animation: marquee-scroll 40s linear infinite;
+```
+
+Change `40s` to control the speed:
+- **Slower** → increase the number (e.g. `60s`)
+- **Faster** → decrease the number (e.g. `25s`)
+
+---
+
+## Pausing on Hover
+
+The strip already pauses when a visitor hovers over it. This is controlled by:
+
+```css
+.ss-marquee:hover { animation-play-state: paused; }
+```
+
+To disable the pause behavior, delete that line.
+
+---
+
+## How the Loop Works (No Action Needed)
+
+The marquee uses a small JavaScript snippet that automatically clones your image set once. This means the strip scrolls seamlessly with no visible jump at the end of the loop. You never need to manually duplicate images — just add to the original set and the script handles the rest.
+
+---
+
+## Full Example: Before and After
+
+**Before (2 images):**
+```html
+<!-- ↓↓↓ ADD YOUR IMAGES HERE ↓↓↓ -->
+<img src="https://example.com/email-a.png" alt="Welcome email" />
+<img src="https://example.com/email-b.png" alt="Cart abandon email" />
+<!-- ↑↑↑ ADD YOUR IMAGES HERE ↑↑↑ -->
+```
+
+**After (added a third):**
+```html
+<!-- ↓↓↓ ADD YOUR IMAGES HERE ↓↓↓ -->
+<img src="https://example.com/email-a.png" alt="Welcome email" />
+<img src="https://example.com/email-b.png" alt="Cart abandon email" />
+<img src="https://stealflows.com/images/winback-email.png" alt="Win-back email" />
+<!-- ↑↑↑ ADD YOUR IMAGES HERE ↑↑↑ -->
+```
+
+---
+
+*Sales Ignition — StealFlows Landing Page*
