@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Your Emails Are Going to Spam (And the 7-Step Fix) | Sales Ignition Blog</title>
+  <meta name="description" content="A practical diagnosis guide for email deliverability problems — with a 7-step fix sequence used on real DTC accounts.">
+  <link rel="canonical" href="https://blog.salesignition.com/why-emails-go-to-spam.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #ffffff;
+      --bg-alt:       #f7f6f3;
+      --bg-card:      #f2f1ee;
+      --border:       #e2e1de;
+      --border-light: #d0cfc9;
+      --text:         #1a1a1a;
+      --text-muted:   #666666;
+      --text-dim:     #999999;
+      --accent:       #e84c1e;
+      --accent-dark:  #c93d14;
+      --accent-light: #fef2ee;
+      --font:         'Open Sans', sans-serif;
+      --max:          1080px;
+      --radius:       5px;
+      --sidebar-w:    320px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-size: 17px; line-height: 1.75; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+
+    .eyebrow { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+
+    h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.015em; color: var(--text); margin: 36px 0 14px; }
+    h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; color: var(--text); margin: 28px 0 10px; }
+    p { margin-bottom: 20px; color: var(--text-muted); line-height: 1.8; }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 700; color: var(--text); }
+    em { font-style: italic; }
+
+    /* ── BUTTONS ─────────────────────────────────────────── */
+    .btn { display: inline-block; background: var(--accent); color: #fff; font-family: var(--font); font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: var(--radius); text-decoration: none; transition: background 0.15s, transform 0.12s; white-space: nowrap; }
+    .btn:hover { background: var(--accent-dark); text-decoration: none; transform: translateY(-1px); }
+    .btn--ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border-light); }
+    .btn--ghost:hover { background: var(--bg-alt); color: var(--text); text-decoration: none; transform: none; }
+    .btn--sm { font-size: 13px; padding: 9px 18px; }
+    .btn--block { display: block; text-align: center; width: 100%; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .nav__inner { max-width: var(--max); margin: 0 auto; padding: 0 36px; display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 20px; }
+    .nav__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav__logo-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; }
+    .nav__logo-fallback { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: none; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; flex-shrink: 0; }
+    .nav__logo-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .nav__logo-sub { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); }
+    .nav__links { display: flex; align-items: center; list-style: none; gap: 2px; flex: 1; justify-content: flex-end; }
+    .nav__links > li > a { display: block; font-size: 14px; font-weight: 600; color: var(--text-muted); padding: 6px 13px; border-radius: var(--radius); transition: color 0.12s, background 0.12s; text-decoration: none; white-space: nowrap; }
+    .nav__links > li > a:hover { color: var(--text); background: var(--bg-alt); }
+    .nav__links > li.nav__cta > a { background: var(--accent); color: #fff; font-weight: 700; }
+    .nav__links > li.nav__cta > a:hover { background: var(--accent-dark); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; }
+
+    /* ── BREADCRUMB ───────────────────────────────────────── */
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-dim); }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* ── ARTICLE HEADER ──────────────────────────────────── */
+    .article-header { padding: 48px 0 40px; border-bottom: 1px solid var(--border); }
+    .article-header__cat { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); border-radius: 100px; padding: 3px 11px; margin-bottom: 16px; }
+    .article-header h1 { max-width: 760px; margin-bottom: 20px; }
+    .article-header__intro { font-size: 1.1rem; color: var(--text-muted); max-width: 680px; line-height: 1.75; margin-bottom: 28px; }
+    .article-header__meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid var(--border); }
+    .article-header__avatar { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; }
+    .article-header__avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .article-header__byline { font-size: 14px; line-height: 1.4; }
+    .article-header__byline strong { display: block; }
+    .article-header__divider { width: 1px; height: 28px; background: var(--border); }
+    .article-header__stats { font-size: 13px; color: var(--text-dim); display: flex; gap: 16px; flex-wrap: wrap; }
+    .article-header__tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-alt); border: 1px solid var(--border); border-radius: 100px; padding: 2px 10px; }
+
+    /* ── HERO IMAGE ───────────────────────────────────────── */
+    .article-hero-img { width: 100%; aspect-ratio: 21/9; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 36px 0; display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 13px; }
+    .article-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── MAIN LAYOUT ─────────────────────────────────────── */
+    .article-layout { padding: 0 0 80px; }
+    .article-layout__inner {
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-w);
+      gap: 56px;
+      align-items: start;
+      padding-top: 48px;
+    }
+
+    /* ── ARTICLE CONTENT ─────────────────────────────────── */
+    .article-content { min-width: 0; }
+
+    /* TOC */
+    .toc { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 22px 24px; margin-bottom: 36px; }
+    .toc__title { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; display: block; }
+    .toc ol { list-style: none; counter-reset: toc; }
+    .toc ol li { counter-increment: toc; padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 10px; }
+    .toc ol li:last-child { border-bottom: none; }
+    .toc ol li::before { content: counter(toc) "."; font-size: 11px; font-weight: 800; color: var(--accent); flex-shrink: 0; min-width: 18px; }
+    .toc ol li a { font-size: 14px; color: var(--text-muted); text-decoration: none; }
+    .toc ol li a:hover { color: var(--accent); }
+
+    /* Callout boxes */
+    .callout { border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 28px 0; }
+    .callout p { margin-bottom: 0; font-size: 15px; color: var(--text); }
+    .callout--warn { border-left-color: #d97706; background: #fffbeb; }
+    .callout--tip { border-left-color: #16a34a; background: #f0fdf4; }
+
+    /* Step boxes */
+    .step { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 24px 26px; margin: 20px 0; }
+    .step__num { font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 6px; }
+    .step h3 { margin: 0 0 10px; font-size: 1.05rem; }
+    .step p { font-size: 15px; margin-bottom: 0; }
+    .step p + p { margin-top: 10px; }
+
+    /* Checklist */
+    .check-list { list-style: none; margin: 18px 0 24px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 16px; color: var(--text-muted); line-height: 1.6; }
+    .check-list li:first-child { border-top: 1px solid var(--border); }
+    .check-list li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* Stat pullout */
+    .stat-pull { background: var(--text); color: #fff; border-radius: 8px; padding: 28px 30px; margin: 32px 0; }
+    .stat-pull__num { font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; display: block; margin-bottom: 6px; }
+    .stat-pull p { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 0; }
+
+    /* Inline image */
+    .article-img { width: 100%; border-radius: 7px; border: 1px solid var(--border); display: block; margin: 28px 0; }
+    .article-img-caption { text-align: center; font-size: 13px; color: var(--text-dim); margin-top: -18px; margin-bottom: 28px; }
+    .article-img-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--bg-alt); border: 1px dashed var(--border-light); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-dim); margin: 28px 0; }
+
+    /* Article share / end section */
+    .article-end { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .article-end__tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+    .article-end__tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-alt); border: 1px solid var(--border); border-radius: 100px; padding: 4px 12px; text-decoration: none; }
+    .article-end__tag:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    .article-end__share { font-size: 13px; color: var(--text-dim); }
+
+    /* Author card */
+    .author-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 28px; margin-top: 36px; display: flex; gap: 20px; align-items: flex-start; }
+    .author-card__avatar { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; background: var(--bg-card); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--accent); }
+    .author-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-card__name { font-weight: 800; color: var(--text); font-size: 1rem; margin-bottom: 4px; display: block; }
+    .author-card__title { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; display: block; }
+    .author-card p { font-size: 14px; margin-bottom: 0; }
+
+    /* Related articles */
+    .related { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .related h3 { font-size: 1.1rem; margin-bottom: 22px; }
+    .related__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .related-card { border: 1px solid var(--border); border-radius: 7px; padding: 18px; background: var(--bg); transition: transform 0.15s; }
+    .related-card:hover { transform: translateY(-2px); text-decoration: none; }
+    .related-card__cat { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 6px; }
+    .related-card__title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; display: block; }
+    .related-card__meta { font-size: 12px; color: var(--text-dim); margin-top: 8px; display: block; }
+
+    /* ── SIDEBAR ─────────────────────────────────────────── */
+    .sidebar { position: sticky; top: 82px; display: flex; flex-direction: column; gap: 22px; }
+
+    .sidebar-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+
+    /* ERA Promo Card */
+    .sidebar-promo { background: var(--text); color: #fff; padding: 26px; }
+    .sidebar-promo__eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-bottom: 12px; }
+    .sidebar-promo h4 { font-size: 1rem; font-weight: 800; color: #fff; line-height: 1.35; margin-bottom: 10px; }
+    .sidebar-promo p { font-size: 13.5px; color: rgba(255,255,255,0.62); line-height: 1.7; margin-bottom: 18px; }
+    .sidebar-promo .btn { width: 100%; text-align: center; font-size: 14px; padding: 12px 20px; display: block; }
+
+    /* Audit Tool Card */
+    .sidebar-audit { background: var(--bg-alt); padding: 22px; }
+    .sidebar-audit__icon { font-size: 28px; display: block; margin-bottom: 10px; }
+    .sidebar-audit h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .sidebar-audit p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+    .sidebar-audit .btn { width: 100%; text-align: center; font-size: 13px; padding: 10px 16px; display: block; }
+
+    /* Services Card */
+    .sidebar-services { background: var(--bg); padding: 22px; }
+    .sidebar-services h4 { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+    .sidebar-services__list { list-style: none; }
+    .sidebar-services__list li { border-bottom: 1px solid var(--border); }
+    .sidebar-services__list li:last-child { border-bottom: none; }
+    .sidebar-services__list a { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; transition: color 0.12s; }
+    .sidebar-services__list a:hover { color: var(--accent); }
+    .sidebar-services__list a::after { content: '→'; color: var(--accent); font-size: 12px; opacity: 0; transition: opacity 0.12s; }
+    .sidebar-services__list a:hover::after { opacity: 1; }
+
+    /* Newsletter sidebar */
+    .sidebar-newsletter { background: var(--bg); padding: 22px; }
+    .sidebar-newsletter h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .sidebar-newsletter p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .sidebar-newsletter input { width: 100%; padding: 10px 13px; font-family: var(--font); font-size: 14px; border: 1.5px solid var(--border-light); border-radius: var(--radius); color: var(--text); background: var(--bg-alt); outline: none; transition: border-color 0.15s; margin-bottom: 9px; }
+    .sidebar-newsletter input:focus { border-color: var(--accent); }
+    .sidebar-newsletter input::placeholder { color: var(--text-dim); }
+    .sidebar-newsletter .btn { width: 100%; text-align: center; font-size: 13px; padding: 10px 16px; display: block; }
+
+    /* Popular posts */
+    .sidebar-popular { background: var(--bg); padding: 22px; }
+    .sidebar-popular h4 { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+    .popular-list { list-style: none; }
+    .popular-list li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .popular-list li:last-child { border-bottom: none; }
+    .popular-list__num { font-size: 13px; font-weight: 800; color: var(--accent); min-width: 18px; }
+    .popular-list a { font-size: 13px; font-weight: 600; color: var(--text-muted); line-height: 1.4; text-decoration: none; }
+    .popular-list a:hover { color: var(--accent); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 26px 36px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--text-dim); flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--text-muted); }
+    .footer__links { display: flex; gap: 18px; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .article-layout__inner { grid-template-columns: 1fr; gap: 40px; }
+      .sidebar { position: static; }
+      .related__grid { grid-template-columns: 1fr; }
+      .nav__links { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 14px 24px 18px; z-index: 500; }
+      .nav__links.open { display: flex; }
+      .nav__hamburger { display: flex; }
+      .container { padding: 0 24px; }
+    }
+    @media (max-width: 580px) {
+      h1 { font-size: 1.8rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">
+      <img src="https://conversion.design/public/images/jaka_smid_conversion_designer.png"
+        alt="Steven" class="nav__logo-avatar"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="nav__logo-fallback">SI</span>
+      <span class="nav__logo-name">Sales Ignition<span class="nav__logo-sub">Email Marketing Blog</span></span>
+    </a>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="/">← All Articles</a></li>
+      <li><a href="https://salesignition.com" target="_blank">Main Site</a></li>
+      <li class="nav__cta"><a href="https://salesignition.com/work-with-me.html">Work With Me</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ BREADCRUMB ════════════════════════════════════════ -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="/">Blog</a>
+    <span>›</span>
+    <a href="/?cat=deliverability">Deliverability</a>
+    <span>›</span>
+    Why Your Emails Are Going to Spam
+  </div>
+</div>
+
+<!-- ══ ARTICLE HEADER ════════════════════════════════════ -->
+<header class="article-header">
+  <div class="container">
+    <span class="article-header__cat">Deliverability</span>
+    <h1>Why Your Emails Are Going to Spam (And the 7-Step Fix That Actually Works)</h1>
+    <p class="article-header__intro">Most deliverability advice is vague. "Warm up your IP." "Clean your list." "Authenticate your domain." None of it tells you how to diagnose which specific issue is killing your inbox placement — or in what order to fix them. This is that guide.</p>
+    <div class="article-header__meta">
+      <div class="article-header__avatar">
+        <img src="images/steven-headshot.png" alt="Steven Wagner"
+          onerror="this.style.display='none';this.parentElement.textContent='SW';">
+      </div>
+      <div class="article-header__byline">
+        <strong>Steven Wagner</strong>
+        <span style="font-size:13px;color:var(--text-dim);">Founder, Sales Ignition · Email Deliverability Expert</span>
+      </div>
+      <div class="article-header__divider"></div>
+      <div class="article-header__stats">
+        <span>April 8, 2025</span>
+        <span>12 min read</span>
+      </div>
+      <span class="article-header__tag">Deliverability</span>
+      <span class="article-header__tag">Klaviyo</span>
+      <span class="article-header__tag">Authentication</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══ MAIN LAYOUT ════════════════════════════════════════ -->
+<div class="article-layout">
+  <div class="container">
+
+    <!-- Hero image -->
+    <div class="article-hero-img">
+      <img src="images/blog/featured-deliverability.png" alt="Email deliverability diagram"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span>📬 images/blog/featured-deliverability.png</span>
+    </div>
+
+    <div class="article-layout__inner">
+
+      <!-- ░░░░░░ MAIN CONTENT ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+      <article class="article-content">
+
+        <!-- TOC -->
+        <nav class="toc" aria-label="Table of contents">
+          <span class="toc__title">In this article</span>
+          <ol>
+            <li><a href="#why-generic-advice-fails">Why generic deliverability advice fails</a></li>
+            <li><a href="#root-causes">The 4 root causes of spam filtering</a></li>
+            <li><a href="#diagnosis">How to diagnose your specific problem</a></li>
+            <li><a href="#7-steps">The 7-step fix sequence</a></li>
+            <li><a href="#step1">Step 1: Authentication audit</a></li>
+            <li><a href="#step2">Step 2: Reputation check</a></li>
+            <li><a href="#step3">Step 3: List hygiene</a></li>
+            <li><a href="#results">What to expect after each fix</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="why-generic-advice-fails">Why Generic Deliverability Advice Fails</h2>
+
+        <p>Every email platform has a help doc that says the same things. Authenticate your domain. Don't spam. Clean your list. Use a dedicated IP. It's all technically accurate and almost entirely useless when your emails are actually going to spam right now and you have campaigns to send.</p>
+
+        <p>The problem isn't the advice — it's that it treats deliverability as a checklist when it's actually a diagnostic process. Different deliverability failures have different root causes, and applying the wrong fix to the wrong problem at best does nothing and at worst makes things worse.</p>
+
+        <div class="callout">
+          <p><strong>The core insight:</strong> Inbox placement is the output of a scoring model. ISPs (Gmail, Outlook, Yahoo) assign a sender score to every domain and IP. That score determines where your email lands. To fix placement, you need to understand which input to the model is depressing your score — and that requires diagnosis, not guesswork.</p>
+        </div>
+
+        <p>After doing this inside dozens of real DTC accounts, I can tell you that most brands have one or two specific issues dragging everything else down. Fix those, and placement restores quickly. Try to fix everything at once, and you end up making contradictory changes that confuse the ISPs and extend your problem by weeks.</p>
+
+        <h2 id="root-causes">The 4 Root Causes of Spam Filtering</h2>
+
+        <p>At a systems level, there are four things that can cause your emails to land in spam — and only four. Everything else is a symptom of one of these:</p>
+
+        <h3>1. Authentication failure</h3>
+        <p>SPF, DKIM, or DMARC records are missing, misconfigured, or misaligned with your sending domain. This is the most common cause for brands that recently migrated platforms or set up Klaviyo without a proper technical onboarding. ISPs can't verify you are who you say you are, so they route your email to spam as a default risk-mitigation measure.</p>
+
+        <h3>2. Reputation damage</h3>
+        <p>Your sending domain or IP has accumulated negative signals — spam complaints, hard bounces, low engagement — that have degraded your sender score below the inbox threshold. This typically happens from buying lists, not suppressing disengaged subscribers, or a sending spike that looked like a spam attack to the ISP.</p>
+
+        <h3>3. Content filtering</h3>
+        <p>Your email content triggers keyword or pattern filters. This is less common than it was five years ago — modern ISPs are engagement-based, not keyword-based — but it still matters for certain industries (supplements, financial products, real estate) that have historically high spam rates.</p>
+
+        <h3>4. Infrastructure misconfiguration</h3>
+        <p>Your sending IP isn't warmed, you're on a shared IP with a damaged reputation, or your dedicated IP hasn't been configured correctly. Usually a platform/setup problem rather than a behavior problem.</p>
+
+        <div class="stat-pull">
+          <span class="stat-pull__num">~73%</span>
+          <p>of the deliverability audits I run on DTC accounts identify authentication or reputation issues as the primary cause. Content filtering and infrastructure problems account for the other 27% — but they're almost always secondary to one of the first two.</p>
+        </div>
+
+        <h2 id="diagnosis">How to Diagnose Your Specific Problem</h2>
+
+        <p>Before you fix anything, you need to know which of the four root causes applies to you. Here's the diagnosis sequence I use on every account:</p>
+
+        <div class="article-img-placeholder">📊 Authentication check screenshot — images/blog/auth-check.png</div>
+
+        <h3>Run an authentication check first</h3>
+        <p>Go to <a href="https://emaildelivery.co" target="_blank">emaildelivery.co</a> and run your sending domain. This tells you whether SPF, DKIM, and DMARC are configured correctly, and whether they're aligned with each other. If any of these fail, that's your first fix — authentication issues have to be resolved before anything else will matter.</p>
+
+        <h3>Check your sender reputation</h3>
+        <p>Google Postmaster Tools shows your domain reputation (none, low, medium, high) as Gmail sees it. If you're sending to any volume and show as "low" or "none" on Gmail specifically, that's your problem. Microsoft SNDS does the same for Outlook/Hotmail recipients.</p>
+
+        <h3>Audit your complaint rate</h3>
+        <p>A spam complaint rate above 0.08% in Google Postmaster is the threshold where Gmail starts actively filtering you. Above 0.3%, you're in serious trouble. If your complaint rate is elevated, the root cause is almost always a list quality problem — recipients who never opted in, a very old list, or a segment that hasn't been engaged in 6+ months being treated like an active segment.</p>
+
+        <h2 id="7-steps">The 7-Step Fix Sequence</h2>
+        <p>Once you've diagnosed your root cause, apply fixes in this order. The sequence matters — each step creates the conditions for the next one to work.</p>
+
+        <div class="step" id="step1">
+          <span class="step__num">Step 1</span>
+          <h3>Authentication Audit &amp; Repair</h3>
+          <p>Fix SPF, DKIM, and DMARC before touching anything else. Start with your DNS records. Your SPF record should include your sending platform (Klaviyo's SPF is <code style="background:var(--bg-card);padding:2px 6px;border-radius:3px;font-size:13px;">include:klaviyo.com</code>). DKIM should be a CNAME record pointing to Klaviyo's signing server. DMARC should be set to <code style="background:var(--bg-card);padding:2px 6px;border-radius:3px;font-size:13px;">p=quarantine</code> at minimum.</p>
+          <p><strong>Time to impact:</strong> Authentication fixes propagate in 24–48 hours and show up in Google Postmaster within 3–5 days.</p>
+        </div>
+
+        <div class="step" id="step2">
+          <span class="step__num">Step 2</span>
+          <h3>Reputation Baseline</h3>
+          <p>Check Google Postmaster Tools, Microsoft SNDS, and at least 2 blacklist checkers (MXToolbox covers most major blacklists). Document your current scores — you need a baseline to measure recovery against. If you're on any blacklists, submit for removal only after fixing the underlying cause (they'll just re-list you otherwise).</p>
+        </div>
+
+        <div class="step" id="step3">
+          <span class="step__num">Step 3</span>
+          <h3>Emergency List Hygiene</h3>
+          <p>Before sending anything, suppress everyone who hasn't opened or clicked in the past 90 days. This sounds aggressive, but it's the only way to rapidly improve your engagement rate signal. A smaller, more engaged list sends better signals than a large, stale one. You can re-engage the suppressed segment later with a dedicated win-back sequence once your baseline is restored.</p>
+        </div>
+
+        <div class="step">
+          <span class="step__num">Step 4</span>
+          <h3>Sending Volume Reduction</h3>
+          <p>If your reputation is damaged, sending at full volume is like running on a broken ankle. Reduce to your most engaged segment (opened in the last 30 days) at 25–30% of your normal daily volume. This lets you send positive engagement signals without further damaging your reputation.</p>
+        </div>
+
+        <div class="step">
+          <span class="step__num">Step 5</span>
+          <h3>Engagement-First Content</h3>
+          <p>For the next 2–3 weeks, only send email where you're confident in the engagement rate. High-purchase-intent segments. Re-engagement bait with a real reason to click. Subject lines optimized for opens. Every positive engagement signal (open, click, reply, forward) is a vote in favor of your sender reputation.</p>
+        </div>
+
+        <div class="step">
+          <span class="step__num">Step 6</span>
+          <h3>Gradual Volume Restoration</h3>
+          <p>As your reputation scores improve, expand your sending segment slowly. Add back 30-to-60-day subscribers, then 60-to-90-day. Monitor complaint rate daily. The moment you see complaints tick above 0.05%, freeze and investigate before expanding further.</p>
+        </div>
+
+        <div class="step">
+          <span class="step__num">Step 7</span>
+          <h3>Infrastructure &amp; Monitoring Setup</h3>
+          <p>Once you're back to healthy placement, set up ongoing monitoring so you catch problems early instead of after they've compounded. Google Postmaster alerts, a seed list for inbox placement testing, and a monthly authentication check take about 30 minutes per month to maintain.</p>
+        </div>
+
+        <div class="callout callout--tip">
+          <p>💡 <strong>Typical recovery timeline:</strong> Authentication fixes: 3–5 days. Reputation restoration (after fixing root cause): 3–6 weeks. Full volume restoration: 6–8 weeks from starting the sequence. This feels slow, but trying to shortcut it by sending at full volume before your scores recover always extends the timeline.</p>
+        </div>
+
+        <h2 id="results">What to Expect After Each Fix</h2>
+
+        <p>Authentication fixes are the fastest-acting — you'll usually see movement in Google Postmaster within a week. Reputation recovery is slower because ISPs need to see a consistent pattern of good behavior before they revise their model.</p>
+
+        <ul class="check-list">
+          <li>Days 1–7: Authentication fixed, baseline scores documented</li>
+          <li>Days 7–14: Engagement rate climbing, complaint rate dropping</li>
+          <li>Days 14–28: Google Postmaster reputation moves from "low" to "medium"</li>
+          <li>Days 28–45: Volume restoration begins, inbox placement testing shows improvement</li>
+          <li>Days 45–60: Full volume restored, monitoring system in place</li>
+        </ul>
+
+        <p>The brands I've worked through this process with consistently get back to 95%+ inbox placement within 60 days — even from very bad starting points. Vurbmoto went from 54% to 95% in 60 days following this exact sequence (you can read that full case study in the portfolio).</p>
+
+        <p>The key is discipline: don't try to rush the volume restoration, and don't start sending to large segments until your reputation scores confirm you're in the clear. The ISP algorithms are watching every send, and patience during recovery is what separates a 60-day fix from a 6-month slog.</p>
+
+        <!-- End of article -->
+        <div class="article-end">
+          <div class="article-end__tags">
+            <a class="article-end__tag" href="/?cat=deliverability">Deliverability</a>
+            <a class="article-end__tag" href="/?cat=klaviyo">Klaviyo</a>
+            <a class="article-end__tag" href="/?cat=strategy">Email Strategy</a>
+            <a class="article-end__tag" href="/?cat=casestudy">DTC</a>
+          </div>
+          <div class="article-end__share">
+            Share: &nbsp;
+            <a href="https://twitter.com/intent/tweet?text=Why+Your+Emails+Are+Going+to+Spam+%E2%80%94+7-Step+Fix+from+%40salesignition&url=https://blog.salesignition.com/why-emails-go-to-spam.html" target="_blank" rel="noopener" style="color:var(--accent);">Twitter/X</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.salesignition.com/why-emails-go-to-spam.html" target="_blank" rel="noopener" style="color:var(--accent);">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- Author card -->
+        <div class="author-card">
+          <div class="author-card__avatar">
+            <img src="images/steven-headshot.png" alt="Steven Wagner" onerror="this.style.display='none';this.parentElement.textContent='SW';">
+          </div>
+          <div>
+            <span class="author-card__name">Steven Wagner</span>
+            <span class="author-card__title">Founder, Sales Ignition · Email Deliverability Expert</span>
+            <p>I help DTC and e-commerce brands fix deliverability, build Klaviyo flows that convert, and grow revenue through email. I also built <a href="https://emaildelivery.co" target="_blank">emaildelivery.co</a> and <a href="https://inboxsmarts.com" target="_blank">inboxsmarts.com</a>.</p>
+          </div>
+        </div>
+
+        <!-- Related articles -->
+        <div class="related">
+          <h3>Related Articles</h3>
+          <div class="related__grid">
+            <a class="related-card" href="spf-dkim-dmarc-guide.html">
+              <span class="related-card__cat">Deliverability</span>
+              <span class="related-card__title">SPF, DKIM, and DMARC: The Complete Setup Guide for DTC Brands</span>
+              <span class="related-card__meta">9 min read</span>
+            </a>
+            <a class="related-card" href="vurbmoto-deliverability-case-study.html">
+              <span class="related-card__cat">Case Study</span>
+              <span class="related-card__title">How Vurbmoto Went From 54% to 95% Inbox Placement in 60 Days</span>
+              <span class="related-card__meta">10 min read</span>
+            </a>
+            <a class="related-card" href="klaviyo-segments-that-print-money.html">
+              <span class="related-card__cat">Klaviyo</span>
+              <span class="related-card__title">The 5 Klaviyo Segments Every DTC Brand Needs</span>
+              <span class="related-card__meta">11 min read</span>
+            </a>
+            <a class="related-card" href="gmail-inbox-placement.html">
+              <span class="related-card__cat">Deliverability</span>
+              <span class="related-card__title">Gmail Is Filtering You Into Promotions. Here's Why and How to Fix It.</span>
+              <span class="related-card__meta">7 min read</span>
+            </a>
+          </div>
+        </div>
+
+      </article>
+      <!-- ░░░░░░ END MAIN CONTENT ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+
+
+      <!-- ░░░░░░ SIDEBAR ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+      <aside class="sidebar">
+
+        <!-- 1. ERA Program Promo -->
+        <div class="sidebar-card">
+          <div class="sidebar-promo">
+            <span class="sidebar-promo__eyebrow">6-Month Program</span>
+            <h4>Build the AI-powered email system your brand has been missing.</h4>
+            <p>The Email Revenue Accelerator is a done-with-you program that installs proven email infrastructure into your Klaviyo account — run by your existing marketing hire.</p>
+            <a class="btn" href="https://salesignition.com/email-revenue-accelerator.html">Learn About the Program →</a>
+          </div>
+        </div>
+
+        <!-- 2. Free Audit Tool -->
+        <div class="sidebar-card">
+          <div class="sidebar-audit">
+            <span class="sidebar-audit__icon">📬</span>
+            <h4>Free Email Deliverability Audit</h4>
+            <p>Check your SPF, DKIM, DMARC, blacklist status, and sender reputation in under 60 seconds — free.</p>
+            <a class="btn btn--ghost" href="https://emaildelivery.co" target="_blank">Run Your Free Audit →</a>
+          </div>
+        </div>
+
+        <!-- 3. Services Links -->
+        <div class="sidebar-card">
+          <div class="sidebar-services">
+            <h4>Services</h4>
+            <ul class="sidebar-services__list">
+              <li><a href="https://salesignition.com/work-with-me.html">Deliverability Audit</a></li>
+              <li><a href="https://salesignition.com/work-with-me.html">Klaviyo Flow Build</a></li>
+              <li><a href="https://salesignition.com/email-revenue-accelerator.html">Email Revenue Accelerator</a></li>
+              <li><a href="https://salesignition.com/work-with-me.html">Infrastructure Setup</a></li>
+              <li><a href="https://inboxsmarts.com" target="_blank">InboxSmarts Warm-Up</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. Newsletter -->
+        <div class="sidebar-card">
+          <div class="sidebar-newsletter">
+            <h4>Weekly email that improves your email program.</h4>
+            <p>Practical deliverability and Klaviyo tips — no fluff.</p>
+            <form onsubmit="sidebarSubscribe(event)">
+              <input type="email" placeholder="your@email.com" required>
+              <button type="submit" class="btn">Subscribe →</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- 5. Popular Posts -->
+        <div class="sidebar-card">
+          <div class="sidebar-popular">
+            <h4>Popular Articles</h4>
+            <ol class="popular-list">
+              <li>
+                <span class="popular-list__num">1</span>
+                <a href="klaviyo-segments-that-print-money.html">The 5 Klaviyo Segments That Print Money</a>
+              </li>
+              <li>
+                <span class="popular-list__num">2</span>
+                <a href="abandoned-cart-flow-blueprint.html">Abandoned Cart Flow That Recovered $240K</a>
+              </li>
+              <li>
+                <span class="popular-list__num">3</span>
+                <a href="ai-email-copy-system.html">AI Email Copy System That Sounds Like Your Brand</a>
+              </li>
+              <li>
+                <span class="popular-list__num">4</span>
+                <a href="welcome-series-blueprint.html">Welcome Series Blueprint: 5 Emails to First Purchase</a>
+              </li>
+              <li>
+                <span class="popular-list__num">5</span>
+                <a href="spf-dkim-dmarc-guide.html">SPF, DKIM &amp; DMARC: Complete Setup Guide</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </aside>
+      <!-- ░░░░░░ END SIDEBAR ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <span>© 2024–2026 Sales Ignition LLC · Greenville, SC</span>
+  <div class="footer__links">
+    <a href="/">Blog Home</a>
+    <a href="https://salesignition.com">Main Site</a>
+    <a href="https://salesignition.com/work-with-me.html">Work With Me</a>
+    <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co</a>
+    <a href="mailto:hello@salesignition.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Nav hamburger
+  const btn = document.getElementById('hamburger');
+  const links = document.getElementById('nav-links');
+  if (btn && links) {
+    btn.addEventListener('click', () => links.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!btn.contains(e.target) && !links.contains(e.target)) links.classList.remove('open');
+    });
+  }
+
+  // Sidebar newsletter
+  function sidebarSubscribe(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = '#16a34a';
+    input.value = '';
+    input.disabled = true;
+    btn.disabled = true;
+  }
+
+  // Highlight active TOC item on scroll
+  const headings = document.querySelectorAll('h2[id], h3[id]');
+  const tocLinks = document.querySelectorAll('.toc a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.style.color = '');
+        const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (active) active.style.color = 'var(--accent)';
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  headings.forEach(h => observer.observe(h));
+</script>
+</body>
+</html>
