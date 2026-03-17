@@ -970,24 +970,23 @@
 
       // Build Klaviyo Subscribe API v3 payload
       // Docs: https://developers.klaviyo.com/en/reference/subscribe_profiles
+      const profileProps = { WebinarSource: document.title, WebinarSignup: true };
+      if (company) profileProps.Company = company;
+      if (revenue) profileProps.RevenueRange = revenue;
+
       const payload = {
         data: {
           type: 'subscription',
           attributes: {
+            custom_source: 'Webinar Signup',
             profile: {
               data: {
                 type: 'profile',
                 attributes: {
-                  email: email,
+                  email:      email,
                   first_name: firstName,
-                  last_name: lastName,
-                  // Custom properties stored on the profile
-                  properties: {
-                    company:        company   || undefined,
-                    revenue_range:  revenue   || undefined,
-                    webinar_source: document.title, // tracks which webinar page they came from
-                    webinar_signup: true
-                  }
+                  last_name:  lastName,
+                  properties: profileProps
                 }
               }
             }
@@ -1009,6 +1008,7 @@
           {
             method: 'POST',
             headers: {
+              // Klaviyo client API uses application/json (not vnd.api+json)
               'Content-Type': 'application/json',
               'revision': '2024-10-15'
             },
