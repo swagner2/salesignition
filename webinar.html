@@ -800,6 +800,7 @@
   <section class="speaker-section">
     <div class="container">
       <span class="eyebrow">Your Host</span>
+      <!-- The guest speaker section immediately follows this one -->
       <div class="speaker-card">
 
         <!-- EDIT: Replace with your actual headshot -->
@@ -822,6 +823,38 @@
             <span class="speaker-cred">$1M+ Revenue Generated</span>
             <span class="speaker-cred">Shopify Plus Expert</span>
             <span class="speaker-cred">emaildelivery.co Builder</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GUEST SPEAKER ══════════════════════════════════════ -->
+  <section class="speaker-section" style="background:var(--bg);border-top:1px solid var(--border);">
+    <div class="container">
+      <span class="eyebrow">Special Guest</span>
+      <div class="speaker-card">
+
+        <!-- EDIT: Replace with guest headshot -->
+        <div class="speaker-avatar">
+          <img src="images/guest-headshot.png" alt="Guest Speaker"
+            onerror="this.style.display='none';this.parentElement.textContent='GS';">
+        </div>
+
+        <div class="speaker-info">
+          <!-- EDIT: Guest name -->
+          <h3>Guest Name</h3>
+          <!-- EDIT: Guest title and company -->
+          <span class="speaker-info__title">Title · Company Name</span>
+          <!-- EDIT: Guest bio — 2–3 sentences on their background and what they'll bring to the session -->
+          <p>A brief intro about your guest speaker. What makes them worth listening to? What specific angle, experience, or results will they share during the webinar that your audience can't get anywhere else?</p>
+          <p>Keep it outcome-focused — attendees want to know what they'll learn from this person, not just who they are.</p>
+          <div class="speaker-creds">
+            <!-- EDIT: Guest credentials — results, titles, platforms, brands -->
+            <span class="speaker-cred">Credential One</span>
+            <span class="speaker-cred">Credential Two</span>
+            <span class="speaker-cred">Credential Three</span>
           </div>
         </div>
 
@@ -890,8 +923,10 @@
       const now  = new Date();
       const diff = WEBINAR_DATE - now;
       if (diff <= 0) {
-        document.getElementById('countdown').innerHTML =
-          '<p style="text-align:center;font-weight:700;color:var(--accent);font-size:15px;padding:8px;">🔴 We\'re live now!</p>';
+        document.getElementById('cd-days').textContent  = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent  = '00';
+        document.getElementById('cd-secs').textContent  = '00';
         return;
       }
       const d = Math.floor(diff / 86400000);
