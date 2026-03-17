@@ -804,10 +804,10 @@
       <!-- The guest speaker section immediately follows this one -->
       <div class="speaker-card">
 
-        <!-- EDIT: Replace with your actual headshot -->
-        <div class="speaker-avatar">
+        <!-- EDIT: Replace src with your headshot path. Size: 400×400px minimum, square crop, face centered -->
+        <div class="speaker-avatar" id="host-avatar">
           <img src="images/steven-headshot.png" alt="Steven Wagner"
-            onerror="this.style.display='none';this.parentElement.textContent='SW';">
+            onerror="this.style.display='none';document.getElementById('host-avatar').textContent='SW';">
         </div>
 
         <div class="speaker-info">
@@ -837,10 +837,10 @@
       <span class="eyebrow">Special Guest</span>
       <div class="speaker-card">
 
-        <!-- EDIT: Replace with guest headshot -->
-        <div class="speaker-avatar">
+        <!-- EDIT: Replace src with guest headshot path. Size: 400×400px minimum, square crop, face centered -->
+        <div class="speaker-avatar" id="guest-avatar">
           <img src="images/guest-headshot.png" alt="Guest Speaker"
-            onerror="this.style.display='none';this.parentElement.textContent='GS';">
+            onerror="this.style.display='none';document.getElementById('guest-avatar').textContent='GS';">
         </div>
 
         <div class="speaker-info">
@@ -911,11 +911,11 @@
   <footer>
     © 2024–2026 Sales Ignition LLC · Greenville, SC &nbsp;·&nbsp;
     <a href="https://salesignition.com">salesignition.com</a> &nbsp;·&nbsp;
-    <a href="mailto:hello@salesignition.com">hello@salesignition.com</a>
+    <a href="/cdn-cgi/l/email-protection#036b666f6f6c4370626f66706a646d6a776a6c6d2d606c6e"><span class="__cf_email__" data-cfemail="ef878a838380af9c8e838a9c868881869b868081c18c8082">[email&#160;protected]</span></a>
   </footer>
 
   <!-- ══ SCRIPTS ════════════════════════════════════════════ -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── COUNTDOWN TIMER ───────────────────────────────────
     // EDIT: Set your webinar date/time in ISO format (local time)
     const WEBINAR_DATE = new Date('2025-05-15T14:00:00-04:00'); // Eastern Time
@@ -942,32 +942,120 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ── FORM SUBMIT ───────────────────────────────────────
-    // EDIT: Replace with your actual form handler
-    // Options:
-    //   A) Replace <form> action with your Klaviyo/ActiveCampaign embed URL
-    //   B) Use fetch() to POST to your email platform's API
-    //   C) Redirect to a thank-you page after submit
+    // ── KLAVIYO FORM INTEGRATION ──────────────────────────
+    // List: https://www.klaviyo.com/list/SvMicm
     //
-    // Current behavior: shows a success message inline (demo only)
+    // ⚠️  REQUIRED: Replace the placeholder below with your
+    //     Klaviyo PUBLIC API key (6-character code).
+    //     Find it at: Klaviyo → Settings → Account → API Keys
+    //     It looks like: AbCd1E  (NOT your private key)
+    //
+    const KLAVIYO_PUBLIC_KEY = 'Mzfpkb';
+    const KLAVIYO_LIST_ID    = 'SvMicm';               // ← do not change
 
-    document.getElementById('signup-form').addEventListener('submit', function(e) {
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const btn = this.querySelector('.submit-btn');
-      btn.textContent = 'Registering…';
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = 'Registering…';
       btn.disabled = true;
 
-      // Simulate API call — replace with real fetch() to your platform
-      setTimeout(() => {
-        document.getElementById('signup-form').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
+      // Collect form values
+      const firstName = document.getElementById('first-name').value.trim();
+      const lastName  = document.getElementById('last-name').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const company   = document.getElementById('company').value.trim();
+      const revenue   = document.getElementById('revenue').value;
 
-        // Optional: fire a conversion event
-        // if (typeof gtag !== 'undefined') gtag('event', 'webinar_signup');
-        // if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-      }, 800);
+      // Build Klaviyo Subscribe API v3 payload
+      // Docs: https://developers.klaviyo.com/en/reference/subscribe_profiles
+      const payload = {
+        data: {
+          type: 'subscription',
+          attributes: {
+            profile: {
+              data: {
+                type: 'profile',
+                attributes: {
+                  email: email,
+                  first_name: firstName,
+                  last_name: lastName,
+                  // Custom properties stored on the profile
+                  properties: {
+                    company:        company   || undefined,
+                    revenue_range:  revenue   || undefined,
+                    webinar_source: document.title, // tracks which webinar page they came from
+                    webinar_signup: true
+                  }
+                }
+              }
+            }
+          },
+          relationships: {
+            list: {
+              data: {
+                type: 'list',
+                id: KLAVIYO_LIST_ID
+              }
+            }
+          }
+        }
+      };
+
+      try {
+        const response = await fetch(
+          `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_PUBLIC_KEY}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'revision': '2024-10-15'
+            },
+            body: JSON.stringify(payload)
+          }
+        );
+
+        // Klaviyo returns 202 Accepted on success (no response body)
+        if (response.ok || response.status === 202) {
+          document.getElementById('signup-form').style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+
+          // Conversion tracking — uncomment when ready
+          // if (typeof gtag !== 'undefined') gtag('event', 'webinar_signup', { list_id: KLAVIYO_LIST_ID });
+          // if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+        } else {
+          // Non-fatal API error — show message, re-enable button
+          let errMsg = `Something went wrong (${response.status}). Please try again.`;
+          try {
+            const errData = await response.json();
+            if (errData?.errors?.[0]?.detail) errMsg = errData.errors[0].detail;
+          } catch (_) {}
+          showFormError(errMsg);
+          btn.innerHTML = originalHTML;
+          btn.disabled = false;
+        }
+
+      } catch (networkErr) {
+        // Network failure
+        showFormError('Unable to connect. Please check your internet and try again.');
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+      }
     });
+
+    function showFormError(message) {
+      let errEl = document.getElementById('form-error');
+      if (!errEl) {
+        errEl = document.createElement('p');
+        errEl.id = 'form-error';
+        errEl.style.cssText = 'color:#c93d14;font-size:13px;text-align:center;margin-top:10px;font-weight:600;';
+        document.getElementById('signup-form').appendChild(errEl);
+      }
+      errEl.textContent = message;
+    }
+
   </script>
 
 </body>
