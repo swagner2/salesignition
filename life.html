@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Ignition — Lifecycle Revenue Scorecard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --si-orange: #E8491C;
+    --si-orange-light: #FF6B3D;
+    --si-dark: #0F0F0F;
+    --si-dark-card: #1A1A1A;
+    --si-dark-border: #2A2A2A;
+    --si-gray: #888;
+    --si-light-gray: #B0B0B0;
+    --si-white: #FFFFFF;
+    --si-green: #22C55E;
+    --si-yellow: #EAB308;
+    --si-red: #EF4444;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--si-dark);
+    color: var(--si-white);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 2px solid var(--si-orange);
+    background: var(--si-dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--si-orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .header-steps {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--si-gray);
+    transition: color 0.3s;
+  }
+  .step-item.active { color: var(--si-orange); }
+  .step-item.completed { color: var(--si-green); }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--si-dark-border);
+    transition: all 0.3s;
+  }
+  .step-item.active .step-num { background: var(--si-orange); color: white; }
+  .step-item.completed .step-num { background: var(--si-green); color: white; }
+  .step-connector { width: 24px; height: 1px; background: var(--si-dark-border); }
+  .header-counter { font-size: 13px; color: var(--si-gray); font-weight: 500; }
+
+  /* Progress bar */
+  .progress-bar { height: 3px; background: var(--si-dark-border); }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--si-orange), var(--si-orange-light)); transition: width 0.5s ease; border-radius: 0 2px 2px 0; }
+
+  /* Main layout */
+  .main { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+
+  /* Landing page */
+  .landing { text-align: center; padding: 60px 20px; }
+  .landing-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--si-orange);
+    color: var(--si-orange);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .landing-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--si-orange); }
+  .landing h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .landing h1 span { color: var(--si-orange); }
+  .landing p { font-size: 18px; color: var(--si-light-gray); max-width: 600px; margin: 0 auto 36px; line-height: 1.6; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: var(--si-orange);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .cta-btn:hover { background: var(--si-orange-light); transform: translateY(-1px); }
+  .cta-btn:active { transform: translateY(0); }
+  .cta-btn-secondary {
+    background: transparent;
+    border: 1px solid var(--si-dark-border);
+    color: var(--si-light-gray);
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  .cta-btn-secondary:hover { border-color: var(--si-gray); background: var(--si-dark-card); }
+
+  .landing-proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--si-gray);
+  }
+  .landing-proof span { display: flex; align-items: center; gap: 6px; }
+  .check-icon { color: var(--si-green); }
+
+  /* Pillar cards on landing */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 60px;
+    text-align: left;
+  }
+  .pillar-card {
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .pillar-card:hover { border-color: var(--si-orange); }
+  .pillar-card-icon { font-size: 28px; margin-bottom: 12px; }
+  .pillar-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .pillar-card p { font-size: 13px; color: var(--si-gray); line-height: 1.5; }
+
+  /* Revenue input step */
+  .revenue-step { text-align: center; max-width: 600px; margin: 0 auto; }
+  .revenue-step h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .revenue-step p { color: var(--si-gray); margin-bottom: 32px; font-size: 15px; }
+  .revenue-options { display: flex; flex-direction: column; gap: 10px; }
+  .revenue-option {
+    padding: 16px 20px;
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--si-white);
+    text-align: left;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .revenue-option:hover { border-color: var(--si-orange); }
+  .revenue-option.selected { border-color: var(--si-orange); background: rgba(232, 73, 28, 0.08); }
+
+  /* Question layout */
+  .question-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
+  @media (max-width: 800px) { .question-layout { grid-template-columns: 1fr; } }
+
+  .question-area {}
+  .question-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .cat-onboarding { background: rgba(59,130,246,0.12); color: #60A5FA; }
+  .cat-post-purchase { background: rgba(34,197,94,0.12); color: #4ADE80; }
+  .cat-segmentation { background: rgba(168,85,247,0.12); color: #C084FC; }
+  .cat-winback { background: rgba(234,179,8,0.12); color: #FACC15; }
+  .cat-revenue { background: rgba(232,73,28,0.12); color: var(--si-orange-light); }
+  .cat-maturity { background: rgba(236,72,153,0.12); color: #F472B6; }
+
+  .question-text { font-size: 24px; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+  .question-hint { font-size: 14px; color: var(--si-gray); margin-bottom: 28px; line-height: 1.5; }
+
+  .answer-options { display: flex; flex-direction: column; gap: 10px; }
+  .answer-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--si-white);
+    transition: all 0.2s;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+  }
+  .answer-option:hover { border-color: var(--si-orange); }
+  .answer-option.selected { border-color: var(--si-orange); background: rgba(232,73,28,0.08); }
+  .answer-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--si-dark-border);
+    flex-shrink: 0;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .answer-option.selected .answer-radio { border-color: var(--si-orange); }
+  .answer-option.selected .answer-radio::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--si-orange);
+  }
+
+  .nav-buttons { display: flex; justify-content: space-between; margin-top: 32px; }
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--si-gray);
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--si-white); }
+  .nav-next {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 28px;
+    background: var(--si-orange);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .nav-next:hover { background: var(--si-orange-light); }
+  .nav-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Sidebar score */
+  .sidebar-score {
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 16px;
+    padding: 28px;
+    position: sticky;
+    top: 80px;
+  }
+  .sidebar-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--si-orange); text-align: center; margin-bottom: 16px; }
+  .score-circle-container { text-align: center; margin-bottom: 20px; position: relative; }
+  .score-circle { transform: rotate(-90deg); }
+  .score-bg { fill: none; stroke: var(--si-dark-border); stroke-width: 8; }
+  .score-fill { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease, stroke 0.5s; }
+  .score-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    font-weight: 900;
+  }
+  .score-max { font-size: 16px; font-weight: 500; color: var(--si-gray); }
+  .score-update-note { text-align: center; font-size: 12px; color: var(--si-gray); margin-bottom: 20px; }
+
+  .pillar-scores { display: flex; flex-direction: column; gap: 8px; }
+  .pillar-score-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--si-dark-border);
+    font-size: 13px;
+  }
+  .pillar-score-row:last-child { border-bottom: none; }
+  .pillar-score-name { color: var(--si-light-gray); }
+  .pillar-score-val { font-weight: 600; }
+  .pillar-bar { width: 60px; height: 4px; background: var(--si-dark-border); border-radius: 2px; margin-left: 8px; }
+  .pillar-bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+  /* Results page */
+  .results-page { max-width: 900px; margin: 0 auto; }
+  .results-hero { text-align: center; padding: 40px 0 32px; }
+  .results-grade {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  .grade-letter { font-size: 28px; }
+  .results-hero h1 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+  .results-hero p { color: var(--si-gray); font-size: 16px; max-width: 500px; margin: 0 auto; }
+
+  .revenue-risk-banner {
+    background: linear-gradient(135deg, rgba(232,73,28,0.15), rgba(239,68,68,0.1));
+    border: 1px solid rgba(232,73,28,0.3);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin: 24px 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .revenue-risk-banner .amount { color: var(--si-orange); font-size: 24px; font-weight: 800; }
+
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .result-card {
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .result-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .result-card h3 { font-size: 14px; font-weight: 700; }
+  .result-card-score { font-size: 14px; font-weight: 700; }
+  .result-bar { height: 6px; background: var(--si-dark-border); border-radius: 3px; margin-bottom: 12px; }
+  .result-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+  .result-card p { font-size: 13px; color: var(--si-gray); line-height: 1.5; }
+
+  .results-cta {
+    text-align: center;
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 40px;
+  }
+  .results-cta h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .results-cta p { color: var(--si-gray); margin-bottom: 24px; font-size: 15px; }
+  .results-cta .cta-btn { font-size: 16px; padding: 16px 36px; }
+
+  /* Gate modal */
+  .gate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+  }
+  .gate-modal {
+    background: var(--si-dark-card);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+  }
+  .gate-modal .results-grade { margin-bottom: 20px; }
+  .gate-modal h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .gate-modal p { color: var(--si-gray); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+  .gate-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--si-dark);
+    border: 1px solid var(--si-dark-border);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .gate-input:focus { border-color: var(--si-orange); }
+  .gate-input::placeholder { color: var(--si-gray); }
+  .gate-modal .cta-btn { width: 100%; justify-content: center; margin-top: 8px; }
+  .gate-fine-print { font-size: 12px; color: var(--si-gray); margin-top: 12px; }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.4s ease forwards; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header { padding: 12px 16px; }
+    .main { padding: 24px 16px 60px; }
+    .landing h1 { font-size: 28px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .header-steps { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ============================================================
+// LIFECYCLE REVENUE SCORECARD — Sales Ignition
+// ============================================================
+
+const PILLARS = [
+  { id: 'onboarding', name: 'Onboarding & Welcome', icon: '🚀', color: '#60A5FA', catClass: 'cat-onboarding', maxPoints: 15 },
+  { id: 'postpurchase', name: 'Post-Purchase & Retention', icon: '🔄', color: '#4ADE80', catClass: 'cat-post-purchase', maxPoints: 15 },
+  { id: 'segmentation', name: 'Segmentation & Data', icon: '🎯', color: '#C084FC', catClass: 'cat-segmentation', maxPoints: 15 },
+  { id: 'winback', name: 'Win-Back & Lifecycle Exits', icon: '🔁', color: '#FACC15', catClass: 'cat-winback', maxPoints: 15 },
+  { id: 'revenue', name: 'Revenue Architecture', icon: '📊', color: '#FF6B3D', catClass: 'cat-revenue', maxPoints: 20 },
+  { id: 'maturity', name: 'Strategic Maturity', icon: '🧠', color: '#F472B6', catClass: 'cat-maturity', maxPoints: 20 },
+];
+
+const QUESTIONS = [
+  // ONBOARDING & WELCOME (3 questions, 15 points)
+  {
+    pillar: 'onboarding',
+    question: 'How many emails are in your welcome/onboarding sequence for new subscribers?',
+    hint: 'This is the flow triggered when someone joins your list — through a popup, signup form, or lead magnet.',
+    options: [
+      { text: 'None — they just get a coupon code or confirmation', points: 0 },
+      { text: '1–2 emails (discount + maybe a brand intro)', points: 2 },
+      { text: '3–5 emails covering brand story, social proof, and product education', points: 4 },
+      { text: '6+ emails with segmentation triggers, dynamic content, and a clear path to first purchase', points: 5 },
+    ]
+  },
+  {
+    pillar: 'onboarding',
+    question: 'Do you track time-to-first-purchase from the moment someone joins your list?',
+    hint: 'This metric tells you how effective your welcome flow is at converting subscribers into buyers.',
+    options: [
+      { text: 'No — I don\'t track this', points: 0 },
+      { text: 'I have a general sense, but don\'t measure it systematically', points: 2 },
+      { text: 'Yes — I track it and have benchmarks by acquisition source', points: 5 },
+    ]
+  },
+  {
+    pillar: 'onboarding',
+    question: 'Does your welcome flow adapt based on how the subscriber entered your list?',
+    hint: 'Someone from a quiz, a giveaway, or an organic signup should get different onboarding paths.',
+    options: [
+      { text: 'No — everyone gets the same welcome sequence', points: 0 },
+      { text: 'We have slight variations (e.g., different coupon codes)', points: 2 },
+      { text: 'Yes — fully branched flows based on entry point, with different messaging and offers', points: 5 },
+    ]
+  },
+
+  // POST-PURCHASE & RETENTION (3 questions, 15 points)
+  {
+    pillar: 'postpurchase',
+    question: 'What happens after a customer completes their first purchase?',
+    hint: 'The post-purchase experience is the #1 driver of repeat purchases and lifetime value.',
+    options: [
+      { text: 'Just a transactional order confirmation and shipping update', points: 0 },
+      { text: 'Order confirmation + a review request email', points: 2 },
+      { text: 'A multi-step sequence: education, review request, cross-sell recommendation', points: 4 },
+      { text: 'A full post-purchase journey: onboarding the product, review, cross-sell, replenishment timing, VIP path', points: 5 },
+    ]
+  },
+  {
+    pillar: 'postpurchase',
+    question: 'Do you have replenishment or reorder reminders based on your product\'s typical consumption cycle?',
+    hint: 'For consumable products (supplements, skincare, food, etc.), timed reorder reminders are a massive LTV lever.',
+    options: [
+      { text: 'No — we don\'t send replenishment emails', points: 0 },
+      { text: 'We send generic "come back" emails on a fixed schedule', points: 2 },
+      { text: 'Yes — product-specific replenishment flows timed to actual consumption cycles', points: 5 },
+    ]
+  },
+  {
+    pillar: 'postpurchase',
+    question: 'Do you have a VIP or loyalty program integrated into your email lifecycle?',
+    hint: 'Your top 10–20% of customers typically drive 40–60% of revenue. Are you treating them differently?',
+    options: [
+      { text: 'No VIP/loyalty program or differentiation', points: 0 },
+      { text: 'We have a basic points program but it\'s not integrated into email flows', points: 2 },
+      { text: 'Yes — tiered VIP segments with exclusive flows, early access, and personalized offers', points: 5 },
+    ]
+  },
+
+  // SEGMENTATION & DATA (3 questions, 15 points)
+  {
+    pillar: 'segmentation',
+    question: 'How do you segment your email list beyond basic subscriber vs. customer?',
+    hint: 'Advanced segmentation is the difference between "batch and blast" and precision lifecycle marketing.',
+    options: [
+      { text: 'We mostly send the same emails to everyone', points: 0 },
+      { text: 'Basic segments: subscribers, one-time buyers, repeat buyers', points: 2 },
+      { text: 'Engagement-based segments (active, at-risk, lapsed) plus purchase behavior', points: 4 },
+      { text: 'RFM modeling, predictive segments, behavioral triggers, and zero-party data', points: 5 },
+    ]
+  },
+  {
+    pillar: 'segmentation',
+    question: 'Are you collecting zero-party data (preferences, goals, product interests) and using it in your email strategy?',
+    hint: 'Zero-party data is information customers intentionally share — through quizzes, preference centers, surveys, etc.',
+    options: [
+      { text: 'No — we don\'t collect preference data', points: 0 },
+      { text: 'We have a basic preference center but rarely use the data', points: 2 },
+      { text: 'We actively collect via quizzes/surveys and use it to personalize flows and campaigns', points: 5 },
+    ]
+  },
+  {
+    pillar: 'segmentation',
+    question: 'Do you suppress or exclude segments from campaigns to prevent over-mailing?',
+    hint: 'Sending to everyone hurts deliverability, increases unsubscribes, and cannibalizes flow revenue.',
+    options: [
+      { text: 'No — we send campaigns to the full list', points: 0 },
+      { text: 'We exclude unengaged subscribers occasionally', points: 2 },
+      { text: 'Yes — systematic suppression: recent purchasers, active flow recipients, unengaged, and segment-specific exclusions', points: 5 },
+    ]
+  },
+
+  // WIN-BACK & LIFECYCLE EXITS (3 questions, 15 points)
+  {
+    pillar: 'winback',
+    question: 'Do you have an automated win-back sequence for customers who haven\'t purchased in a defined period?',
+    hint: 'Win-back flows target customers showing signs of churn — before they\'re gone for good.',
+    options: [
+      { text: 'No win-back automation at all', points: 0 },
+      { text: 'A basic "we miss you" email with a discount', points: 2 },
+      { text: 'A multi-step win-back: reminder, social proof, escalating offer, final chance', points: 4 },
+      { text: 'Tiered win-back flows based on customer value (high-value gets different treatment than one-time buyers)', points: 5 },
+    ]
+  },
+  {
+    pillar: 'winback',
+    question: 'Do you have a sunset/suppression policy for chronically unengaged contacts?',
+    hint: 'Keeping unengaged contacts on your list hurts deliverability and inflates costs. Smart brands sunset them.',
+    options: [
+      { text: 'No — we never remove anyone from our list', points: 0 },
+      { text: 'We do occasional list cleans but it\'s not automated', points: 2 },
+      { text: 'Yes — automated sunset flow: re-engagement attempt → suppress or remove if no response', points: 5 },
+    ]
+  },
+  {
+    pillar: 'winback',
+    question: 'Do you track and measure customer churn rate through your email data?',
+    hint: 'Understanding when and why customers lapse is critical for optimizing the lifecycle.',
+    options: [
+      { text: 'No — I don\'t measure churn from email data', points: 0 },
+      { text: 'I have a rough sense of churn but don\'t measure it formally', points: 2 },
+      { text: 'Yes — I track churn by cohort, acquisition source, and product, and feed it back into my flows', points: 5 },
+    ]
+  },
+
+  // REVENUE ARCHITECTURE (3 questions, 20 points)
+  {
+    pillar: 'revenue',
+    question: 'What percentage of your total email revenue comes from automated flows vs. manual campaigns?',
+    hint: 'Best-in-class brands generate 40–60% of email revenue from flows. If you\'re campaign-heavy, you\'re leaving money on the table.',
+    options: [
+      { text: 'I don\'t know / we don\'t track this split', points: 0 },
+      { text: 'Mostly campaigns (70%+ campaigns, <30% flows)', points: 2 },
+      { text: 'Fairly balanced (40–60% flows, rest campaigns)', points: 5 },
+      { text: 'Flow-dominant (60%+ from flows) with campaigns as incremental lifts', points: 7 },
+    ]
+  },
+  {
+    pillar: 'revenue',
+    question: 'What is your overall email-attributed revenue as a percentage of total brand revenue?',
+    hint: 'For a well-optimized eCom email program, email should drive 25–40% of total revenue.',
+    options: [
+      { text: 'Below 15% — email is underperforming', points: 0 },
+      { text: '15–25% — decent but room to grow', points: 3 },
+      { text: '25–35% — strong, nearing best-in-class', points: 5 },
+      { text: 'Above 35% — elite performance', points: 7 },
+    ]
+  },
+  {
+    pillar: 'revenue',
+    question: 'Do you measure revenue per recipient (RPR) across your key flows and use it for optimization?',
+    hint: 'RPR is the single most important metric for flow performance. It tells you how much each flow is worth per person who enters it.',
+    options: [
+      { text: 'I don\'t track RPR', points: 0 },
+      { text: 'I track it for some flows but don\'t use it to prioritize optimization', points: 3 },
+      { text: 'Yes — I track RPR across all major flows and use it to decide where to invest optimization time', points: 6 },
+    ]
+  },
+
+  // STRATEGIC MATURITY (3 questions, 20 points)
+  {
+    pillar: 'maturity',
+    question: 'How do you approach A/B testing in your email program?',
+    hint: 'Continuous testing is what separates programs that plateau from programs that compound.',
+    options: [
+      { text: 'We don\'t A/B test', points: 0 },
+      { text: 'Occasional subject line tests on campaigns', points: 2 },
+      { text: 'Regular testing on campaigns: subject lines, send times, content', points: 4 },
+      { text: 'Systematic testing across both flows AND campaigns: copy, design, offers, timing, sequencing', points: 7 },
+    ]
+  },
+  {
+    pillar: 'maturity',
+    question: 'Do you have a documented email marketing calendar and strategic plan?',
+    hint: 'Without a plan, you\'re reactive. The best brands plan campaigns 30–90 days out and tie them to product launches, seasonal events, and inventory.',
+    options: [
+      { text: 'No plan — we send campaigns when we think of them', points: 0 },
+      { text: 'We plan a week or two ahead', points: 2 },
+      { text: 'Monthly calendar with themes and product focuses', points: 4 },
+      { text: '90-day strategic calendar tied to product launches, inventory, and seasonal events, reviewed weekly', points: 7 },
+    ]
+  },
+  {
+    pillar: 'maturity',
+    question: 'Who manages your email/retention strategy?',
+    hint: 'The sophistication of your program is limited by who\'s running it. This isn\'t a knock on anyone — it\'s about matching resources to opportunity.',
+    options: [
+      { text: 'The founder or a generalist marketer (email is one of many hats)', points: 0 },
+      { text: 'A dedicated email marketer, but limited strategic experience', points: 2 },
+      { text: 'An experienced retention marketer or specialized agency', points: 4 },
+      { text: 'A dedicated retention team or agency with a proven track record, clear KPIs, and regular strategic reviews', points: 6 },
+    ]
+  },
+];
+
+const REVENUE_RANGES = [
+  { label: '$100k – $500k/month', mid: 300000 },
+  { label: '$500k – $1M/month', mid: 750000 },
+  { label: '$1M – $3M/month', mid: 2000000 },
+  { label: '$3M – $10M/month', mid: 6500000 },
+  { label: 'Above $10M/month', mid: 15000000 },
+];
+
+// State
+let state = {
+  screen: 'landing', // landing, revenue, questions, gate, results
+  revenueIndex: -1,
+  currentQuestion: 0,
+  answers: new Array(QUESTIONS.length).fill(-1),
+  name: '',
+  email: '',
+};
+
+function getScore() {
+  let total = 0;
+  state.answers.forEach((ansIdx, qIdx) => {
+    if (ansIdx >= 0) total += QUESTIONS[qIdx].options[ansIdx].points;
+  });
+  return total;
+}
+
+function getMaxScore() {
+  return PILLARS.reduce((sum, p) => sum + p.maxPoints, 0);
+}
+
+function getPillarScore(pillarId) {
+  let score = 0, max = 0;
+  QUESTIONS.forEach((q, i) => {
+    if (q.pillar === pillarId) {
+      max += Math.max(...q.options.map(o => o.points));
+      if (state.answers[i] >= 0) score += q.options[state.answers[i]].points;
+    }
+  });
+  return { score, max };
+}
+
+function getGrade(score) {
+  const pct = score / getMaxScore() * 100;
+  if (pct >= 90) return { letter: 'A+', color: '#22C55E', bg: 'rgba(34,197,94,0.12)' };
+  if (pct >= 80) return { letter: 'A', color: '#22C55E', bg: 'rgba(34,197,94,0.12)' };
+  if (pct >= 70) return { letter: 'B+', color: '#4ADE80', bg: 'rgba(74,222,128,0.12)' };
+  if (pct >= 60) return { letter: 'B', color: '#FACC15', bg: 'rgba(250,204,21,0.12)' };
+  if (pct >= 50) return { letter: 'C+', color: '#FACC15', bg: 'rgba(250,204,21,0.12)' };
+  if (pct >= 40) return { letter: 'C', color: '#EAB308', bg: 'rgba(234,179,8,0.12)' };
+  if (pct >= 30) return { letter: 'D', color: '#F97316', bg: 'rgba(249,115,22,0.12)' };
+  return { letter: 'F', color: '#EF4444', bg: 'rgba(239,68,68,0.12)' };
+}
+
+function getRevenueAtRisk() {
+  if (state.revenueIndex < 0) return 0;
+  const monthlyRev = REVENUE_RANGES[state.revenueIndex].mid;
+  const score = getScore();
+  const maxScore = getMaxScore();
+  const gapPct = 1 - (score / maxScore);
+  // Best-in-class email drives 30-40% of revenue. Gap = potential missed.
+  const emailPotential = monthlyRev * 0.35;
+  const atRisk = Math.round(emailPotential * gapPct * 0.6); // conservative factor
+  return atRisk;
+}
+
+function formatMoney(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n / 1000) + 'k';
+  return '$' + n;
+}
+
+function getScoreColor(pct) {
+  if (pct >= 0.7) return '#22C55E';
+  if (pct >= 0.4) return '#FACC15';
+  return '#EF4444';
+}
+
+function render() {
+  const app = document.getElementById('app');
+
+  switch (state.screen) {
+    case 'landing': app.innerHTML = renderLanding(); break;
+    case 'revenue': app.innerHTML = renderRevenue(); break;
+    case 'questions': app.innerHTML = renderQuestions(); break;
+    case 'gate': app.innerHTML = renderGate(); break;
+    case 'results': app.innerHTML = renderResults(); break;
+  }
+
+  attachListeners();
+}
+
+function renderHeader(activeStep, showCounter) {
+  const steps = [
+    { num: 1, label: 'Revenue' },
+    { num: 2, label: 'Scorecard' },
+    { num: 3, label: 'Results' },
+  ];
+
+  const progress = state.screen === 'revenue' ? 5
+    : state.screen === 'questions' ? 5 + (state.currentQuestion / QUESTIONS.length * 90)
+    : 100;
+
+  return `
+    <div class="header">
+      <div class="header-logo">
+        <div class="logo-icon">⚡</div>
+        Sales Ignition Scorecard
+      </div>
+      <div class="header-steps">
+        ${steps.map((s, i) => `
+          <div class="step-item ${i + 1 < activeStep ? 'completed' : ''} ${i + 1 === activeStep ? 'active' : ''}">
+            <div class="step-num">${i + 1 < activeStep ? '✓' : s.num}</div>
+            ${s.label}
+          </div>
+          ${i < steps.length - 1 ? '<div class="step-connector"></div>' : ''}
+        `).join('')}
+      </div>
+      <div class="header-counter">${showCounter ? `${state.currentQuestion + 1}/${QUESTIONS.length}` : ''}</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+  `;
+}
+
+function renderLanding() {
+  return `
+    <div class="header">
+      <div class="header-logo">
+        <div class="logo-icon">⚡</div>
+        Sales Ignition
+      </div>
+      <div class="header-steps"></div>
+      <div class="header-counter"></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    <div class="main">
+      <div class="landing fade-in">
+        <div class="landing-badge">Free 5-Minute Scorecard</div>
+        <h1>Score Your Lifecycle<br>Email <span>Revenue Architecture.</span></h1>
+        <p>Answer 18 strategic questions across 6 lifecycle pillars to find out exactly where your email program is leaving money on the table — and what to fix first.</p>
+        <button class="cta-btn" onclick="goTo('revenue')">
+          Start My Scorecard &rarr;
+        </button>
+        <div class="landing-proof">
+          <span><span class="check-icon">✓</span> Built for $1M+ brands</span>
+          <span><span class="check-icon">✓</span> No email required to start</span>
+          <span><span class="check-icon">✓</span> 18 questions, 5 minutes</span>
+        </div>
+        <div class="pillar-grid">
+          ${PILLARS.map(p => `
+            <div class="pillar-card">
+              <div class="pillar-card-icon">${p.icon}</div>
+              <h3>${p.name}</h3>
+              <p>${getPillarDescription(p.id)}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function getPillarDescription(id) {
+  const desc = {
+    onboarding: 'Is your welcome sequence converting subscribers into first-time buyers — or just sending coupons into the void?',
+    postpurchase: 'What happens after the first purchase? This is where LTV is built or lost.',
+    segmentation: 'Are you sending the right message to the right person — or blasting everyone with the same email?',
+    winback: 'Are lapsed customers getting a strategic re-engagement path — or silently churning?',
+    revenue: 'Is your flow/campaign revenue split optimized? Are you measuring what actually matters?',
+    maturity: 'Do you have a strategic plan and testing framework — or are you winging it?',
+  };
+  return desc[id] || '';
+}
+
+function renderRevenue() {
+  return `
+    ${renderHeader(1, false)}
+    <div class="main">
+      <div class="revenue-step fade-in">
+        <div class="landing-badge">Step 1 of 2</div>
+        <h2>What is your brand's monthly revenue range?</h2>
+        <p>This allows us to calculate a realistic dollar estimate of your lifecycle revenue gap.</p>
+        <div class="revenue-options">
+          ${REVENUE_RANGES.map((r, i) => `
+            <button class="revenue-option ${state.revenueIndex === i ? 'selected' : ''}" data-rev="${i}">${r.label}</button>
+          `).join('')}
+        </div>
+        <div style="margin-top:24px;">
+          <button class="cta-btn" onclick="goTo('questions')" ${state.revenueIndex < 0 ? 'disabled style="opacity:0.4;cursor:not-allowed"' : ''}>
+            Start the Scorecard &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderQuestions() {
+  const q = QUESTIONS[state.currentQuestion];
+  const pillar = PILLARS.find(p => p.id === q.pillar);
+  const score = getScore();
+  const maxScore = getMaxScore();
+  const pct = score / maxScore;
+  const circumference = 2 * Math.PI * 45;
+  const offset = circumference - (pct * circumference);
+  const scoreColor = getScoreColor(pct);
+
+  return `
+    ${renderHeader(2, true)}
+    <div class="main">
+      <div class="question-layout fade-in">
+        <div class="question-area">
+          <div class="question-category ${pillar.catClass}">${pillar.icon} ${pillar.name}</div>
+          <h2 class="question-text">${q.question}</h2>
+          <p class="question-hint">${q.hint}</p>
+          <div class="answer-options">
+            ${q.options.map((opt, i) => `
+              <button class="answer-option ${state.answers[state.currentQuestion] === i ? 'selected' : ''}" data-ans="${i}">
+                <div class="answer-radio"></div>
+                ${opt.text}
+              </button>
+            `).join('')}
+          </div>
+          <div class="nav-buttons">
+            <button class="nav-back" onclick="${state.currentQuestion > 0 ? 'prevQuestion()' : 'goTo(\'revenue\')'}">
+              &larr; Back
+            </button>
+            <button class="nav-next" onclick="nextQuestion()" ${state.answers[state.currentQuestion] < 0 ? 'disabled' : ''}>
+              ${state.currentQuestion < QUESTIONS.length - 1 ? 'Next &rarr;' : 'See My Results &rarr;'}
+            </button>
+          </div>
+        </div>
+        <div class="sidebar-score">
+          <div class="sidebar-label">LIVE SCORE</div>
+          <div class="score-circle-container">
+            <svg class="score-circle" width="110" height="110" viewBox="0 0 110 110">
+              <circle class="score-bg" cx="55" cy="55" r="45"/>
+              <circle class="score-fill" cx="55" cy="55" r="45"
+                stroke="${scoreColor}"
+                stroke-dasharray="${circumference}"
+                stroke-dashoffset="${offset}"/>
+            </svg>
+            <div class="score-value">${score}<span class="score-max">/${maxScore}</span></div>
+          </div>
+          <div class="score-update-note">Updates as you answer</div>
+          <div class="pillar-scores">
+            ${PILLARS.map(p => {
+              const ps = getPillarScore(p.id);
+              const barPct = ps.max > 0 ? (ps.score / ps.max * 100) : 0;
+              const answeredInPillar = QUESTIONS.filter((q2,i2) => q2.pillar === p.id && state.answers[i2] >= 0).length;
+              const totalInPillar = QUESTIONS.filter(q2 => q2.pillar === p.id).length;
+              return `
+                <div class="pillar-score-row">
+                  <span class="pillar-score-name">${p.icon} ${p.name}</span>
+                  <span style="display:flex;align-items:center;gap:6px;">
+                    <span class="pillar-score-val" style="color:${p.color}">${answeredInPillar}/${totalInPillar}</span>
+                    <div class="pillar-bar">
+                      <div class="pillar-bar-fill" style="width:${barPct}%;background:${p.color}"></div>
+                    </div>
+                  </span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderGate() {
+  const score = getScore();
+  const grade = getGrade(score);
+  const risk = getRevenueAtRisk();
+
+  return `
+    <div class="gate-overlay">
+      <div class="gate-modal fade-in">
+        <div class="results-grade" style="background:${grade.bg};display:inline-flex">
+          <span class="grade-letter" style="color:${grade.color}">${grade.letter}</span>
+          <span>${score}/${getMaxScore()}</span>
+          <span style="color:var(--si-gray)">🔒</span>
+        </div>
+        <h2>Your full results are ready</h2>
+        <p>Enter your details to unlock your complete lifecycle scorecard, pillar-by-pillar breakdown, and revenue recovery estimate.</p>
+        <div class="revenue-risk-banner" style="margin:0 0 20px;">
+          ⚠️ <span class="amount">${formatMoney(risk)}/mo</span> <span>estimated revenue at risk</span>
+        </div>
+        <input class="gate-input" type="text" placeholder="Your Name" id="gate-name" value="${state.name}">
+        <input class="gate-input" type="email" placeholder="Work Email" id="gate-email" value="${state.email}">
+        <button class="cta-btn" onclick="submitGate()" style="width:100%;justify-content:center;margin-top:8px;">
+          Unlock My Full Results &rarr;
+        </button>
+        <div class="gate-fine-print">No spam. No pitch decks. Steven reviews your results before any call.</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderResults() {
+  const score = getScore();
+  const maxScore = getMaxScore();
+  const grade = getGrade(score);
+  const risk = getRevenueAtRisk();
+
+  const pillarResults = PILLARS.map(p => {
+    const ps = getPillarScore(p.id);
+    const pct = ps.max > 0 ? ps.score / ps.max : 0;
+    let assessment = '';
+    if (pct >= 0.8) assessment = 'Excellent — this pillar is performing at or near best-in-class. Keep optimizing.';
+    else if (pct >= 0.6) assessment = 'Good foundation — there\'s still meaningful revenue to unlock with targeted improvements.';
+    else if (pct >= 0.3) assessment = 'Significant gaps — this pillar is underperforming and likely costing you revenue every month.';
+    else assessment = 'Critical gap — this pillar needs immediate attention. Major revenue is being left on the table.';
+
+    return { ...p, ...ps, pct, assessment };
+  });
+
+  // Sort by lowest score first (biggest opportunities)
+  const sorted = [...pillarResults].sort((a, b) => a.pct - b.pct);
+
+  return `
+    ${renderHeader(3, false)}
+    <div class="main">
+      <div class="results-page fade-in">
+        <div class="results-hero">
+          <div class="results-grade" style="background:${grade.bg}">
+            <span class="grade-letter" style="color:${grade.color}">${grade.letter}</span>
+            <span>${score} / ${maxScore}</span>
+          </div>
+          <h1>Your Lifecycle Revenue Scorecard</h1>
+          <p>Here's how your email lifecycle architecture stacks up — and where the biggest revenue opportunities are hiding.</p>
+        </div>
+
+        <div class="revenue-risk-banner">
+          ⚠️ <span class="amount">${formatMoney(risk)}/mo</span> estimated lifecycle revenue at risk
+        </div>
+
+        <h2 style="font-size:20px;font-weight:700;margin-bottom:16px;">Pillar-by-Pillar Breakdown</h2>
+        <p style="color:var(--si-gray);font-size:14px;margin-bottom:24px;">Sorted by biggest opportunity first — fix these to unlock the most revenue.</p>
+
+        <div class="results-grid">
+          ${sorted.map((p, i) => `
+            <div class="result-card" style="border-top:3px solid ${p.color}">
+              <div class="result-card-header">
+                <h3>${p.icon} ${p.name}</h3>
+                <span class="result-card-score" style="color:${getScoreColor(p.pct)}">${p.score}/${p.max}</span>
+              </div>
+              <div class="result-bar">
+                <div class="result-bar-fill" style="width:${p.pct * 100}%;background:${getScoreColor(p.pct)}"></div>
+              </div>
+              <p>${p.assessment}</p>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="results-cta">
+          <h2>Want to close these gaps?</h2>
+          <p>Book a free 15-minute Lifecycle Revenue Review with Steven. He'll walk through your scorecard results, pinpoint your top 3 revenue opportunities, and show you what 8-figure brands do differently.</p>
+          <a href="https://salesignition.com" target="_blank" class="cta-btn" style="text-decoration:none;">
+            Book My Free Review &rarr;
+          </a>
+          <p style="margin-top:16px;font-size:13px;color:var(--si-gray);">No obligation. No pitch deck. Just strategy.</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Navigation
+function goTo(screen) {
+  state.screen = screen;
+  render();
+  window.scrollTo(0, 0);
+}
+
+function nextQuestion() {
+  if (state.answers[state.currentQuestion] < 0) return;
+  if (state.currentQuestion < QUESTIONS.length - 1) {
+    state.currentQuestion++;
+    render();
+    window.scrollTo(0, 0);
+  } else {
+    goTo('gate');
+  }
+}
+
+function prevQuestion() {
+  if (state.currentQuestion > 0) {
+    state.currentQuestion--;
+    render();
+  }
+}
+
+function submitGate() {
+  const name = document.getElementById('gate-name')?.value || '';
+  const email = document.getElementById('gate-email')?.value || '';
+  state.name = name;
+  state.email = email;
+  // In production, you'd POST this to your backend / Klaviyo / webhook
+  console.log('Lead captured:', { name, email, score: getScore(), answers: state.answers });
+  goTo('results');
+}
+
+// Event listeners
+function attachListeners() {
+  // Revenue option clicks
+  document.querySelectorAll('.revenue-option').forEach(el => {
+    el.addEventListener('click', () => {
+      state.revenueIndex = parseInt(el.dataset.rev);
+      render();
+    });
+  });
+
+  // Answer option clicks
+  document.querySelectorAll('.answer-option').forEach(el => {
+    el.addEventListener('click', () => {
+      state.answers[state.currentQuestion] = parseInt(el.dataset.ans);
+      render();
+    });
+  });
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>
