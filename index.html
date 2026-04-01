@@ -220,67 +220,65 @@
     /* Each card gets its own background color — matching the project's brand palette,
        exactly as conversion.design does with each of their portfolio entries */
     .pcard--true-citrus  { background: #f5e230; } /* True Citrus bright lemon */
-    .pcard--miltons      { background: #d4e8c2; } /* Milton's natural green    */
-    .pcard--taxquotes    { background: #1a2d5a; } /* TaxQuotes navy blue       */
+    .pcard--miltons      { background: #13091b; } /* Milton's dark purple      */
+    .pcard--taxquotes    { background: #090c18; } /* TaxQuotes dark navy       */
     .pcard--emaildelivery{ background: #0d1117; } /* EmailDelivery.co dark     */
 
     .pcard__body { padding: 26px 26px 20px; }
 
     /* Text color flips to white on dark-background cards */
+    .pcard--miltons .pcard__body .eyebrow,
     .pcard--taxquotes .pcard__body .eyebrow,
     .pcard--emaildelivery .pcard__body .eyebrow { color: rgba(255,255,255,0.5); }
+    .pcard--miltons .pcard__body h3,
     .pcard--taxquotes .pcard__body h3,
     .pcard--emaildelivery .pcard__body h3 { color: #ffffff; }
+    .pcard--miltons .pcard__body p,
     .pcard--taxquotes .pcard__body p,
     .pcard--emaildelivery .pcard__body p { color: rgba(255,255,255,0.65); }
+    .pcard--miltons .pcard__stats .pcard__stat-num,
+    .pcard--miltons .pcard__stats .pcard__stat-pct,
     .pcard--taxquotes .pcard__stats .pcard__stat-num,
     .pcard--taxquotes .pcard__stats .pcard__stat-pct,
     .pcard--emaildelivery .pcard__stats .pcard__stat-num,
     .pcard--emaildelivery .pcard__stats .pcard__stat-pct { color: #ffffff; }
+    .pcard--miltons .pcard__stats .pcard__stat-label,
     .pcard--taxquotes .pcard__stats .pcard__stat-label,
     .pcard--emaildelivery .pcard__stats .pcard__stat-label { color: rgba(255,255,255,0.5); }
+    .pcard--miltons .pcard__link,
     .pcard--taxquotes .pcard__link,
     .pcard--emaildelivery .pcard__link { color: rgba(255,255,255,0.8); }
+    .pcard--miltons .pcard__link:hover,
     .pcard--taxquotes .pcard__link:hover,
     .pcard--emaildelivery .pcard__link:hover { color: #ffffff; }
 
     /* ── NEW CARD COLORS ─────────────────────────────────── */
-    .pcard--little-hunter  { background: #355e3b; } /* hunter green   */
+    .pcard--little-hunter  { background: #02312c; } /* hunter green   */
     .pcard--tumblerware    { background: #f97316; } /* burnt orange   */
-    .pcard--hear-com       { background: #1e40af; } /* rich blue      */
-    .pcard--blaze-n-chill  { background: #16a34a; } /* deep green     */
-    .pcard--enchant-brands { background: #7c3aed; } /* deep violet    */
+    .pcard--hear-com       { background: #6cb0e2; } /* light blue     */
+    .pcard--blaze-n-chill  { background: #e4af24; } /* golden yellow  */
+    .pcard--enchant-brands { background: #020059; } /* deep navy      */
     .pcard--vurbmoto       { background: #18181b; } /* near-black     */
     .pcard--therapy-clean  { background: #e0f2fe; } /* light sky blue */
 
     /* Light-text overrides for dark new cards */
     .pcard--tumblerware .pcard__body .eyebrow,
-    .pcard--hear-com .pcard__body .eyebrow,
-    .pcard--blaze-n-chill .pcard__body .eyebrow,
     .pcard--enchant-brands .pcard__body .eyebrow,
     .pcard--vurbmoto .pcard__body .eyebrow { color: rgba(255,255,255,0.45); }
 
     .pcard--tumblerware .pcard__body h3,
-    .pcard--hear-com .pcard__body h3,
-    .pcard--blaze-n-chill .pcard__body h3,
     .pcard--enchant-brands .pcard__body h3,
     .pcard--vurbmoto .pcard__body h3 { color: #ffffff; }
 
     .pcard--tumblerware .pcard__body p,
-    .pcard--hear-com .pcard__body p,
-    .pcard--blaze-n-chill .pcard__body p,
     .pcard--enchant-brands .pcard__body p,
     .pcard--vurbmoto .pcard__body p { color: rgba(255,255,255,0.62); }
 
     .pcard--tumblerware .pcard__link,
-    .pcard--hear-com .pcard__link,
-    .pcard--blaze-n-chill .pcard__link,
     .pcard--enchant-brands .pcard__link,
     .pcard--vurbmoto .pcard__link { color: rgba(255,255,255,0.8); }
 
     .pcard--tumblerware .pcard__link:hover,
-    .pcard--hear-com .pcard__link:hover,
-    .pcard--blaze-n-chill .pcard__link:hover,
     .pcard--enchant-brands .pcard__link:hover,
     .pcard--vurbmoto .pcard__link:hover { color: #ffffff; }
 
@@ -684,14 +682,14 @@
           <h3>Hear.com</h3>
           <p>Rebuilt nurture sequences and restored high-volume deliverability for this leading digital hearing care platform — scaling inbox placement back to 98%.</p>
           <div class="pcard__stats">
-            <div><span class="pcard__stat-num" style="color:#fff;">98%</span><span class="pcard__stat-label" style="color:rgba(255,255,255,0.45);">inbox placement restored</span></div>
+            <div><span class="pcard__stat-num">98%</span><span class="pcard__stat-label">inbox placement restored</span></div>
           </div>
           <a class="pcard__link" href="hear.html">More about the project</a>
         </div>
         <div class="pcard__img">
           <img src="images/portfolio/hear-com.png" alt="Hear.com"
             onerror="this.style.display='none';this.nextSibling.style.display='flex';">
-          <div class="pcard__img-placeholder" style="color:rgba(255,255,255,0.2);">📷 hear-com.png</div>
+          <div class="pcard__img-placeholder">📷 hear-com.png</div>
         </div>
       </div>
 
@@ -702,15 +700,15 @@
           <h3>Blaze N Chill</h3>
           <p>Built their full Klaviyo automation stack and overhauled a badly segmented list for this lifestyle DTC brand — welcome flows through VIP loyalty sequences.</p>
           <div class="pcard__stats">
-            <div><span class="pcard__stat-num" style="color:#fff;">+$78k</span><span class="pcard__stat-label" style="color:rgba(255,255,255,0.45);">additional annual revenue</span></div>
-            <div><span class="pcard__stat-pct" style="color:#fff;">+38%</span><span class="pcard__stat-label" style="color:rgba(255,255,255,0.45);">email revenue</span></div>
+            <div><span class="pcard__stat-num">+$78k</span><span class="pcard__stat-label">additional annual revenue</span></div>
+            <div><span class="pcard__stat-pct">+38%</span><span class="pcard__stat-label">email revenue</span></div>
           </div>
           <a class="pcard__link" href="blaze-n-chill.html">More about the project</a>
         </div>
         <div class="pcard__img">
           <img src="images/portfolio/blaze-n-chill.png" alt="Blaze N Chill"
             onerror="this.style.display='none';this.nextSibling.style.display='flex';">
-          <div class="pcard__img-placeholder" style="color:rgba(255,255,255,0.2);">📷 blaze-n-chill.png</div>
+          <div class="pcard__img-placeholder">📷 blaze-n-chill.png</div>
         </div>
       </div>
 
