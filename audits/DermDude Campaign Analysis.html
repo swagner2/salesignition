@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DermDude Klaviyo Campaign Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; padding: 24px; }
+.header { text-align: center; margin-bottom: 32px; }
+.header h1 { font-size: 28px; color: #f8fafc; margin-bottom: 4px; }
+.header p { color: #94a3b8; font-size: 14px; }
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.kpi { background: #1e293b; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #334155; }
+.kpi .value { font-size: 24px; font-weight: 700; color: #38bdf8; }
+.kpi .label { font-size: 12px; color: #94a3b8; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi.warn .value { color: #fbbf24; }
+.kpi.danger .value { color: #f87171; }
+.kpi.good .value { color: #4ade80; }
+.section { margin-bottom: 32px; }
+.section h2 { font-size: 18px; color: #f8fafc; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #334155; }
+.chart-container { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; margin-bottom: 16px; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .chart-row { grid-template-columns: 1fr; } }
+canvas { max-height: 300px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #334155; }
+th { background: #1e293b; color: #94a3b8; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; position: sticky; top: 0; }
+td { color: #cbd5e1; }
+tr:hover td { background: #1e293b; }
+.table-wrap { background: #1e293b; border-radius: 12px; border: 1px solid #334155; overflow-x: auto; max-height: 500px; overflow-y: auto; }
+.rec-card { background: #1e293b; border-radius: 12px; padding: 20px; border-left: 4px solid #38bdf8; margin-bottom: 12px; }
+.rec-card.critical { border-left-color: #f87171; }
+.rec-card.warning { border-left-color: #fbbf24; }
+.rec-card.opportunity { border-left-color: #4ade80; }
+.rec-card h3 { font-size: 15px; color: #f8fafc; margin-bottom: 6px; }
+.rec-card p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+.badge.critical { background: #991b1b; color: #fca5a5; }
+.badge.warning { background: #854d0e; color: #fde047; }
+.badge.opportunity { background: #166534; color: #86efac; }
+.yr-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-bottom: 16px; }
+.yr-cell { background: #1e293b; border-radius: 8px; padding: 12px; text-align: center; border: 1px solid #334155; }
+.yr-cell .yr { font-size: 14px; font-weight: 700; color: #f8fafc; }
+.yr-cell .yr-val { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>DermDude — Klaviyo Campaign Analysis</h1>
+<p>951 Email Campaigns + 201 SMS Campaigns · March 2022 – April 2026</p>
+</div>
+
+<div class="kpi-row">
+<div class="kpi"><div class="value">$339K</div><div class="label">Total Email Revenue</div></div>
+<div class="kpi"><div class="value">7,134</div><div class="label">Total Orders</div></div>
+<div class="kpi"><div class="value">43.5%</div><div class="label">Avg Open Rate</div></div>
+<div class="kpi warn"><div class="value">0.25%</div><div class="label">Avg Click Rate</div></div>
+<div class="kpi danger"><div class="value">0.05%</div><div class="label">Avg Order Rate</div></div>
+<div class="kpi"><div class="value">0.16%</div><div class="label">Avg Unsub Rate</div></div>
+<div class="kpi"><div class="value">$357</div><div class="label">Avg Rev/Campaign</div></div>
+<div class="kpi"><div class="value">$26.6K</div><div class="label">Total SMS Revenue</div></div>
+</div>
+
+<div class="section">
+<h2>Year-over-Year Performance (Email)</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Year</th><th>Campaigns</th><th>Total Revenue</th><th>Avg Rev/Camp</th><th>Avg Open</th><th>Avg Click</th><th>Avg Order Rate</th><th>Avg Unsub</th><th>Avg Recipients</th><th>Total Orders</th></tr></thead>
+<tbody><tr>
+<td>2022</td><td>127</td><td>$20,286</td><td>$160</td>
+<td>33.1%</td><td>0.47%</td><td>0.08%</td>
+<td>0.23%</td><td>4,922</td><td>473</td></tr><tr>
+<td>2023</td><td>297</td><td>$148,785</td><td>$501</td>
+<td>42.5%</td><td>0.20%</td><td>0.05%</td>
+<td>0.09%</td><td>26,443</td><td>2,958</td></tr><tr>
+<td>2024</td><td>220</td><td>$95,871</td><td>$436</td>
+<td>42.7%</td><td>0.15%</td><td>0.04%</td>
+<td>0.17%</td><td>30,292</td><td>2,137</td></tr><tr>
+<td>2025</td><td>242</td><td>$58,605</td><td>$242</td>
+<td>51.4%</td><td>0.32%</td><td>0.06%</td>
+<td>0.22%</td><td>16,638</td><td>1,218</td></tr><tr>
+<td>2026</td><td>65</td><td>$15,730</td><td>$242</td>
+<td>42.1%</td><td>0.15%</td><td>0.02%</td>
+<td>0.14%</td><td>32,099</td><td>348</td></tr></tbody></table></div></div>
+
+<div class="section">
+<h2>Monthly Revenue & Open Rate Trends</h2>
+<div class="chart-row">
+<div class="chart-container"><canvas id="monthlyRevChart"></canvas></div>
+<div class="chart-container"><canvas id="monthlyOpenChart"></canvas></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Day of Week Performance</h2>
+<div class="chart-row">
+<div class="chart-container"><canvas id="dowRevChart"></canvas></div>
+<div class="chart-container"><canvas id="dowOpenChart"></canvas></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Top 20 Revenue-Generating Campaigns</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Date</th><th>Campaign</th><th>Subject</th><th>Revenue</th><th>Orders</th><th>Open%</th><th>Click%</th><th>Order%</th><th>Recipients</th></tr></thead>
+<tbody><tr>
+<td>2023-10-19</td><td>10/19/23 - Strawberry Reminder #2</td><td>Re: Update:  2 MAX PER CUSTOMER🍓🍓</td><td>$1,767</td>
+<td>34</td><td>43.5%</td><td>0.28%</td>
+<td>0.09%</td><td>36,444</td></tr><tr>
+<td>2023-05-11</td><td>05/10/23 -  FINAL HOURS! Flash Sale Free Amaz</td><td>Last Chance! FREE Amaze Balls Spray 🤑</td><td>$1,460</td>
+<td>19</td><td>56.3%</td><td>0.41%</td>
+<td>0.10%</td><td>18,243</td></tr><tr>
+<td>2023-08-09</td><td>08/09/23 - Illegal Shave Cream Tease</td><td>HOLY f*%k! IT’S COMING THURSDAY AM!</td><td>$1,396</td>
+<td>32</td><td>41.0%</td><td>0.23%</td>
+<td>0.08%</td><td>31,133</td></tr><tr>
+<td>2023-11-22</td><td>11/21/23 - Black Friday Launch (#1)</td><td>BIGGEST SITEWIDE SALE OF YEAR!</td><td>$1,362</td>
+<td>17</td><td>40.2%</td><td>0.16%</td>
+<td>0.04%</td><td>38,357</td></tr><tr>
+<td>2024-11-15</td><td>11/15/24 -  Early Sack Friday Launch (#1)</td><td>Coming early is a good thing! 😉</td><td>$1,334</td>
+<td>31</td><td>51.1%</td><td>0.19%</td>
+<td>0.09%</td><td>33,168</td></tr><tr>
+<td>2024-09-28</td><td>09/28/24 - Pumpkins BACK</td><td>Pumpkin for your 🥜🥜</td><td>$1,330</td>
+<td>31</td><td>46.6%</td><td>0.21%</td>
+<td>0.09%</td><td>35,305</td></tr><tr>
+<td>2023-07-28</td><td>07/28/23 - Early Access Balls to the Walls (#</td><td>VIP EARLY ACCESS - 20% OFF BALLS 🥎🥎</td><td>$1,307</td>
+<td>23</td><td>41.8%</td><td>0.18%</td>
+<td>0.07%</td><td>30,035</td></tr><tr>
+<td>2023-04-13</td><td>04/13/23 - Beard Focus</td><td>MEGA BEARD TODAY / PAY LATER. 💪🏽</td><td>$1,293</td>
+<td>20</td><td>57.9%</td><td>0.39%</td>
+<td>0.12%</td><td>15,767</td></tr><tr>
+<td>2023-04-17</td><td>04/17/23 - Whiskey Dck Set BiS</td><td>WHISKEY D🍒CK IS BACK!</td><td>$1,277</td>
+<td>21</td><td>55.3%</td><td>0.59%</td>
+<td>0.13%</td><td>15,979</td></tr><tr>
+<td>2024-11-19</td><td>11/19/24 - BFCM Starts</td><td>For the love of your sack – 25% OFF! 🔥</td><td>$1,234</td>
+<td>19</td><td>40.4%</td><td>0.10%</td>
+<td>0.05%</td><td>36,353</td></tr><tr>
+<td>2023-11-23</td><td>11/23/23 - Letter from Drew | Thank you</td><td>T-H-A-N-K Y-O-U 🙌👌</td><td>$1,231</td>
+<td>22</td><td>47.2%</td><td>0.08%</td>
+<td>0.06%</td><td>38,514</td></tr><tr>
+<td>2023-05-26</td><td>05/26/23 - Memorial Day #3 (Elvie)</td><td>AMERICAN SACKS ARE COOL ⭐️⭐️⭐️⭐️⭐️</td><td>$1,230</td>
+<td>23</td><td>55.3%</td><td>0.24%</td>
+<td>0.11%</td><td>19,320</td></tr><tr>
+<td>2023-04-06</td><td>04/06/23 - Spring Break Set (Support)</td><td>FREE SHIPPING on our Spring Break Survival Sack❗️</td><td>$1,213</td>
+<td>23</td><td>59.4%</td><td>0.45%</td>
+<td>0.13%</td><td>14,225</td></tr><tr>
+<td>2023-10-24</td><td>10/24/23 - Halloween 25% off sitewide</td><td>Re: Not a mistake…</td><td>$1,182</td>
+<td>22</td><td>40.5%</td><td>0.13%</td>
+<td>0.05%</td><td>36,690</td></tr><tr>
+<td>2023-09-04</td><td>09/04/23 - Labor Day #5 (mid day)</td><td>T-minus 11 hours 🚀</td><td>$1,153</td>
+<td>18</td><td>45.8%</td><td>0.20%</td>
+<td>0.05%</td><td>33,350</td></tr><tr>
+<td>2023-12-16</td><td>12/16/23 - Drew Email - Corrected</td><td>[UPDATE] Special holiday note from Drew</td><td>$1,134</td>
+<td>23</td><td>47.9%</td><td>0.21%</td>
+<td>0.06%</td><td>40,136</td></tr><tr>
+<td>2023-06-05</td><td>06/05/23 - Gooch Grease</td><td>WTF IS GOOCH GREASE?!??!?</td><td>$1,085</td>
+<td>15</td><td>53.5%</td><td>0.36%</td>
+<td>0.08%</td><td>19,732</td></tr><tr>
+<td>2024-09-07</td><td>09/07/24 - New Total Body Deo</td><td>Smell Less.✅ Get Laid More.✅</td><td>$1,070</td>
+<td>31</td><td>34.5%</td><td>0.23%</td>
+<td>0.08%</td><td>38,819</td></tr><tr>
+<td>2023-11-07</td><td>11/06/23 - Beard Focus Email</td><td>SIZE MATTERS...</td><td>$1,069</td>
+<td>26</td><td>48.3%</td><td>0.16%</td>
+<td>0.07%</td><td>37,301</td></tr><tr>
+<td>2023-11-28</td><td>11/28/23- Cyber Monday - Sale Extended</td><td>YOU MISSED THE SALE!</td><td>$1,060</td>
+<td>20</td><td>36.2%</td><td>0.17%</td>
+<td>0.05%</td><td>38,891</td></tr></tbody></table></div></div>
+
+<div class="section">
+<h2>Key Findings & Recommendations</h2>
+
+<div class="rec-card critical">
+<h3><span class="badge critical">CRITICAL</span> Click Rate is Dangerously Low (0.25%)</h3>
+<p>Open rates are healthy at 43.5%, but clicks average just 0.25% — meaning people open but don't engage with the content. The gap between opens and clicks suggests emails aren't driving action. <strong>Fix:</strong> Redesign email templates with a single, clear CTA above the fold. Test button-forward layouts vs. current design. Reduce link clutter and focus each email on one action.</p>
+</div>
+
+<div class="rec-card critical">
+<h3><span class="badge critical">CRITICAL</span> Placed Order Rate Declining Year-over-Year</h3>
+<p>Placed order rate has dropped from 0.08% (2022) to 0.06% (2025) to 0.02% (2026 YTD). Despite sending more campaigns and to larger lists, conversions per email are falling. Revenue per campaign dropped from $501 (2023 peak) to ~$242 (2025-2026). <strong>Fix:</strong> Prioritize conversion-focused emails over volume. Implement proper A/B testing on offers and landing pages. Review whether the website checkout experience has degraded.</p>
+</div>
+
+<div class="rec-card warning">
+<h3><span class="badge warning">WARNING</span> Over-Sending is Diluting Performance</h3>
+<p>Campaign volume jumped from ~10/month (2022) to 19+/month currently. More sends haven't translated to more revenue — they've actually diluted it. The 2023 sweet spot was ~25 campaigns/month with $500 avg revenue. Now it's similar volume at $242 avg. <strong>Fix:</strong> Cut send frequency by 25-30%. Focus on fewer, higher-quality campaigns. Implement a "campaign calendar" that prioritizes quality over quantity.</p>
+</div>
+
+<div class="rec-card warning">
+<h3><span class="badge warning">WARNING</span> List Health Issues — Bounce Rates Spiking</h3>
+<p>44 campaigns exceeded 1% bounce rate, with several hitting 5-9%. Notably, resends consistently underperform and spike bounces. The Jan 2026 "Holy Foot" campaign hit 6.28% bounce on 19K recipients — that's a deliverability risk. <strong>Fix:</strong> Implement aggressive list hygiene. Sunset unengaged subscribers after 90 days of inactivity. Stop resending to the full list — only resend to non-openers with a new subject line.</p>
+</div>
+
+<div class="rec-card warning">
+<h3><span class="badge warning">WARNING</span> "Re:" Subject Line Trick — High Revenue but Risky</h3>
+<p>"Re:" prefixed subjects average $747/campaign vs. $406 without — nearly 2x. But they also have lower open rates (39.8% vs 44.8%), meaning they attract a more purchase-ready audience but annoy others. Overuse will train subscribers to distrust your emails. <strong>Fix:</strong> Use sparingly (max 1x/quarter) for genuinely important follow-ups, not as a gimmick.</p>
+</div>
+
+<div class="rec-card opportunity">
+<h3><span class="badge opportunity">OPPORTUNITY</span> Product Launches & BFCM Drive the Most Revenue</h3>
+<p>BFCM campaigns average $618/send, product launches average $489, vs. $357 overall. The Strawberry Reminder, Illegal Shave Cream Tease, and Pumpkins BACK campaigns all topped $1,300. <strong>Action:</strong> Build a product launch cadence — tease → announce → reminder — for every new SKU. This 3-email sequence consistently outperforms one-off blasts.</p>
+</div>
+
+<div class="rec-card opportunity">
+<h3><span class="badge opportunity">OPPORTUNITY</span> Smaller, Engaged Lists Outperform Broad Blasts on Efficiency</h3>
+<p>Broad/Newsletter sends average $523 revenue but go to 30K+ people (low RPR). Engaged segments achieve similar order rates with half the recipients and better engagement metrics. The best RPR campaigns ($0.08-0.10/recipient) were sent to engaged segments of 5K-16K. <strong>Action:</strong> Default to engaged segments for regular campaigns. Reserve broad sends for major sales events only (BFCM, product launches).</p>
+</div>
+
+<div class="rec-card opportunity">
+<h3><span class="badge opportunity">OPPORTUNITY</span> SMS is Underutilized and Click Rate is Declining</h3>
+<p>SMS generates $26.6K across 201 campaigns but click rates have fallen from 3.6% (2022) to 1.0% (2026). SMS should be a high-conversion channel. <strong>Action:</strong> Reduce SMS frequency, use only for flash sales and time-sensitive offers. Include exclusive SMS-only deals to train subscribers to click. Coordinate SMS timing with email (SMS 2-4 hours after email, not simultaneously).</p>
+</div>
+
+<div class="rec-card opportunity">
+<h3><span class="badge opportunity">OPPORTUNITY</span> Thursday & Sunday Are the Best Send Days</h3>
+<p>Thursday generates the highest avg revenue ($373) with strong open (44.4%) and order rates (0.06%). Sunday follows at $379 avg revenue. Monday and Wednesday consistently underperform. <strong>Action:</strong> Shift primary campaign sends to Thursday AM. Use Sunday for lifestyle/story content. Avoid Monday sends unless urgency-driven.</p>
+</div>
+
+</div>
+
+<script>
+const monthlyData = [{"YM": "2022-03", "campaigns": 3, "total_rev": 255.79, "avg_rev": 85.26333333333334, "avg_open": 30.666666666666668, "avg_click": 0.7033333333333333, "avg_por": 0.11, "total_orders": 8, "avg_recipients": 1833.0}, {"YM": "2022-04", "campaigns": 5, "total_rev": 254.84, "avg_rev": 50.968, "avg_open": 28.668, "avg_click": 1.1400000000000001, "avg_por": 0.078, "total_orders": 8, "avg_recipients": 2009.8}, {"YM": "2022-05", "campaigns": 7, "total_rev": 695.16, "avg_rev": 99.30857142857143, "avg_open": 38.07142857142857, "avg_click": 0.89, "avg_por": 0.11571428571428573, "total_orders": 19, "avg_recipients": 1805.2857142857142}, {"YM": "2022-06", "campaigns": 12, "total_rev": 901.9200000000001, "avg_rev": 75.16000000000001, "avg_open": 41.340833333333336, "avg_click": 0.665, "avg_por": 0.10333333333333333, "total_orders": 21, "avg_recipients": 1733.1666666666667}, {"YM": "2022-07", "campaigns": 10, "total_rev": 1212.48, "avg_rev": 121.248, "avg_open": 33.177, "avg_click": 0.632, "avg_por": 0.121, "total_orders": 30, "avg_recipients": 2616.9}, {"YM": "2022-08", "campaigns": 10, "total_rev": 1484.78, "avg_rev": 148.478, "avg_open": 39.007999999999996, "avg_click": 0.484, "avg_por": 0.091, "total_orders": 44, "avg_recipients": 4658.4}, {"YM": "2022-09", "campaigns": 12, "total_rev": 2026.25, "avg_rev": 168.85416666666666, "avg_open": 31.710000000000004, "avg_click": 0.49833333333333335, "avg_por": 0.0625, "total_orders": 51, "avg_recipients": 6263.916666666667}, {"YM": "2022-10", "campaigns": 16, "total_rev": 3945.19, "avg_rev": 246.574375, "avg_open": 33.17, "avg_click": 0.3325, "avg_por": 0.065, "total_orders": 79, "avg_recipients": 7695.625}, {"YM": "2022-11", "campaigns": 16, "total_rev": 4206.99, "avg_rev": 262.936875, "avg_open": 32.446875, "avg_click": 0.29312499999999997, "avg_por": 0.05625, "total_orders": 90, "avg_recipients": 10000.1875}, {"YM": "2022-12", "campaigns": 36, "total_rev": 5302.75, "avg_rev": 147.29861111111111, "avg_open": 29.396666666666665, "avg_click": 0.2777777777777778, "avg_por": 0.06972222222222223, "total_orders": 123, "avg_recipients": 4030.6666666666665}, {"YM": "2023-01", "campaigns": 24, "total_rev": 4848.42, "avg_rev": 202.0175, "avg_open": 40.143750000000004, "avg_click": 0.6079166666666667, "avg_por": 0.1475, "total_orders": 91, "avg_recipients": 4814.5}, {"YM": "2023-02", "campaigns": 14, "total_rev": 6071.87, "avg_rev": 433.705, "avg_open": 43.65428571428571, "avg_click": 0.3007142857142857, "avg_por": 0.07785714285714286, "total_orders": 115, "avg_recipients": 9718.642857142857}, {"YM": "2023-03", "campaigns": 15, "total_rev": 7620.49, "avg_rev": 508.03266666666667, "avg_open": 52.27333333333333, "avg_click": 0.32333333333333336, "avg_por": 0.07933333333333333, "total_orders": 159, "avg_recipients": 12705.933333333332}, {"YM": "2023-04", "campaigns": 14, "total_rev": 10711.82, "avg_rev": 765.13, "avg_open": 53.23714285714285, "avg_click": 0.31, "avg_por": 0.08571428571428572, "total_orders": 195, "avg_recipients": 15799.714285714286}, {"YM": "2023-05", "campaigns": 17, "total_rev": 11213.7, "avg_rev": 659.6294117647059, "avg_open": 52.03823529411765, "avg_click": 0.25588235294117645, "avg_por": 0.0611764705882353, "total_orders": 203, "avg_recipients": 18866.70588235294}, {"YM": "2023-06", "campaigns": 17, "total_rev": 10017.86, "avg_rev": 589.2858823529413, "avg_open": 45.192352941176466, "avg_click": 0.21529411764705883, "avg_por": 0.05764705882352941, "total_orders": 188, "avg_recipients": 19518.352941176472}, {"YM": "2023-07", "campaigns": 26, "total_rev": 14118.45, "avg_rev": 543.0173076923077, "avg_open": 41.43769230769231, "avg_click": 0.1503846153846154, "avg_por": 0.03538461538461539, "total_orders": 268, "avg_recipients": 25024.115384615383}, {"YM": "2023-08", "campaigns": 25, "total_rev": 12261.74, "avg_rev": 490.4696, "avg_open": 41.2624, "avg_click": 0.15280000000000002, "avg_por": 0.042, "total_orders": 290, "avg_recipients": 26171.32}, {"YM": "2023-09", "campaigns": 28, "total_rev": 13207.59, "avg_rev": 471.69964285714286, "avg_open": 40.33107142857143, "avg_click": 0.10571428571428572, "avg_por": 0.0275, "total_orders": 267, "avg_recipients": 30584.035714285714}, {"YM": "2023-10", "campaigns": 30, "total_rev": 19622.04, "avg_rev": 654.068, "avg_open": 41.28866666666667, "avg_click": 0.13499999999999998, "avg_por": 0.035, "total_orders": 392, "avg_recipients": 36337.2}, {"YM": "2023-11", "campaigns": 45, "total_rev": 23828.64, "avg_rev": 529.5253333333333, "avg_open": 39.518, "avg_click": 0.11022222222222222, "avg_por": 0.02688888888888889, "total_orders": 458, "avg_recipients": 37238.62222222222}, {"YM": "2023-12", "campaigns": 42, "total_rev": 15262.31, "avg_rev": 363.3883333333333, "avg_open": 38.429761904761904, "avg_click": 0.08547619047619047, "avg_por": 0.02119047619047619, "total_orders": 332, "avg_recipients": 38344.666666666664}, {"YM": "2024-01", "campaigns": 30, "total_rev": 11660.21, "avg_rev": 388.67366666666663, "avg_open": 42.42666666666666, "avg_click": 0.11633333333333334, "avg_por": 0.023666666666666666, "total_orders": 247, "avg_recipients": 35002.933333333334}, {"YM": "2024-02", "campaigns": 23, "total_rev": 10089.39, "avg_rev": 438.6691304347826, "avg_open": 42.84434782608695, "avg_click": 0.09695652173913043, "avg_por": 0.02391304347826087, "total_orders": 211, "avg_recipients": 39568.47826086957}, {"YM": "2024-03", "campaigns": 21, "total_rev": 9354.65, "avg_rev": 445.4595238095238, "avg_open": 38.13, "avg_click": 0.1180952380952381, "avg_por": 0.020476190476190474, "total_orders": 182, "avg_recipients": 39092.90476190476}, {"YM": "2024-04", "campaigns": 18, "total_rev": 6821.22, "avg_rev": 378.9566666666667, "avg_open": 32.150000000000006, "avg_click": 0.12833333333333333, "avg_por": 0.02888888888888889, "total_orders": 156, "avg_recipients": 38898.5}, {"YM": "2024-05", "campaigns": 5, "total_rev": 3656.25, "avg_rev": 731.25, "avg_open": 55.422000000000004, "avg_click": 0.22999999999999998, "avg_por": 0.066, "total_orders": 84, "avg_recipients": 26560.4}, {"YM": "2024-06", "campaigns": 11, "total_rev": 5692.57, "avg_rev": 517.5063636363636, "avg_open": 50.92909090909091, "avg_click": 0.23454545454545456, "avg_por": 0.1, "total_orders": 132, "avg_recipients": 18593.18181818182}, {"YM": "2024-07", "campaigns": 18, "total_rev": 4577.74, "avg_rev": 254.31888888888886, "avg_open": 41.20111111111111, "avg_click": 0.21333333333333332, "avg_por": 0.06666666666666667, "total_orders": 121, "avg_recipients": 14829.5}, {"YM": "2024-08", "campaigns": 15, "total_rev": 5915.39, "avg_rev": 394.3593333333334, "avg_open": 39.37266666666667, "avg_click": 0.158, "avg_por": 0.03866666666666667, "total_orders": 151, "avg_recipients": 25898.266666666666}, {"YM": "2024-09", "campaigns": 8, "total_rev": 5839.39, "avg_rev": 729.92375, "avg_open": 47.07, "avg_click": 0.19375, "avg_por": 0.060000000000000005, "total_orders": 149, "avg_recipients": 30269.375}, {"YM": "2024-10", "campaigns": 13, "total_rev": 7587.23, "avg_rev": 583.6330769230769, "avg_open": 48.659230769230774, "avg_click": 0.18846153846153849, "avg_por": 0.04846153846153846, "total_orders": 172, "avg_recipients": 28580.846153846152}, {"YM": "2024-11", "campaigns": 23, "total_rev": 12556.54, "avg_rev": 545.9365217391305, "avg_open": 45.45521739130435, "avg_click": 0.14260869565217393, "avg_por": 0.06999999999999999, "total_orders": 261, "avg_recipients": 26411.434782608696}, {"YM": "2024-12", "campaigns": 35, "total_rev": 12120.86, "avg_rev": 346.3102857142857, "avg_open": 43.558571428571426, "avg_click": 0.11971428571428573, "avg_por": 0.02542857142857143, "total_orders": 271, "avg_recipients": 27689.4}, {"YM": "2025-01", "campaigns": 12, "total_rev": 3918.0, "avg_rev": 326.5, "avg_open": 41.3525, "avg_click": 0.11916666666666666, "avg_por": 0.01916666666666667, "total_orders": 84, "avg_recipients": 30749.333333333332}, {"YM": "2025-02", "campaigns": 12, "total_rev": 2418.27, "avg_rev": 201.5225, "avg_open": 36.415, "avg_click": 0.29583333333333334, "avg_por": 0.014166666666666668, "total_orders": 46, "avg_recipients": 34100.333333333336}, {"YM": "2025-03", "campaigns": 22, "total_rev": 3804.1800000000003, "avg_rev": 172.91727272727275, "avg_open": 47.23772727272728, "avg_click": 0.6777272727272727, "avg_por": 0.04454545454545455, "total_orders": 79, "avg_recipients": 8619.09090909091}, {"YM": "2025-04", "campaigns": 19, "total_rev": 4565.45, "avg_rev": 240.28684210526316, "avg_open": 52.87578947368421, "avg_click": 0.7326315789473684, "avg_por": 0.18947368421052632, "total_orders": 90, "avg_recipients": 6844.210526315789}, {"YM": "2025-05", "campaigns": 25, "total_rev": 5368.29, "avg_rev": 214.7316, "avg_open": 45.7116, "avg_click": 0.4868, "avg_por": 0.1364, "total_orders": 115, "avg_recipients": 5961.44}, {"YM": "2025-06", "campaigns": 16, "total_rev": 4616.91, "avg_rev": 288.556875, "avg_open": 54.560625, "avg_click": 0.25, "avg_por": 0.045625, "total_orders": 96, "avg_recipients": 14317.1875}, {"YM": "2025-07", "campaigns": 22, "total_rev": 5899.57, "avg_rev": 268.1622727272727, "avg_open": 60.01272727272727, "avg_click": 0.2240909090909091, "avg_por": 0.04681818181818182, "total_orders": 123, "avg_recipients": 15682.90909090909}, {"YM": "2025-08", "campaigns": 17, "total_rev": 4568.66, "avg_rev": 268.74470588235295, "avg_open": 61.63705882352941, "avg_click": 0.2288235294117647, "avg_por": 0.042352941176470586, "total_orders": 103, "avg_recipients": 15864.411764705883}, {"YM": "2025-09", "campaigns": 22, "total_rev": 5992.02, "avg_rev": 272.36454545454546, "avg_open": 61.41454545454545, "avg_click": 0.16045454545454546, "avg_por": 0.03272727272727272, "total_orders": 132, "avg_recipients": 18130.0}, {"YM": "2025-10", "campaigns": 18, "total_rev": 4729.0, "avg_rev": 262.72222222222223, "avg_open": 52.92444444444445, "avg_click": 0.17555555555555558, "avg_por": 0.026111111111111113, "total_orders": 93, "avg_recipients": 21671.333333333332}, {"YM": "2025-11", "campaigns": 26, "total_rev": 5940.15, "avg_rev": 228.46730769230768, "avg_open": 51.50923076923077, "avg_click": 0.20192307692307693, "avg_por": 0.032692307692307694, "total_orders": 126, "avg_recipients": 19636.615384615383}, {"YM": "2025-12", "campaigns": 31, "total_rev": 6784.69, "avg_rev": 218.86096774193547, "avg_open": 46.589677419354835, "avg_click": 0.21161290322580648, "avg_por": 0.06322580645161291, "total_orders": 131, "avg_recipients": 20523.09677419355}, {"YM": "2026-01", "campaigns": 23, "total_rev": 4257.07, "avg_rev": 185.08999999999997, "avg_open": 52.02391304347826, "avg_click": 0.20652173913043478, "avg_por": 0.020434782608695655, "total_orders": 99, "avg_recipients": 18720.17391304348}, {"YM": "2026-02", "campaigns": 20, "total_rev": 5670.57, "avg_rev": 283.5285, "avg_open": 46.102, "avg_click": 0.14750000000000002, "avg_por": 0.026000000000000002, "total_orders": 117, "avg_recipients": 24443.95}, {"YM": "2026-03", "campaigns": 17, "total_rev": 4100.22, "avg_rev": 241.1894117647059, "avg_open": 19.533529411764704, "avg_click": 0.05588235294117647, "avg_por": 0.007647058823529412, "total_orders": 101, "avg_recipients": 62931.35294117647}, {"YM": "2026-04", "campaigns": 5, "total_rev": 1702.53, "avg_rev": 340.506, "avg_open": 57.274, "avg_click": 0.192, "avg_por": 0.032, "total_orders": 31, "avg_recipients": 19428.2}];
+const dowData = [{"Day of Week": "Monday", "campaigns": 89, "avg_rev": 359.61337078651684, "avg_open": 42.11426966292135, "avg_click": 0.19741573033707865, "avg_por": 0.042808988764044945}, {"Day of Week": "Tuesday", "campaigns": 165, "avg_rev": 351.29757575757577, "avg_open": 44.39066666666667, "avg_click": 0.2803030303030303, "avg_por": 0.057878787878787884}, {"Day of Week": "Wednesday", "campaigns": 135, "avg_rev": 338.9232592592593, "avg_open": 43.64333333333334, "avg_click": 0.25362962962962965, "avg_por": 0.04451851851851852}, {"Day of Week": "Thursday", "campaigns": 170, "avg_rev": 372.6496470588235, "avg_open": 44.383647058823534, "avg_click": 0.2453529411764706, "avg_por": 0.062117647058823534}, {"Day of Week": "Friday", "campaigns": 125, "avg_rev": 353.84727999999996, "avg_open": 43.22888, "avg_click": 0.28744, "avg_por": 0.056}, {"Day of Week": "Saturday", "campaigns": 138, "avg_rev": 341.3573188405797, "avg_open": 41.95594202898551, "avg_click": 0.2408695652173913, "avg_por": 0.0463768115942029}, {"Day of Week": "Sunday", "campaigns": 129, "avg_rev": 378.7993023255814, "avg_open": 44.2093023255814, "avg_click": 0.21976744186046512, "avg_por": 0.05325581395348837}];
+
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.borderColor = '#334155';
+
+// Monthly Revenue
+new Chart(document.getElementById('monthlyRevChart'), {
+    type: 'bar',
+    data: {
+        labels: monthlyData.map(d => d.YM),
+        datasets: [{
+            label: 'Total Revenue ($)',
+            data: monthlyData.map(d => d.total_rev),
+            backgroundColor: '#38bdf8',
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Monthly Email Revenue', color: '#f8fafc' }, legend: { display: false } },
+        scales: { x: { ticks: { maxTicksLimit: 12, maxRotation: 45 } }, y: { ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' } } }
+    }
+});
+
+// Monthly Open Rate
+new Chart(document.getElementById('monthlyOpenChart'), {
+    type: 'line',
+    data: {
+        labels: monthlyData.map(d => d.YM),
+        datasets: [{
+            label: 'Avg Open Rate (%)',
+            data: monthlyData.map(d => d.avg_open),
+            borderColor: '#4ade80',
+            backgroundColor: 'rgba(74,222,128,0.1)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 2,
+        },{
+            label: 'Avg Click Rate (%)',
+            data: monthlyData.map(d => d.avg_click),
+            borderColor: '#fbbf24',
+            backgroundColor: 'rgba(251,191,36,0.1)',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 2,
+            yAxisID: 'y1'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Open Rate & Click Rate Trends', color: '#f8fafc' } },
+        scales: {
+            x: { ticks: { maxTicksLimit: 12, maxRotation: 45 } },
+            y: { title: { display: true, text: 'Open Rate %' }, min: 0 },
+            y1: { position: 'right', title: { display: true, text: 'Click Rate %' }, min: 0, grid: { display: false } }
+        }
+    }
+});
+
+// DOW Revenue
+new Chart(document.getElementById('dowRevChart'), {
+    type: 'bar',
+    data: {
+        labels: dowData.map(d => d['Day of Week']),
+        datasets: [{
+            label: 'Avg Revenue ($)',
+            data: dowData.map(d => d.avg_rev),
+            backgroundColor: ['#64748b','#64748b','#64748b','#38bdf8','#64748b','#64748b','#38bdf8'],
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Avg Revenue by Day of Week', color: '#f8fafc' }, legend: { display: false } },
+        scales: { y: { ticks: { callback: v => '$' + v } } }
+    }
+});
+
+// DOW Engagement
+new Chart(document.getElementById('dowOpenChart'), {
+    type: 'bar',
+    data: {
+        labels: dowData.map(d => d['Day of Week']),
+        datasets: [{
+            label: 'Avg Open Rate %',
+            data: dowData.map(d => d.avg_open),
+            backgroundColor: '#4ade80',
+            borderRadius: 4,
+        },{
+            label: 'Avg Order Rate %',
+            data: dowData.map(d => d.avg_por),
+            backgroundColor: '#f87171',
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Open & Order Rate by Day of Week', color: '#f8fafc' } },
+        scales: { y: { min: 0 } }
+    }
+});
+</script>
+</body></html>
