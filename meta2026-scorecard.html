@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Post-March Meta Audit — Sales Ignition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #e84c1e;
+    --accent-deep: #b83614;
+    --ink: #0f0e0c;
+    --ink-soft: #3a3632;
+    --ink-faded: #8a8378;
+    --paper: #faf7f2;
+    --paper-deep: #f2ede3;
+    --rule: #d8d1c3;
+    --success: #2d7a3d;
+    --warn: #c47b1a;
+    --danger: #c4341a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 28px 80px;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 16px;
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .masthead .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+
+  .masthead .brand::before {
+    content: "■";
+    color: var(--accent);
+    margin-right: 8px;
+  }
+
+  /* INTRO SCREEN */
+  .intro {
+    text-align: left;
+    padding: 24px 0 40px;
+  }
+
+  .intro .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .intro .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .intro h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+
+  .intro h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .intro .deck {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  .intro-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    margin-bottom: 40px;
+  }
+
+  .intro-meta-item {
+    background: var(--paper);
+    padding: 20px 20px;
+  }
+
+  .intro-meta-item .figure {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .intro-meta-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .btn:hover { background: var(--accent); }
+
+  .btn.primary { background: var(--accent); }
+  .btn.primary:hover { background: var(--ink); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 16.5px 28px;
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+  /* PROGRESS */
+  .progress-wrap {
+    display: none;
+    margin-bottom: 40px;
+  }
+
+  .progress-wrap.active { display: block; }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .progress-header .section-label {
+    color: var(--accent);
+  }
+
+  .progress-header .count {
+    color: var(--ink-faded);
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    display: none;
+    padding: 40px 0;
+    animation: slideIn 0.4s ease-out;
+  }
+
+  .question-card.active { display: block; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .q-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 3.5vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .q-help {
+    font-size: 15px;
+    color: var(--ink-faded);
+    margin-bottom: 36px;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    background: var(--paper);
+    border: 1.5px solid var(--rule);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    width: 100%;
+    line-height: 1.4;
+  }
+
+  .option:hover {
+    border-color: var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .option.selected {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .option .marker {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+  }
+
+  .option.selected .marker::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .nav-back {
+    background: none;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--ink); }
+  .nav-back:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* RESULTS */
+  .results { display: none; animation: slideIn 0.6s ease-out; }
+  .results.active { display: block; }
+
+  .score-display {
+    text-align: center;
+    padding: 60px 0 48px;
+    border-bottom: 1.5px solid var(--ink);
+    position: relative;
+  }
+
+  .score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .score-number {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(120px, 20vw, 200px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .score-denom {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--ink-faded);
+    letter-spacing: -0.01em;
+  }
+
+  .score-tier {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    margin: 16px 0 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .score-summary {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* BREAKDOWN */
+  .breakdown {
+    padding: 48px 0;
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  .breakdown h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+
+  .breakdown h3 em { font-style: italic; color: var(--accent); }
+
+  .breakdown-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .breakdown-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .breakdown-row:last-child { border-bottom: none; }
+
+  .breakdown-section {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .breakdown-section .sublabel {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink-faded);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .score-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 200px;
+  }
+
+  .score-bar {
+    width: 140px;
+    height: 8px;
+    background: var(--rule);
+    position: relative;
+  }
+
+  .score-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .score-bar-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    min-width: 50px;
+    text-align: right;
+  }
+
+  /* FIX LIST */
+  .fixes {
+    padding: 48px 0;
+  }
+
+  .fixes h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .fixes h3 em { font-style: italic; color: var(--accent); }
+
+  .fixes .intro-copy {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+
+  .fix-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .fix-item:last-child { border-bottom: none; }
+
+  .fix-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .fix-content h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .fix-content p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+
+  .fix-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    display: flex;
+    gap: 16px;
+  }
+
+  .fix-meta .tag-priority {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .results-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 48px;
+    margin: 48px 0 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .results-cta::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 60%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(232, 76, 30, 0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .results-cta > * { position: relative; z-index: 2; }
+
+  .results-cta .cta-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .results-cta h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .results-cta h2 em { font-style: italic; color: var(--accent); }
+
+  .results-cta p {
+    font-size: 16px;
+    color: rgba(250, 247, 242, 0.75);
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+
+  .retake {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .retake:hover { color: var(--ink); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 24px 20px 60px; }
+    .intro-meta { grid-template-columns: 1fr; }
+    .breakdown-row { grid-template-columns: 1fr; gap: 12px; }
+    .score-bar-wrap { width: 100%; }
+    .score-bar { flex: 1; width: auto; }
+    .results-cta { padding: 40px 24px; }
+    .results-cta h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="masthead">
+    <div class="brand">Sales Ignition</div>
+    <div>The Scorecard / 15 Questions / ~4 Min</div>
+  </header>
+
+  <!-- INTRO -->
+  <div id="intro" class="intro">
+    <div class="eyebrow">Self-Assessment</div>
+    <h1>The Post-March<br>Meta <em>Audit</em></h1>
+    <p class="deck">Meta narrowed the click-attribution window. Your email program is what catches the buyers Meta stopped counting. Take the 15-question audit to see how ready yours actually is — and get a prioritized fix list.</p>
+    <div class="intro-meta">
+      <div class="intro-meta-item">
+        <div class="figure">15</div>
+        <div class="label">Questions across 4 diagnostic areas</div>
+      </div>
+      <div class="intro-meta-item">
+        <div class="figure">~4<span style="font-size:16px">min</span></div>
+        <div class="label">Honest self-scoring, no email required</div>
+      </div>
+      <div class="intro-meta-item">
+        <div class="figure">100</div>
+        <div class="label">Point readiness score + prioritized fix list</div>
+      </div>
+    </div>
+    <button class="btn primary" onclick="startQuiz()">Begin the Audit →</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz-wrap" style="display:none;">
+    <div id="progress" class="progress-wrap">
+      <div class="progress-header">
+        <div class="section-label" id="section-label">List &amp; Audience</div>
+        <div class="count"><span id="current-q">1</span> / 15</div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 6.67%;"></div>
+      </div>
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="nav" id="nav">
+      <button class="nav-back" id="back-btn" onclick="goBack()">← Previous</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="results">
+    <div class="score-display">
+      <div class="score-label">Your Readiness Score</div>
+      <div>
+        <span class="score-number" id="final-score">—</span>
+        <span class="score-denom"> / 100</span>
+      </div>
+      <div class="score-tier" id="tier-label">—</div>
+      <p class="score-summary" id="score-summary">—</p>
+    </div>
+
+    <div class="breakdown">
+      <h3>The <em>breakdown</em></h3>
+      <div class="breakdown-grid" id="breakdown-grid"></div>
+    </div>
+
+    <div class="fixes">
+      <h3>Your prioritized <em>fix list</em></h3>
+      <p class="intro-copy">Based on your answers, here are the 3–5 highest-leverage changes to make first. Tackle them in order — each one compounds the effect of the next.</p>
+      <div id="fix-list"></div>
+    </div>
+
+    <div class="results-cta">
+      <div class="cta-eyebrow">Ready to get to 90?</div>
+      <h2>I'll build the fixes <em>for you.</em></h2>
+      <p>Book a free 30-minute review call and I'll walk through your score, show you the flows I'd build first, and scope what it would cost to close the gap — whether that's done-for-you or done-with-you coaching.</p>
+      <button class="btn primary" onclick="window.open('https://salesignition.com', '_blank')">Book the Review →</button>
+      <div style="margin-top: 24px;">
+        <button class="retake" onclick="retake()">↻ Retake the audit</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>© Sales Ignition 2026</div>
+    <div>salesignition.com</div>
+  </footer>
+
+</div>
+
+<script>
+  const questions = [
+    // LIST & AUDIENCE (1-4)
+    { section: "List & Audience", text: "What share of your revenue comes from email & SMS today?", options: [
+      { text: "Less than 15%", points: 2 },
+      { text: "15–25%", points: 4 },
+      { text: "25–35%", points: 6 },
+      { text: "More than 35%", points: 7 }
+    ]},
+    { section: "List & Audience", text: "How is your email list growing month-over-month?", options: [
+      { text: "Flat or declining", points: 1 },
+      { text: "Growing, but slower than ad spend", points: 3 },
+      { text: "Growing in line with traffic", points: 5 },
+      { text: "Growing faster than ad spend", points: 7 }
+    ]},
+    { section: "List & Audience", text: "Do you segment by multi-day consideration behavior (e.g. browsed twice, clicked ad but didn't buy)?", options: [
+      { text: "No segmentation beyond buyer/non-buyer", points: 1 },
+      { text: "Basic engagement segments (opens, clicks)", points: 3 },
+      { text: "Behavior-based segments for active prospects", points: 6 },
+      { text: "Yes — full paid + owned behavior segmentation", points: 7 }
+    ]},
+    { section: "List & Audience", text: "Do you know how long your typical buyer considers before purchasing?", options: [
+      { text: "No idea — we've never measured", points: 1 },
+      { text: "Rough guess from team intuition", points: 3 },
+      { text: "We've looked at time-to-purchase data", points: 5 },
+      { text: "Yes — we run post-purchase surveys quarterly", points: 7 }
+    ]},
+
+    // WELCOME & ACQUISITION FLOWS (5-8)
+    { section: "Welcome & Acquisition", text: "How many emails are in your welcome series?", options: [
+      { text: "1 or none", points: 1 },
+      { text: "2–3 emails", points: 3 },
+      { text: "4–5 emails", points: 5 },
+      { text: "6+ emails with branching logic", points: 7 }
+    ]},
+    { section: "Welcome & Acquisition", text: "What's your welcome series conversion rate?", options: [
+      { text: "Don't track it / unsure", points: 1 },
+      { text: "Under 5%", points: 3 },
+      { text: "5–10%", points: 5 },
+      { text: "Over 10%", points: 7 }
+    ]},
+    { section: "Welcome & Acquisition", text: "Does your welcome series have different tracks for different acquisition sources (paid social, organic, referral)?", options: [
+      { text: "Same series for everyone", points: 1 },
+      { text: "Some variation by sign-up form", points: 3 },
+      { text: "Separate tracks for 2–3 key sources", points: 6 },
+      { text: "Yes — fully personalized by source & behavior", points: 7 }
+    ]},
+    { section: "Welcome & Acquisition", text: "How quickly after ad-clickers land without buying do you re-engage them via email?", options: [
+      { text: "We don't have a flow for that", points: 1 },
+      { text: "Whenever the next campaign goes out", points: 3 },
+      { text: "Within 48 hours via abandoned browse", points: 5 },
+      { text: "Same-day + multi-day nurture flow", points: 7 }
+    ]},
+
+    // CONSIDERATION-PHASE FLOWS (9-12)
+    { section: "Consideration Flows", text: "Do you have a nurture flow designed specifically for multi-day consideration (not just cart abandonment)?", options: [
+      { text: "No", points: 0 },
+      { text: "We use cart abandonment for everything", points: 2 },
+      { text: "Yes — a browse or category nurture", points: 5 },
+      { text: "Yes — a dedicated multi-day consideration flow", points: 8 }
+    ]},
+    { section: "Consideration Flows", text: "How many emails does your abandonment sequence send before giving up?", options: [
+      { text: "1 email", points: 1 },
+      { text: "2 emails", points: 3 },
+      { text: "3–4 emails", points: 5 },
+      { text: "5+ emails across multiple days", points: 7 }
+    ]},
+    { section: "Consideration Flows", text: "Does your flow content address the specific objections a considered-purchase buyer has (comparison, social proof, risk-reversal)?", options: [
+      { text: "Mostly discount-based reminders", points: 1 },
+      { text: "Some proof points included", points: 3 },
+      { text: "Yes — objection-specific emails in sequence", points: 6 },
+      { text: "Yes — objection-specific + dynamically personalized", points: 7 }
+    ]},
+    { section: "Consideration Flows", text: "Do you have a re-engagement flow for list subscribers who've been exposed to paid ads but haven't converted?", options: [
+      { text: "No such flow exists", points: 0 },
+      { text: "Generic 'we miss you' email", points: 2 },
+      { text: "Multi-touch re-engagement series", points: 5 },
+      { text: "Yes — targeted flow using paid exposure data", points: 7 }
+    ]},
+
+    // MEASUREMENT & INFRASTRUCTURE (13-15)
+    { section: "Measurement & Infrastructure", text: "Do you track email/SMS revenue separately from ad-attributed revenue in your reporting?", options: [
+      { text: "Everything rolls up together", points: 1 },
+      { text: "We look at Klaviyo revenue sometimes", points: 3 },
+      { text: "Yes — dashboard separates owned vs. paid", points: 6 },
+      { text: "Yes — plus MMM or incrementality testing", points: 7 }
+    ]},
+    { section: "Measurement & Infrastructure", text: "When did you last run a deliverability audit?", options: [
+      { text: "Never", points: 1 },
+      { text: "Over a year ago", points: 2 },
+      { text: "Within the last 6–12 months", points: 5 },
+      { text: "Within the last 3 months, or we monitor continuously", points: 7 }
+    ]},
+    { section: "Measurement & Infrastructure", text: "Has your email program been rebuilt or materially updated since Meta's March 2026 attribution change?", options: [
+      { text: "No — we haven't touched it", points: 0 },
+      { text: "We've thought about it but haven't acted", points: 2 },
+      { text: "We've made some updates", points: 5 },
+      { text: "Yes — we've rebuilt the flows most affected", points: 8 }
+    ]}
+  ];
+
+  let currentQ = 0;
+  let answers = [];
+
+  function startQuiz() {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('quiz-wrap').style.display = 'block';
+    document.getElementById('progress').classList.add('active');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQ];
+    const container = document.getElementById('questions');
+
+    // clear any existing cards except the current one
+    const existing = container.querySelector('.question-card.active');
+    if (existing) existing.classList.remove('active');
+
+    let card = document.getElementById(`q-${currentQ}`);
+    if (!card) {
+      card = document.createElement('div');
+      card.className = 'question-card';
+      card.id = `q-${currentQ}`;
+
+      const optionsHtml = q.options.map((opt, i) => `
+        <button class="option" data-index="${i}" onclick="selectOption(${currentQ}, ${i})">
+          <span class="marker"></span>
+          <span>${opt.text}</span>
+        </button>
+      `).join('');
+
+      card.innerHTML = `
+        <div class="q-number">Question ${String(currentQ + 1).padStart(2, '0')} / 15</div>
+        <div class="q-text">${q.text}</div>
+        <div class="options">${optionsHtml}</div>
+      `;
+      container.appendChild(card);
+    }
+
+    // restore selection state
+    if (answers[currentQ] !== undefined) {
+      card.querySelectorAll('.option').forEach((el, i) => {
+        el.classList.toggle('selected', i === answers[currentQ]);
+      });
+    }
+
+    requestAnimationFrame(() => card.classList.add('active'));
+
+    // update progress
+    document.getElementById('current-q').textContent = currentQ + 1;
+    document.getElementById('section-label').textContent = q.section;
+    document.getElementById('progress-fill').style.width = `${((currentQ + 1) / 15) * 100}%`;
+
+    document.getElementById('back-btn').disabled = currentQ === 0;
+  }
+
+  function selectOption(qIndex, optIndex) {
+    answers[qIndex] = optIndex;
+    const card = document.getElementById(`q-${qIndex}`);
+    card.querySelectorAll('.option').forEach((el, i) => {
+      el.classList.toggle('selected', i === optIndex);
+    });
+
+    setTimeout(() => {
+      if (currentQ < questions.length - 1) {
+        currentQ++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }, 280);
+  }
+
+  function goBack() {
+    if (currentQ > 0) {
+      currentQ--;
+      renderQuestion();
+    }
+  }
+
+  function showResults() {
+    document.getElementById('quiz-wrap').style.display = 'none';
+    document.getElementById('results').classList.add('active');
+
+    // calculate scores by section
+    const sections = { "List & Audience": { earned: 0, max: 0 },
+                       "Welcome & Acquisition": { earned: 0, max: 0 },
+                       "Consideration Flows": { earned: 0, max: 0 },
+                       "Measurement & Infrastructure": { earned: 0, max: 0 }};
+
+    questions.forEach((q, i) => {
+      const maxPts = Math.max(...q.options.map(o => o.points));
+      const earnedPts = q.options[answers[i]].points;
+      sections[q.section].earned += earnedPts;
+      sections[q.section].max += maxPts;
+    });
+
+    // total score normalized to 100
+    let totalEarned = 0, totalMax = 0;
+    Object.values(sections).forEach(s => { totalEarned += s.earned; totalMax += s.max; });
+    const finalScore = Math.round((totalEarned / totalMax) * 100);
+
+    // animate score
+    animateScore(finalScore);
+
+    // tier
+    let tier, summary;
+    if (finalScore >= 85) {
+      tier = "Fortress";
+      summary = "Your email program is doing the work Meta's optimizer used to do. You're positioned to absorb further attribution shifts without pain. Focus on optimization, not rebuild.";
+    } else if (finalScore >= 65) {
+      tier = "Stable but exposed";
+      summary = "You have the foundations, but critical gaps in consideration-phase flows or measurement mean you're still leaving revenue on the table. A focused 60–90 day sprint would close most of the gap.";
+    } else if (finalScore >= 40) {
+      tier = "Vulnerable";
+      summary = "Your email program wasn't built to carry the consideration phase — and that's exactly what Meta's change requires it to do now. Without intervention, expect CPAs to keep creeping up through 2026.";
+    } else {
+      tier = "At risk";
+      summary = "You're running a paid-media-first business with an undersized email program. Meta's attribution change hits this profile hardest. This is an urgent fix, not a Q3 project.";
+    }
+
+    document.getElementById('tier-label').textContent = tier;
+    document.getElementById('score-summary').textContent = summary;
+
+    // breakdown bars
+    const breakdownGrid = document.getElementById('breakdown-grid');
+    breakdownGrid.innerHTML = '';
+    const sectionDescriptions = {
+      "List & Audience": "Growth rate, segmentation depth",
+      "Welcome & Acquisition": "New subscriber conversion",
+      "Consideration Flows": "Multi-day nurture coverage",
+      "Measurement & Infrastructure": "Independent attribution & deliverability"
+    };
+    Object.entries(sections).forEach(([name, data]) => {
+      const pct = Math.round((data.earned / data.max) * 100);
+      const row = document.createElement('div');
+      row.className = 'breakdown-row';
+      row.innerHTML = `
+        <div class="breakdown-section">${name}<span class="sublabel">${sectionDescriptions[name]}</span></div>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width: 0%;" data-target="${pct}"></div></div>
+          <div class="score-bar-text">${pct}/100</div>
+        </div>
+      `;
+      breakdownGrid.appendChild(row);
+    });
+
+    setTimeout(() => {
+      document.querySelectorAll('.score-bar-fill').forEach(el => {
+        el.style.width = el.dataset.target + '%';
+      });
+    }, 100);
+
+    // fix list — priority: lowest-scoring sections first, then specific low answers
+    const fixRecommendations = buildFixList(sections, answers);
+    const fixList = document.getElementById('fix-list');
+    fixList.innerHTML = fixRecommendations.map((fix, i) => `
+      <div class="fix-item">
+        <div class="fix-num">${String(i + 1).padStart(2, '0')}</div>
+        <div class="fix-content">
+          <h4>${fix.title}</h4>
+          <p>${fix.description}</p>
+          <div class="fix-meta">
+            <span class="tag-priority">${fix.priority}</span>
+            <span>${fix.effort}</span>
+            <span>${fix.timeline}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function animateScore(target) {
+    const el = document.getElementById('final-score');
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function buildFixList(sections, answers) {
+    const fixes = [];
+
+    // Rule 1: weakest section gets priority
+    const sectionScores = Object.entries(sections).map(([name, data]) => ({
+      name, pct: data.earned / data.max
+    })).sort((a, b) => a.pct - b.pct);
+
+    const weakestSection = sectionScores[0].name;
+
+    // Measurement fixes (Q13, Q14, Q15)
+    if (answers[13] <= 1) {
+      fixes.push({
+        title: "Run a deliverability audit this month",
+        description: "Nothing else matters if inbox placement is poor. Every email you send while reputation is hurting makes the problem worse. Fix the foundation before scaling flows.",
+        priority: "URGENT",
+        effort: "2–5 hours",
+        timeline: "Week 1"
+      });
+    }
+    if (answers[14] <= 1) {
+      fixes.push({
+        title: "Rebuild your consideration-phase flows for post-March reality",
+        description: "Meta's attribution change fundamentally altered which buyers get credited. Your flows need to be rewritten to carry the nurture work the algorithm no longer funds.",
+        priority: "URGENT",
+        effort: "3–6 weeks",
+        timeline: "Next 60 days"
+      });
+    }
+
+    // Consideration flows (Q8, Q11)
+    if (answers[8] <= 1) {
+      fixes.push({
+        title: "Build a multi-day consideration nurture flow",
+        description: "Cart abandonment covers the last 24 hours. You need a 5–7 email flow spanning days 2–9 that handles the consideration-phase buyer Meta stopped crediting.",
+        priority: "HIGH",
+        effort: "2–3 weeks",
+        timeline: "Next 30 days"
+      });
+    }
+    if (answers[11] <= 1) {
+      fixes.push({
+        title: "Launch a paid-exposure re-engagement flow",
+        description: "Segment subscribers who've been shown ads but haven't converted. Run them through a 4-week repositioning sequence. This is the cohort you're paying to re-retarget — recover them via owned channel instead.",
+        priority: "HIGH",
+        effort: "1–2 weeks",
+        timeline: "Next 30 days"
+      });
+    }
+
+    // Welcome/acquisition (Q4, Q7)
+    if (answers[4] <= 1) {
+      fixes.push({
+        title: "Expand your welcome series to 5+ emails",
+        description: "A 1–3 email welcome leaves the trust-building work undone. Considered-purchase buyers need multiple touchpoints before they're ready. Add educational and social-proof emails across the first 14 days.",
+        priority: "HIGH",
+        effort: "1 week",
+        timeline: "Next 14 days"
+      });
+    }
+    if (answers[6] <= 1) {
+      fixes.push({
+        title: "Split welcome tracks by acquisition source",
+        description: "A buyer who clicked a paid Facebook ad needs different messaging than an organic referral. At minimum, create separate tracks for paid vs. organic to start.",
+        priority: "MEDIUM",
+        effort: "1 week",
+        timeline: "Next 30 days"
+      });
+    }
+
+    // List & audience (Q3)
+    if (answers[3] <= 1) {
+      fixes.push({
+        title: "Launch post-purchase surveys to measure consideration window",
+        description: "You can't design flows for a consideration window you haven't measured. Add one question at checkout: 'How long were you thinking about this before today?' — use the data to tune flow timing.",
+        priority: "MEDIUM",
+        effort: "30 minutes setup",
+        timeline: "This week"
+      });
+    }
+
+    // Measurement (Q12)
+    if (answers[12] <= 1) {
+      fixes.push({
+        title: "Build a dashboard that separates owned from paid revenue",
+        description: "If you can't see email revenue as a line separate from ad-attributed revenue, you'll keep credit-stealing paid channels and under-investing in email. Start with a simple Klaviyo-vs-Meta comparison.",
+        priority: "MEDIUM",
+        effort: "2–3 hours",
+        timeline: "Next 14 days"
+      });
+    }
+
+    // Fallback: ensure we always have at least 3 items, up to 5
+    const fallbacks = [
+      { title: "Run a quarterly list health cleanup",
+        description: "Unengaged subscribers drag deliverability down, which kills flow performance. Sunset non-openers every 90 days to keep the send reputation strong.",
+        priority: "STANDARD", effort: "2 hours quarterly", timeline: "Ongoing" },
+      { title: "Add paid-exposure tracking to Klaviyo profiles",
+        description: "If Klaviyo doesn't know who's been served Meta ads, you can't segment on it. Use UTMs + a server-side webhook to flag profiles with recent paid exposure.",
+        priority: "STANDARD", effort: "1 week setup", timeline: "Next 30 days" },
+      { title: "A/B test consideration-phase email subject lines",
+        description: "Treat your nurture flow as a revenue channel and test subject lines monthly. Small lifts in open rates compound across a multi-email sequence.",
+        priority: "STANDARD", effort: "Ongoing", timeline: "Monthly cadence" }
+    ];
+
+    while (fixes.length < 5 && fallbacks.length > 0) {
+      fixes.push(fallbacks.shift());
+    }
+
+    return fixes.slice(0, 5);
+  }
+
+  function retake() {
+    currentQ = 0;
+    answers = [];
+    document.getElementById('results').classList.remove('active');
+    document.getElementById('questions').innerHTML = '';
+    document.getElementById('intro').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
