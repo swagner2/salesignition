@@ -4,9 +4,12 @@ import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
 
 export default defineConfig({
-  output: 'server', // Uses SSR mode for cloudflare edge routes (like Keystatic API)
+  output: 'server',
   adapter: cloudflare({
     imageService: 'passthrough'
   }),
-  integrations: [react(), markdoc()]
+  integrations: [react(), markdoc()],
+  redirects: {
+    '/index.html': '/'
+  }
 });
