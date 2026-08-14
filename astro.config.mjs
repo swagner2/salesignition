@@ -11,6 +11,7 @@ export default defineConfig({
   integrations: [react(), markdoc()],
   redirects: {
     '/index.html': '/',
-    '/retentionos': '/retention-os'
+    '/retentionos': '/retention-os',
+    '/retentiondash': '/retention-dash'
   }
 });
