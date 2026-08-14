@@ -1,0 +1,40 @@
+<!-- ══ SHARED NAV ════════════════════════════════════════
+     Canonical navigation for all Sales Ignition pages.
+
+     Usage: Copy this block into any page. Then adjust:
+       • Logo href: use "/" on homepage, "index.html" on subpages
+       • nav__logo-sub text: "Email Deliverability Expert" (default)
+         or "Email Revenue Accelerator" (index2)
+       • nav__cta link text: "Work With Me" (default) or "Apply Now" (index2)
+       • Section anchors: use "#section" on homepage, "index.html#section" on subpages
+
+     This nav works with both light (homepage) and dark (case study) themes.
+     The CSS variables in each page's theme control the colors automatically.
+════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html">
+      <img src="images/Steve-SR-Crop.png"
+        alt="Steven" class="nav__logo-avatar"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="nav__logo-fallback">SI</span>
+      <span class="nav__logo-name">Steven<span class="nav__logo-sub">Email Deliverability Expert</span></span>
+    </a>
+    <ul class="nav__links" id="nav-links">
+      <li class="nav__dropdown">
+        <a href="#">My Tools</a>
+        <div class="nav__dropdown-menu">
+          <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co — Free Audit</a>
+          <a href="https://inboxsmarts.com" target="_blank">InboxSmarts — Warm-Up</a>
+          <a href="index.html#stealflows">StealFlows — Klaviyo Templates</a>
+        </div>
+      </li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li class="nav__cta"><a href="work-with-me.html">Work With Me</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>

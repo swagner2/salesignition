@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Planner - Map Out a Year of Emails in 60 Minutes</title>
+    <meta name="description" content="Never stare at a blank screen again. Map out a year of high-converting emails in under 60 minutes with our proven planner system.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Spiffy Checkout -->
+    <script>
+    "use strict";!function(i,t){var f=t.spiffy=t.spiffy||[];if(!f.init){
+    if(f.invoked)return void(t.console&&console.error&&console.warn("Spiffy Elements included twice."))
+    ;f.invoked=!0,f.methods=["identify","config","debug","off","on"],f.factory=function(i){
+    return function(){var t=Array.prototype.slice.call(arguments);return t.unshift(i),f.push(t),f}},
+    f.methods.forEach(function(i){spiffy[i]=f.factory(i)}),f.load=function(t,f){if(!spiffy.ACCOUNT){
+    spiffy.ACCOUNT=t,spiffy.DOMAIN=f;var e=i.createElement("script");e.type="text/javascript",
+    e.async=!0,e.crossorigin="anonymous",e.src="https://js.static.spiffy.co/spiffy.js?a="+t
+    ;var n=i.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}}}}(document,window),
+    spiffy.SNIPPET_VERSION="1.1.0";
+    spiffy.config({
+        hideSidebar: false,
+    })
+    spiffy.load("saleignite");
+    </script>
+    
+    <style>
+        :root {
+            --orange-primary: #FF6600;
+            --orange-hover: #E65C00;
+            --orange-glow: rgba(255, 102, 0, 0.3);
+            --black: #1a1a1a;
+            --gray-dark: #4a4a4a;
+            --gray-medium: #6b6b6b;
+            --gray-light: #e5e5e5;
+            --gray-bg: #f5f5f5;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-bg);
+            color: var(--black);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Bar */
+        .header-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-light);
+            background: var(--white);
+        }
+
+        .limited-badge {
+            background: var(--black);
+            color: var(--white);
+            font-size: 9px;
+            font-weight: 700;
+            padding: 6px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .progress-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 90%;
+            background: linear-gradient(90deg, var(--orange-primary), #ff8533);
+            border-radius: 3px;
+            animation: progressPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes progressPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .progress-text {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 28px 24px;
+        }
+
+        .headline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            line-height: 1.05;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            color: var(--black);
+        }
+
+        /* Video Placeholder */
+        .video-wrapper {
+            margin-bottom: 8px;
+        }
+
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #f8f8f8 0%, #eeeeee 100%);
+            border: 1px solid var(--gray-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            border-color: var(--orange-primary);
+            box-shadow: 0 4px 20px var(--orange-glow);
+        }
+
+        .play-button {
+            width: 56px;
+            height: 56px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover .play-button {
+            background: var(--orange-primary);
+            border-color: var(--orange-primary);
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-left: 16px solid var(--black);
+            border-bottom: 10px solid transparent;
+            margin-left: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .video-placeholder:hover .play-icon {
+            border-left-color: var(--white);
+        }
+
+        .video-label {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 16px;
+        }
+
+        .video-caption {
+            text-align: center;
+            font-size: 11px;
+            color: var(--gray-medium);
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            width: 100%;
+            background: var(--orange-primary);
+            color: var(--white);
+            border: none;
+            padding: 18px 24px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px var(--orange-glow);
+        }
+
+        .cta-button:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--orange-glow);
+        }
+
+        .cta-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .price-line {
+            text-align: center;
+            font-size: 13px;
+            color: var(--gray-medium);
+            margin-top: 12px;
+            margin-bottom: 40px;
+        }
+
+        .price-original {
+            text-decoration: line-through;
+            margin-right: 4px;
+        }
+
+        .price-current {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        /* Bundle Section */
+        .bundle-section {
+            margin-bottom: 40px;
+        }
+
+        .bundle-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .bundle-subtext {
+            font-size: 12px;
+            color: var(--gray-medium);
+            margin-bottom: 8px;
+        }
+
+        .bundle-highlight {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .bundle-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .bundle-item {
+            padding: 16px;
+            border: 1px solid var(--gray-light);
+            background: var(--gray-bg);
+        }
+
+        .bundle-item-stars {
+            color: var(--orange-primary);
+            font-size: 10px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .bundle-item-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .bundle-item-desc {
+            font-size: 10px;
+            color: var(--gray-medium);
+            line-height: 1.4;
+        }
+
+        /* Social Proof */
+        .social-proof-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        /* Accordion Section */
+        .accordion-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--black);
+            margin-bottom: 12px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            background: var(--gray-bg);
+            border: none;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+            transition: background 0.2s ease;
+        }
+
+        .accordion-trigger:hover {
+            background: #ebebeb;
+        }
+
+        .accordion-icon {
+            font-size: 20px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+            color: var(--gray-medium);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+            color: var(--orange-primary);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: var(--white);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 120px;
+        }
+
+        .accordion-text {
+            padding: 16px;
+            font-size: 13px;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        /* Checkout Section */
+        .checkout-section {
+            background: var(--gray-bg);
+            margin: 0 -24px -28px -24px;
+            padding: 32px 24px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .checkout-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .checkout-ready {
+            font-size: 14px;
+            color: var(--gray-medium);
+            margin-bottom: 12px;
+        }
+
+        .checkout-total {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .payment-btn {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid var(--gray-light);
+            background: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .payment-btn:hover {
+            border-color: var(--black);
+        }
+
+        .checkout-cta {
+            width: 100%;
+            background: var(--orange-primary);
+            color: var(--white);
+            border: none;
+            padding: 20px 24px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px var(--orange-glow);
+            margin-bottom: 16px;
+        }
+
+        .checkout-cta:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--orange-glow);
+        }
+
+        .checkout-cta:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .checkout-footer {
+            text-align: center;
+            font-size: 10px;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.8;
+        }
+
+        .checkout-footer a {
+            color: var(--gray-medium);
+            text-decoration: none;
+        }
+
+        .checkout-footer a:hover {
+            color: var(--black);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-content > * {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .main-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .main-content > *:nth-child(2) { animation-delay: 0.2s; }
+        .main-content > *:nth-child(3) { animation-delay: 0.3s; }
+        .main-content > *:nth-child(4) { animation-delay: 0.4s; }
+        .main-content > *:nth-child(5) { animation-delay: 0.5s; }
+        .main-content > *:nth-child(6) { animation-delay: 0.6s; }
+        .main-content > *:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Bar -->
+        <header class="header-bar">
+            <span class="limited-badge">Limited Time Offer!</span>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">90% Complete...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="headline">
+                Never stare at a blank screen again. Map out a year of high-converting emails in under 60 minutes
+            </h1>
+
+            <!-- Video Placeholder -->
+            <div class="video-wrapper">
+                <div class="video-placeholder" onclick="playVideo()">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                    <span class="video-label">Video Placeholder (Autoplay Off)</span>
+                </div>
+            </div>
+            <p class="video-caption">(Caption: Tap to watch how to make list building your highest ROI activity)</p>
+
+            <!-- Primary CTA -->
+            <a href="https://saleignite.spiffy.co/checkout/edeliveryv1#pop" class="cta-button" style="display: block; text-align: center; text-decoration: none;">
+                Yes, Give Me Access Now
+            </a>
+            <p class="price-line">
+                One time price: <span class="price-original">$197</span> <span class="price-current">$47</span>
+            </p>
+
+            <!-- Bundle Section -->
+            <section class="bundle-section">
+                <h2 class="bundle-header">The No-Brainer Bundle</h2>
+                <p class="bundle-subtext">• Free Copy Course + Planner<br>• BONUS: "The Sender Score" Course</p>
+                <p class="bundle-highlight">Get it all for just $47</p>
+                
+                <div class="bundle-items">
+                    <div class="bundle-item">
+                        <div class="bundle-item-stars">★★★★★</div>
+                        <p class="bundle-item-title">Email Copy Course Included</p>
+                        <p class="bundle-item-desc">Master the fundamentals of persuasive email copywriting.</p>
+                    </div>
+                    <div class="bundle-item">
+                        <div class="bundle-item-stars">★★★★★</div>
+                        <p class="bundle-item-title">Bonus: Sender Score Masterclass</p>
+                        <p class="bundle-item-desc">Implement Sequence Rotation for better deliverability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof Label -->
+            <p class="social-proof-label">Social Proof</p>
+
+            <!-- Accordion -->
+            <section class="accordion-section">
+                <h2 class="section-title">What's Inside the Planner?</h2>
+                <div id="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            <span>Phase 1: Mining the Topics</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="accordion-text">Discover how to extract high-value content ideas from your daily life effortlessly. Turn ordinary moments into email gold.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            <span>Phase 2: Mixing the Topics</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="accordion-text">Learn the art of blending topics to create unique, engaging content that keeps your audience hooked email after email.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            <span>Plotting the Path</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="accordion-text">Connect your ideas to your offers with a logical bridge that converts readers into buyers naturally.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            <span>Plotting the Game Plan</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="accordion-text">Finalize your 365-day calendar so you never have to wonder what to send again. Complete clarity, zero stress.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Checkout Section -->
+            <section class="checkout-section">
+                <h2 class="checkout-title">Mobile Checkout</h2>
+                <p class="checkout-ready">Ready to Start?</p>
+                <p class="checkout-total">Total Today: $47 <span style="color: var(--gray-medium); font-weight: 400; font-size: 12px; margin-left: 8px;">OR</span></p>
+                
+                <div class="payment-options">
+                    <button class="payment-btn">PAY WITH Apple Pay</button>
+                    <button class="payment-btn">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234285f4'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z'/%3E%3C/svg%3E" alt="" style="height: 16px; vertical-align: middle;"> Google Pay
+                    </button>
+                </div>
+
+                <a href="https://saleignite.spiffy.co/checkout/edeliveryv1#pop" class="checkout-cta" id="checkout-btn" style="display: block; text-align: center; text-decoration: none;">
+                    Complete Order
+                </a>
+
+                <p class="checkout-footer">
+                    No thanks, I'll continue to waste your own time<br>
+                    <a href="#">Terms</a> | <a href="#">Privacy</a>
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all items first (true accordion behavior)
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+            });
+
+            // Toggle the clicked item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Video placeholder click handler
+        function playVideo() {
+            // In a real implementation, this would launch a video player
+            alert('Video would play here. Replace this with your actual video embed (YouTube, Vimeo, Wistia, etc.)');
+        }
+
+        // Scroll to checkout
+        function scrollToCheckout() {
+            document.querySelector('.checkout-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        // Add subtle entrance animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe accordion items
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px)';
+            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            observer.observe(item);
+        });
+
+        // Checkout is handled by Spiffy via data-spiffy-checkout attribute
+    </script>
+</body>
+</html>

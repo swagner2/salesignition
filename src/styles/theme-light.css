@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════
+   Sales Ignition — Light Theme Variables
+   Used by: homepage, work-with-me, webinar, blog
+   Matches conversion.design white-page aesthetic
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:           #ffffff;
+  --bg-alt:       #f7f6f3;
+  --bg-card:      #f2f1ee;
+  --bg-hover:     #ebebeb;
+  --border:       #e2e1de;
+  --border-light: #d0cfc9;
+
+  --text:         #1a1a1a;
+  --text-muted:   #666666;
+  --text-dim:     #999999;
+
+  --accent:       #e84c1e;
+  --accent-dark:  #c93d14;
+  --accent-text:  #ffffff;
+
+  --link:         #e84c1e;
+
+  --font:         'Open Sans', sans-serif;
+  --max:          1080px;
+  --radius:       5px;
+}

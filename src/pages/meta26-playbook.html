@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Consideration Gap Recovery Playbook — Sales Ignition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #e84c1e;
+    --accent-deep: #b83614;
+    --ink: #0f0e0c;
+    --ink-soft: #3a3632;
+    --ink-faded: #8a8378;
+    --paper: #faf7f2;
+    --paper-deep: #f2ede3;
+    --rule: #d8d1c3;
+    --highlight: #fff3a6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    overflow-x: hidden;
+  }
+
+  .paper-texture {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(232, 76, 30, 0.02) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(184, 54, 20, 0.02) 0%, transparent 40%);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 1.5px solid var(--ink);
+    padding: 24px 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .masthead .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-transform: none;
+  }
+
+  .masthead .brand::before {
+    content: "■";
+    color: var(--accent);
+    margin-right: 8px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero .eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero .deck {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 48px;
+  }
+
+  .hero .byline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero .byline strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section:last-of-type { border-bottom: none; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+
+  .section h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section p {
+    font-size: 18px;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    color: var(--ink-soft);
+  }
+
+  .section p.lead::first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 64px;
+    float: left;
+    line-height: 0.85;
+    padding: 6px 10px 0 0;
+    color: var(--accent);
+  }
+
+  /* PULL QUOTE */
+  .pullquote {
+    margin: 48px -24px;
+    padding: 40px 32px;
+    border-left: 3px solid var(--accent);
+    background: var(--paper-deep);
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--ink);
+    position: relative;
+  }
+
+  .pullquote::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 32px;
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    color: var(--accent);
+    opacity: 0.15;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  /* STAT BLOCK */
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink);
+    margin: 48px 0;
+    border: 1px solid var(--ink);
+  }
+
+  .stat {
+    background: var(--paper);
+    padding: 32px 28px;
+  }
+
+  .stat .figure {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .stat .figure sup {
+    font-size: 24px;
+    vertical-align: top;
+    margin-left: -4px;
+  }
+
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* FLOW BLUEPRINT */
+  .blueprint {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px;
+    margin: 40px -24px;
+    position: relative;
+  }
+
+  .blueprint .bp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(250, 247, 242, 0.2);
+  }
+
+  .blueprint .bp-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+
+  .blueprint .bp-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .blueprint .bp-subtitle {
+    font-size: 14px;
+    color: rgba(250, 247, 242, 0.7);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .email-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px dashed rgba(250, 247, 242, 0.15);
+  }
+
+  .email-step:last-child { border-bottom: none; }
+
+  .email-step .timing {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+
+  .email-step .content .subject {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--paper);
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+
+  .email-step .content .purpose {
+    font-size: 13px;
+    color: rgba(250, 247, 242, 0.6);
+    line-height: 1.5;
+  }
+
+  /* COMPARISON TABLE */
+  .comparison {
+    margin: 48px -24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .comp-card {
+    padding: 28px 24px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    position: relative;
+  }
+
+  .comp-card.before {
+    opacity: 0.7;
+  }
+
+  .comp-card.after {
+    border: 1.5px solid var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .comp-card .comp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 12px;
+  }
+
+  .comp-card.after .comp-label { color: var(--accent); }
+
+  .comp-card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .comp-card ul {
+    list-style: none;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .comp-card li {
+    padding: 6px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .comp-card li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    background: var(--paper-deep);
+    padding: 40px;
+    margin: 40px -24px;
+    border: 1px solid var(--ink);
+  }
+
+  .checklist h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .checklist-item {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .checklist-item .box {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--ink);
+    margin-top: 3px;
+    display: inline-block;
+  }
+
+  .checklist-item .text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .checklist-item .text strong {
+    font-weight: 600;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 48px;
+    margin: 80px -24px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(232, 76, 30, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta .cta-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .cta h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cta p {
+    font-size: 17px;
+    color: rgba(250, 247, 242, 0.75);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 18px 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-button:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 0 40px;
+    border-top: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  /* HIGHLIGHT */
+  .highlight {
+    background: linear-gradient(180deg, transparent 55%, var(--highlight) 55%);
+    padding: 0 2px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 48px 0 40px; }
+    .section { padding: 48px 0; }
+    .section h2 { font-size: 32px; }
+    .stat-row { grid-template-columns: 1fr; }
+    .comparison { grid-template-columns: 1fr; }
+    .pullquote { font-size: 20px; margin: 32px -12px; padding: 28px 24px; }
+    .blueprint { margin: 32px -12px; padding: 32px 24px; }
+    .checklist { margin: 32px -12px; padding: 28px 24px; }
+    .cta { margin: 48px -12px 0; padding: 56px 28px; }
+    .cta h2 { font-size: 32px; }
+    .email-step { grid-template-columns: 60px 1fr; gap: 16px; }
+  }
+
+  /* PRINT-FRIENDLY FEEL */
+  @media (min-width: 900px) {
+    .hero h1 {
+      margin-left: -2px;
+    }
+  }
+
+  /* ENTRANCE ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero .eyebrow { animation: fadeUp 0.6s ease-out; }
+  .hero h1 { animation: fadeUp 0.8s ease-out 0.1s both; }
+  .hero .deck { animation: fadeUp 0.8s ease-out 0.25s both; }
+  .hero .byline { animation: fadeUp 0.8s ease-out 0.4s both; }
+</style>
+</head>
+<body>
+<div class="paper-texture"></div>
+
+<div class="container">
+
+  <header class="masthead">
+    <div class="brand">Sales Ignition</div>
+    <div>Vol. 01 / The Playbook Series / 2026</div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">A Sales Ignition Field Guide</div>
+    <h1>The Consideration <em>Gap</em> Recovery Playbook</h1>
+    <p class="deck">How to build the email automation layer that catches the buyer Meta stopped crediting — the one who liked your ad on Tuesday, thought about it for four days, and bought on Saturday.</p>
+    <div class="byline">
+      <span>By <strong>Steven Wagner</strong></span>
+      <span>·</span>
+      <span>Founder, Sales Ignition</span>
+      <span>·</span>
+      <span>18 min read</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">01 / The Problem</div>
+    <h2>Meta narrowed the click. <em>Your attribution narrowed with it.</em></h2>
+    <p class="lead">On March 3rd, Meta redefined what counts as a click-attributed conversion. The 7-day engagement window that credited likes, saves, shares, and expansions collapsed into a narrow link-click-only signal with a 1-day engage-through backstop. For impulse-purchase DTC, the change is cosmetic. For anything with a real consideration phase, it's structural.</p>
+
+    <p>The specific mechanical problem: conversions that happen 2 to 7 days after a non-link ad interaction now fall into an attribution no-man's-land. Not click-through. Not engage-through. The sale still happens. Meta's optimizer just no longer sees it — which means it stops looking for the audience that produced it.</p>
+
+    <div class="pullquote">
+      Meta's optimizer is now structurally biased toward fast converters. And fast converters are, disproportionately, people who were already close to buying.
+    </div>
+
+    <p>This is the quiet consequence of the change. The algorithm doesn't learn that slow-burn users — the ones who needed three days to think it over — were persuadable. It pulls spend back toward the audiences that convert inside the window, which is to say remarketing and bottom-of-funnel. You end up paying for exploration and getting the attribution of a retargeting campaign.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="figure">35–50<sup>%</sup></div>
+        <div class="label">of considered-purchase buyers report a multi-day window between first ad exposure and purchase</div>
+      </div>
+      <div class="stat">
+        <div class="figure">2–7<sup>d</sup></div>
+        <div class="label">The attribution no-man's-land where a significant share of your conversions now go uncounted</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">02 / The Thesis</div>
+    <h2>Email is the only layer <em>you fully control.</em></h2>
+    <p>If Meta's optimizer is now structurally biased against slow converters, the answer isn't to fight the algorithm. The answer is to stop depending on it to nurture the consideration phase — because it was never designed to do that well in the first place. It just used to get credit for it.</p>
+
+    <p>Email is the one channel where the attribution window is whatever you decide it is, the audience is yours not rented, and the cost per additional touchpoint rounds to zero. For brands selling anything with a consideration phase — subscriptions, higher-AOV DTC, SaaS, services — the email automation layer is no longer a "nice to have." It's the hedge against a platform change you can't control.</p>
+
+    <div class="comparison">
+      <div class="comp-card before">
+        <div class="comp-label">Pre-March / The Old Playbook</div>
+        <h4>Meta carries the consideration phase</h4>
+        <ul>
+          <li>7-day engagement window credits slow converters</li>
+          <li>Algorithm learns from likes, saves, shares</li>
+          <li>Retargeting ads do the nurturing work</li>
+          <li>Email = post-purchase + sporadic campaigns</li>
+        </ul>
+      </div>
+      <div class="comp-card after">
+        <div class="comp-label">Post-March / The New Playbook</div>
+        <h4>You carry the consideration phase</h4>
+        <ul>
+          <li>1-day engage-through + link clicks only</li>
+          <li>Algorithm loses signal on slow-burn buyers</li>
+          <li>Email flows do the nurturing work</li>
+          <li>Email = the attribution layer Meta lost</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">03 / The Blueprints</div>
+    <h2>Three flows that absorb <em>what Meta dropped.</em></h2>
+    <p>Every brand is different, but the gap in Meta's new attribution model is predictable. These three flows, running in parallel, are designed to catch the specific converter cohorts that Meta's optimizer now under-credits. Treat this as the skeleton — adapt the copy, timing, and offer structure to your category and AOV.</p>
+
+    <div class="blueprint">
+      <div class="bp-header">
+        <div>
+          <div class="bp-title">The Warm Lead Nurture</div>
+          <div class="bp-subtitle">For: ad-clickers who landed but didn't buy</div>
+        </div>
+        <div class="bp-number">Flow 01</div>
+      </div>
+
+      <div class="email-step">
+        <div class="timing">0h</div>
+        <div class="content">
+          <div class="subject">"You checked us out — here's the shortest version"</div>
+          <div class="purpose">Immediate value delivery. No pitch. One proof point, one promise, one link back.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 2</div>
+        <div class="content">
+          <div class="subject">"The question most buyers are actually asking"</div>
+          <div class="purpose">Address the #1 objection surfaced in post-purchase surveys. Content-style, not promo-style.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 4</div>
+        <div class="content">
+          <div class="subject">"A real customer, in their own words"</div>
+          <div class="purpose">Case study or testimonial. This is the slow-burn trust-builder Meta used to do for free.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 6</div>
+        <div class="content">
+          <div class="subject">"If you're on the fence, read this first"</div>
+          <div class="purpose">Comparison / differentiation. Pre-qualify the buyer against alternatives they're weighing.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 9</div>
+        <div class="content">
+          <div class="subject">"Last call on the [benefit] offer"</div>
+          <div class="purpose">Soft deadline anchor. Reason to buy now, not a hard discount. Closes the window.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blueprint">
+      <div class="bp-header">
+        <div>
+          <div class="bp-title">The Multi-Day Browse Sequence</div>
+          <div class="bp-subtitle">For: browse abandoners in considered-purchase categories</div>
+        </div>
+        <div class="bp-number">Flow 02</div>
+      </div>
+
+      <div class="email-step">
+        <div class="timing">4h</div>
+        <div class="content">
+          <div class="subject">"Still thinking about [category]?"</div>
+          <div class="purpose">Product-aware, not pushy. Reintroduce the specific thing they looked at.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 2</div>
+        <div class="content">
+          <div class="subject">"What most people wish they'd known before they bought"</div>
+          <div class="purpose">Educational content that handles the consideration-phase questions head-on.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 4</div>
+        <div class="content">
+          <div class="subject">"Three reasons people choose us over [alternative]"</div>
+          <div class="purpose">Competitive positioning without naming competitors. Category differentiation.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Day 7</div>
+        <div class="content">
+          <div class="subject">"A small incentive to close the loop"</div>
+          <div class="purpose">Only now introduce an offer. The delay protects margin and trains buyers not to wait.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blueprint">
+      <div class="bp-header">
+        <div>
+          <div class="bp-title">The Retargeting-Replacement Flow</div>
+          <div class="bp-subtitle">For: list subscribers who've been exposed to paid ads but haven't converted</div>
+        </div>
+        <div class="bp-number">Flow 03</div>
+      </div>
+
+      <div class="email-step">
+        <div class="timing">Trigger</div>
+        <div class="content">
+          <div class="subject">Segment: 30+ days on list, no purchase, opened in last 14 days</div>
+          <div class="purpose">This cohort is your paid-media audience you already own. Stop paying to re-show them ads.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Week 1</div>
+        <div class="content">
+          <div class="subject">"The angle you haven't heard from us yet"</div>
+          <div class="purpose">Fresh message, not the welcome series repeated. Different benefit, different proof.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Week 2</div>
+        <div class="content">
+          <div class="subject">"Behind the scenes: how [product] actually gets made/works"</div>
+          <div class="purpose">Brand-building content. Trust compounds over multiple weeks for considered purchases.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Week 3</div>
+        <div class="content">
+          <div class="subject">"A specific use case you might not have considered"</div>
+          <div class="purpose">Reposition the product against a new buyer context. Expands perceived fit.</div>
+        </div>
+      </div>
+      <div class="email-step">
+        <div class="timing">Week 4</div>
+        <div class="content">
+          <div class="subject">"Want to see if this is actually a fit for you?"</div>
+          <div class="purpose">Low-friction CTA. Quiz, consultation, free sample — whatever lowers the decision cost.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">04 / The Implementation</div>
+    <h2>Before you touch a single email, <em>fix these seven things.</em></h2>
+    <p>Most email programs fail the consideration-gap test for the same predictable reasons: weak segmentation, thin content, and flows that were built once three years ago and haven't been touched since. Before launching any of the blueprints above, run through this checklist. Skip steps at your peril.</p>
+
+    <div class="checklist">
+      <h3>Pre-Flight Checklist</h3>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Deliverability audit first.</strong> If your sender reputation is hurting, every additional email you send accelerates the damage. Fix the foundation before you build on it.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Segment by behavior, not demographics.</strong> "Clicked an ad in last 14 days" is more actionable than "female, 35–54." Build your segments around the buyer journey.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Connect your paid and owned data.</strong> If Klaviyo doesn't know who's been exposed to Meta ads, you can't segment on it. UTM-tag every ad, push to CDP or Klaviyo profile properties.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Build post-purchase surveys.</strong> The only way to know your real consideration window is to ask buyers. "How long were you thinking about this before you bought?" — one question, huge signal.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Set an independent revenue baseline.</strong> Attributed revenue in Klaviyo (or your ESP) is your new source of truth for slow-burn conversions. Track it separately from Meta-reported ROAS.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Write for one person, not a list.</strong> Consideration-phase buyers are making a personal decision. Emails that sound like marketing broadcasts fail this audience.</span>
+      </div>
+      <div class="checklist-item">
+        <span class="box"></span>
+        <span class="text"><strong>Plan for 90 days before judging results.</strong> Consideration-phase flows compound slowly. A flow launched in January doesn't produce its real impact until March. Set stakeholder expectations accordingly.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">05 / The Stakes</div>
+    <h2>This is a median-customer problem, <em>not a long-tail one.</em></h2>
+    <p>It would be one thing if the 2-to-7-day consideration window represented an edge case. But for subscription brands, higher-AOV DTC, SaaS, and services, post-purchase survey data consistently shows that somewhere between a third and half of all buyers report a multi-day consideration path. That's not an edge case. That's the median customer.</p>
+
+    <p>The brands that will pull ahead over the next two quarters are the ones who respond by doing two things at once: explicitly funding the top of the funnel that the algorithm is no longer funding for them, and building the email infrastructure to nurture the buyers that Meta's optimizer now under-credits. Everyone else is going to spend the rest of 2026 watching CPAs creep up and wondering what changed.</p>
+
+    <p>What changed is the click. What has to change in response is the email program.</p>
+  </section>
+
+  <div class="cta">
+    <div class="cta-eyebrow">Next Step</div>
+    <h2>Want to see where <em>your</em> consideration gap is costing you the most?</h2>
+    <p>I run a free 30-minute audit where I map your current email program against the post-March attribution reality and show you exactly which flows are missing, which are leaking revenue, and what I'd build first.</p>
+    <button class="cta-button" onclick="window.open('https://salesignition.com', '_blank')">Book the Audit →</button>
+  </div>
+
+  <footer>
+    <div>© Sales Ignition 2026 · Greenville, SC</div>
+    <div>salesignition.com</div>
+  </footer>
+
+</div>
+</body>
+</html>

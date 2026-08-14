@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retention OS — Make Email 40% of Your Revenue Without an Agency | Sales Ignition</title>
+  <meta name="description" content="Retention OS gives DTC brands senior-level Klaviyo coaching, templates, and AI tools to grow email & SMS to 40% of revenue — across pre-sale, post-sale, and retention — without paying $3–5k/mo for an agency.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:#15a94c; --green-bright:#1bc25a; --green-deep:#0c7a39; --green-tint:#e7f6ec;
+      --orange:#ef6c1e; --orange-bright:#f47a1e; --orange-tint:#fdeede;
+      --dark:#07241a; --dark-2:#0c3324;
+      --ink:#15171a; --muted:#5b6168; --dim:#9aa0a6;
+      --bg:#ffffff; --bg-soft:#f3f8f4; --card:#ffffff; --line:#e6e8e4;
+      --font:'Poppins', sans-serif; --max:1080px; --r:18px; --r-lg:28px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+    h1,h2,h3 { line-height: 1.06; letter-spacing: -0.025em; }
+    h1 { font-size: clamp(2.6rem, 6.2vw, 4.6rem); font-weight: 800; }
+    h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); font-weight: 800; }
+    h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+    p { color: var(--muted); }
+    a { color: var(--green-deep); text-decoration: none; }
+    strong { color: var(--ink); font-weight: 700; }
+    em { font-style: italic; color: var(--green); font-weight: 600; }
+    .green { color: var(--green-bright); }
+    .orange { color: var(--orange); }
+
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--font); font-weight: 800; font-size: 17px; cursor: pointer; border: none; text-decoration: none; border-radius: 14px; padding: 17px 32px; transition: transform 0.12s, box-shadow 0.12s, background 0.12s; }
+    .btn--green { background: var(--green); color: #fff; box-shadow: 0 8px 22px rgba(21,169,76,0.28); }
+    .btn--green:hover { background: var(--green-deep); transform: translateY(-2px); text-decoration: none; }
+    .btn--orange { background: var(--orange); color: #fff; box-shadow: 0 8px 22px rgba(239,108,30,0.28); }
+    .btn--orange:hover { background: #d95e16; transform: translateY(-2px); text-decoration: none; }
+    .btn--orange-ghost { background: #fff; color: var(--orange); border: 2px solid var(--orange); }
+    .btn--orange-ghost:hover { background: var(--orange-tint); transform: translateY(-2px); text-decoration: none; }
+    .btn--lg { font-size: 18px; padding: 19px 40px; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .nav__inner { max-width: var(--max); margin: 0 auto; padding: 0 32px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 11px; }
+    .logo__badge { width: 38px; height: 38px; border-radius: 10px; background: var(--green); color: #fff; font-weight: 900; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+    .logo__text { font-weight: 900; font-size: 16px; letter-spacing: 0.02em; color: var(--ink); line-height: 1; }
+    .logo__text span { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--dim); margin-top: 3px; }
+    .nav__right { display: flex; align-items: center; gap: 22px; }
+    .nav__login { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .nav__login:hover { color: var(--green-deep); text-decoration: none; }
+    .nav__cta { background: var(--orange); color: #fff; font-weight: 800; font-size: 15px; padding: 11px 24px; border-radius: 100px; }
+    .nav__cta:hover { background: #d95e16; text-decoration: none; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero { position: relative; text-align: center; padding: 70px 0 90px; overflow: hidden;
+      background:
+        radial-gradient(60% 50% at 18% 8%, rgba(27,194,90,0.10) 0%, transparent 60%),
+        radial-gradient(55% 45% at 88% 30%, rgba(239,108,30,0.08) 0%, transparent 60%),
+        var(--bg); }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.035) 1px, transparent 1px);
+      background-size: 52px 52px; mask-image: radial-gradient(100% 70% at 50% 30%, #000 30%, transparent 80%); -webkit-mask-image: radial-gradient(100% 70% at 50% 30%, #000 30%, transparent 80%); }
+    .hero > * { position: relative; z-index: 1; }
+
+    .social-pill { display: inline-flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 8px 20px 8px 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.05); margin-bottom: 34px; font-size: 15px; color: var(--muted); }
+    .social-pill__avatars { display: flex; }
+    .social-pill__avatars span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; margin-left: -10px; background: var(--green); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 800; }
+    .social-pill__avatars span:first-child { margin-left: 0; }
+    .social-pill__avatars span:nth-child(2){ background: var(--orange); }
+    .social-pill__avatars span:nth-child(3){ background: var(--green-deep); }
+    .social-pill strong { color: var(--green-deep); }
+
+    .hero h1 { margin-bottom: 26px; }
+    .hero__sub { font-size: clamp(1.15rem, 2.3vw, 1.5rem); color: var(--muted); font-weight: 500; max-width: 720px; margin: 0 auto 38px; line-height: 1.45; }
+    .hero__ctas { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .chips { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 9px; background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 10px 20px; font-size: 14.5px; font-weight: 600; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .chip__star { color: var(--orange); }
+
+    /* ── DARK VALUE STACK ────────────────────────────────── */
+    .stack { position: relative; background: var(--dark); color: #fff; padding: 86px 0; overflow: hidden; }
+    .stack::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+      background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 52px 52px; }
+    .stack > * { position: relative; z-index: 1; }
+    .stack__head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+    .stack__head h2 { color: #fff; }
+    .stack__head p { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-top: 14px; }
+    .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .stack-card { position: relative; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.10); border-radius: var(--r-lg); padding: 32px 30px; }
+    .stack-card__num { position: absolute; top: -14px; left: 28px; width: 32px; height: 32px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(239,108,30,0.4); }
+    .stack-card__icon { width: 52px; height: 52px; border-radius: 13px; background: rgba(27,194,90,0.16); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+    .stack-card__title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .stack-card__title h3 { color: #fff; }
+    .stack-card__price { font-size: 13px; font-weight: 800; color: var(--orange-bright); background: rgba(239,108,30,0.14); border: 1px solid rgba(239,108,30,0.35); border-radius: 100px; padding: 3px 12px; }
+    .stack-card p { color: rgba(255,255,255,0.72); font-size: 14.5px; line-height: 1.55; }
+    .stack-total { text-align: center; margin-top: 50px; }
+    .stack-total__label { font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+    .stack-total__num { font-size: clamp(2.6rem, 6vw, 3.6rem); font-weight: 900; color: var(--orange-bright); letter-spacing: -0.02em; }
+    .stack-total__num small { color: var(--green-bright); font-size: 1.3rem; font-weight: 800; }
+
+    /* ── SECTION ─────────────────────────────────────────── */
+    .section { padding: 84px 0; }
+    .section--soft { background: var(--bg-soft); }
+    .section__head { text-align: center; max-width: 740px; margin: 0 auto 50px; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); border: 1.5px solid var(--green); border-radius: 100px; padding: 7px 18px; margin-bottom: 20px; }
+    .section__head p { font-size: 1.1rem; margin-top: 14px; }
+
+    /* ── TESTIMONIAL CARD ────────────────────────────────── */
+    .tcard { border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.10); border: 1px solid var(--line); background: #fff; }
+    .tcard__bar { height: 6px; background: linear-gradient(90deg, var(--green-bright), var(--orange)); }
+    .tcard__body { display: grid; grid-template-columns: 0.9fr 1.1fr; }
+    .tcard__photo { background: #d8dcd9 center/cover no-repeat; min-height: 440px; }
+    .tcard__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tcard__photo-fallback { width: 100%; height: 100%; min-height: 440px; background: linear-gradient(135deg, var(--green-deep), var(--dark)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem; font-weight: 900; }
+    .tcard__content { padding: 40px; }
+    .tcard__name { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; }
+    .tcard__name h3 { font-size: 1.6rem; font-weight: 800; }
+    .tcard__role { font-size: 13.5px; font-weight: 700; color: var(--green-deep); background: var(--green-tint); border-radius: 100px; padding: 5px 14px; }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    .ba { border-radius: 14px; padding: 18px; }
+    .ba--before { background: #f4f4f2; }
+    .ba--after { background: var(--green-tint); }
+    .ba__label { font-size: 12.5px; font-weight: 800; letter-spacing: 0.04em; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+    .ba--before .ba__label { color: var(--muted); }
+    .ba--after .ba__label { color: var(--green-deep); }
+    .ba p { font-size: 14.5px; color: var(--ink); }
+    .stat-strip { display: flex; gap: 14px; background: var(--orange-tint); border-radius: 14px; padding: 18px 20px; margin-bottom: 22px; }
+    .stat-strip__item { flex: 1; display: flex; align-items: center; gap: 12px; }
+    .stat-strip__icon { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+    .stat-strip__item:first-child .stat-strip__icon { background: var(--orange); color: #fff; }
+    .stat-strip__item:last-child .stat-strip__icon { background: var(--green); color: #fff; }
+    .stat-strip__num { font-size: 1.3rem; font-weight: 900; line-height: 1; }
+    .stat-strip__item:first-child .stat-strip__num { color: var(--orange); }
+    .stat-strip__item:last-child .stat-strip__num { color: var(--green-deep); }
+    .stat-strip__cap { font-size: 12.5px; color: var(--muted); }
+    .tquote { border-left: 4px solid var(--green); padding-left: 18px; font-style: italic; font-size: 15.5px; color: var(--muted); line-height: 1.6; }
+
+    /* ── LIFECYCLE ───────────────────────────────────────── */
+    .life-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .life-col { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 30px; box-shadow: 0 2px 0 rgba(0,0,0,0.02); }
+    .life-col__num { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--green); padding: 4px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .life-col ul { list-style: none; margin-top: 12px; }
+    .life-col li { font-size: 14.5px; color: var(--muted); padding: 7px 0 7px 22px; position: relative; }
+    .life-col li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 900; }
+
+    /* ── PRICING / GUARANTEE ─────────────────────────────── */
+    .offer { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: stretch; }
+    .offer-card { background: #fff; border: 2px solid var(--green); border-radius: var(--r-lg); padding: 40px; box-shadow: 0 18px 50px rgba(21,169,76,0.12); }
+    .offer-card__flag { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--orange); border-radius: 100px; padding: 5px 16px; margin-bottom: 16px; }
+    .offer-card__price { font-size: 3.4rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+    .offer-card__price span { font-size: 1.1rem; font-weight: 700; color: var(--dim); }
+    .offer-card__alt { font-size: 15px; color: var(--muted); margin: 10px 0 22px; }
+    .offer-card ul { list-style: none; margin-bottom: 26px; }
+    .offer-card li { display: flex; gap: 11px; padding: 7px 0; font-size: 15px; color: var(--ink); }
+    .offer-card li::before { content: '✓'; color: var(--green); font-weight: 900; }
+    .offer-card .btn { width: 100%; }
+    .guarantee { background: var(--dark); color: #fff; border-radius: var(--r-lg); padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .guarantee__seal { width: 64px; height: 64px; border-radius: 50%; background: rgba(27,194,90,0.16); display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 18px; }
+    .guarantee h3 { color: #fff; font-size: 1.4rem; margin-bottom: 12px; }
+    .guarantee p { color: rgba(255,255,255,0.78); font-size: 15px; }
+
+    /* ── FINAL CTA ───────────────────────────────────────── */
+    .final { position: relative; text-align: center; padding: 90px 0;
+      background: radial-gradient(60% 60% at 50% 0%, rgba(27,194,90,0.12), transparent 60%), var(--bg-soft); }
+    .final h2 { margin-bottom: 18px; }
+    .final p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 34px; }
+    .final__form { max-width: 540px; margin: 36px auto 0; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 34px; box-shadow: 0 18px 50px rgba(0,0,0,0.08); text-align: left; }
+    .final__form h3 { text-align: center; margin-bottom: 6px; }
+    .final__form .sub { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+    close-form { display: block; width: 100%; }
+
+    footer { padding: 34px 32px; text-align: center; font-size: 13.5px; color: var(--dim); }
+    footer a { color: var(--dim); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .container { padding: 0 22px; }
+      .stack-grid, .life-grid, .offer { grid-template-columns: 1fr; }
+      .tcard__body { grid-template-columns: 1fr; }
+      .tcard__photo, .tcard__photo-fallback { min-height: 280px; }
+      .section, .stack, .final { padding: 56px 0; }
+      .nav__login { display: none; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .hero { padding: 48px 0 60px; }
+      .hero__ctas { flex-direction: column; }
+      .hero__ctas .btn { width: 100%; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .stat-strip { flex-direction: column; gap: 16px; }
+      .tcard__content { padding: 28px 24px; }
+      .offer-card, .guarantee, .final__form { padding: 28px 22px; }
+      .logo__text span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="logo" href="index.html">
+      <span class="logo__badge">R</span>
+      <span class="logo__text">RETENTION OS<span>BY SALES IGNITION</span></span>
+    </a>
+    <div class="nav__right">
+      <a class="nav__login" href="index.html">Client Login</a>
+      <a class="nav__cta" href="#apply">Apply Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ═══════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="container">
+    <div class="social-pill">
+      <span class="social-pill__avatars"><span>T</span><span>C</span><span>V</span></span>
+      Join <strong>50+ brands</strong> growing with us
+    </div>
+
+    <h1><span class="green">Want Email to Be 40%</span><br>of Your Revenue?</h1>
+    <p class="hero__sub">
+      We make it <em>nearly impossible to fail</em> at turning email &amp; SMS into your
+      #1 sales channel — without paying $3–5k/mo for an agency.
+    </p>
+
+    <div class="hero__ctas">
+      <a href="#how" class="btn btn--green btn--lg">See How It Works →</a>
+      <a href="#apply" class="btn btn--orange-ghost btn--lg">Apply Now</a>
+    </div>
+
+    <div class="chips">
+      <span class="chip"><span class="chip__star">★</span> Senior Strategy</span>
+      <span class="chip"><span class="chip__star">★</span> Templates + AI Tools</span>
+      <span class="chip"><span class="chip__star">★</span> $1M+ Generated</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══ VALUE STACK (DARK) ═════════════════════════════════ -->
+<section class="stack" id="how">
+  <div class="container">
+    <div class="stack__head">
+      <h2>Everything you get inside <span class="green">Retention OS</span></h2>
+      <p>The senior strategy, done-for-you assets, and tools an agency charges thousands for — included every month.</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <span class="stack-card__num">1</span>
+        <div class="stack-card__icon">🎯</div>
+        <div class="stack-card__title"><h3>Monthly Coaching &amp; Strategy</h3><span class="stack-card__price">$1,500/mo value</span></div>
+        <p>Live calls where we review your account, set priorities, and build your next-30-days plan. Senior strategy tailored to your brand and stage.</p>
+      </div>
+      <div class="stack-card">
+        <span class="stack-card__num">2</span>
+        <div class="stack-card__icon">💬</div>
+        <div class="stack-card__title"><h3>1:1 Consulting Access</h3><span class="stack-card__price">$800/mo value</span></div>
+        <p>A direct line between calls. Stuck on a flow, a deliverability issue, or a campaign idea? Get a senior expert answer fast.</p>
+      </div>
+      <div class="stack-card">
+        <span class="stack-card__num">3</span>
+        <div class="stack-card__icon">🧱</div>
+        <div class="stack-card__title"><h3>Templates &amp; Proven Flows</h3><span class="stack-card__price">$1,200 value</span></div>
+        <p>Plug-and-play Klaviyo flows, campaign frameworks, popups, and email designs — the same assets used on 7–8 figure brands. Yours to keep.</p>
+      </div>
+      <div class="stack-card">
+        <span class="stack-card__num">4</span>
+        <div class="stack-card__icon">🤖</div>
+        <div class="stack-card__title"><h3>AI Tools &amp; Workflows</h3><span class="stack-card__price">$900 value</span></div>
+        <p>AI systems to write copy, draft designs, segment, and QA — so a small team (or a solo founder) ships like a full agency.</p>
+      </div>
+      <div class="stack-card">
+        <span class="stack-card__num">5</span>
+        <div class="stack-card__icon">📐</div>
+        <div class="stack-card__title"><h3>Best Practices &amp; SOPs</h3><span class="stack-card__price">$600 value</span></div>
+        <p>The documented playbooks for deliverability, segmentation, list growth, and testing — so your team executes consistently.</p>
+      </div>
+      <div class="stack-card">
+        <span class="stack-card__num">6</span>
+        <div class="stack-card__icon">📈</div>
+        <div class="stack-card__title"><h3>Accountability &amp; Reviews</h3><span class="stack-card__price">$500/mo value</span></div>
+        <p>We track what's shipped and what it earns, pushing email &amp; SMS toward 30–40% of total revenue month over month.</p>
+      </div>
+    </div>
+
+    <div class="stack-total">
+      <div class="stack-total__label">Total value</div>
+      <div class="stack-total__num">$5,500+<small>/mo — yours for $500</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIAL / BEFORE-AFTER ═════════════════════════ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Real results</span>
+      <h2>From <span class="orange">"email is an afterthought"</span><br>to a 40% revenue channel</h2>
+    </div>
+
+    <!-- ⚠ PLACEHOLDER testimonial — replace photo, name, numbers, and quote with a real client -->
+    <div class="tcard">
+      <div class="tcard__bar"></div>
+      <div class="tcard__body">
+        <div class="tcard__photo">
+          <img src="images/portfolio/TrueCitrus.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="tcard__photo-fallback" style="display:none">★</div>
+        </div>
+        <div class="tcard__content">
+          <div class="tcard__name">
+            <h3>[Client Name]</h3>
+            <span class="tcard__role">Founder, DTC Brand</span>
+          </div>
+
+          <div class="ba-grid">
+            <div class="ba ba--before">
+              <div class="ba__label">● Before Retention OS</div>
+              <p>Email was ~6% of revenue, sent manually with no real flows or strategy.</p>
+            </div>
+            <div class="ba ba--after">
+              <div class="ba__label">↗ After Retention OS</div>
+              <p>Email &amp; SMS now drive 38% of total revenue with flows running 24/7.</p>
+            </div>
+          </div>
+
+          <div class="stat-strip">
+            <div class="stat-strip__item">
+              <div class="stat-strip__icon">$</div>
+              <div><div class="stat-strip__num">+32%</div><div class="stat-strip__cap">revenue share from email</div></div>
+            </div>
+            <div class="stat-strip__item">
+              <div class="stat-strip__icon">⏱</div>
+              <div><div class="stat-strip__num">90 days</div><div class="stat-strip__cap">to senior-level execution</div></div>
+            </div>
+          </div>
+
+          <p class="tquote">"I didn't want to hand my email to an agency — I wanted to own it. Retention OS gave me the strategy and the templates to do it right, and now email is the most profitable channel we have."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTRODUCING / LIFECYCLE ════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">What you get</span>
+      <h2>Introducing <span class="green">Retention OS</span></h2>
+      <p>One program that maximizes revenue at every stage of the customer lifecycle — all inside Klaviyo.</p>
+    </div>
+
+    <div class="life-grid">
+      <div class="life-col">
+        <span class="life-col__num">01 · Pre-Sale</span>
+        <h3>Capture &amp; convert</h3>
+        <ul>
+          <li>List growth &amp; high-converting popups</li>
+          <li>Welcome &amp; lead-nurture series</li>
+          <li>Abandoned browse, cart &amp; checkout</li>
+          <li>First-purchase conversion</li>
+        </ul>
+      </div>
+      <div class="life-col">
+        <span class="life-col__num">02 · Post-Sale</span>
+        <h3>Maximize the order</h3>
+        <ul>
+          <li>Post-purchase &amp; onboarding flows</li>
+          <li>Cross-sell &amp; upsell sequences</li>
+          <li>Reviews, UGC &amp; referrals</li>
+          <li>Second-order acceleration</li>
+        </ul>
+      </div>
+      <div class="life-col">
+        <span class="life-col__num">03 · Retention</span>
+        <h3>Grow lifetime value</h3>
+        <ul>
+          <li>Winback &amp; replenishment flows</li>
+          <li>VIP &amp; loyalty segmentation</li>
+          <li>Campaign calendar &amp; promotions</li>
+          <li>Churn prevention &amp; LTV growth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OFFER + GUARANTEE ══════════════════════════════════ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">The offer</span>
+      <h2>Agency-level results, <span class="green">a fraction of the price</span></h2>
+    </div>
+
+    <div class="offer">
+      <div class="offer-card">
+        <span class="offer-card__flag">Most popular</span>
+        <div class="offer-card__price">$500<span>/month</span></div>
+        <p class="offer-card__alt">or $2,500 for 6 months (save $500) · month-to-month, cancel anytime</p>
+        <ul>
+          <li>Monthly coaching &amp; senior strategy</li>
+          <li>1:1 consulting access between calls</li>
+          <li>Templates, proven flows &amp; AI tools</li>
+          <li>SOPs your team keeps forever</li>
+          <li>Full pre-sale, post-sale &amp; retention build</li>
+        </ul>
+        <a href="#apply" class="btn btn--orange btn--lg">Apply &amp; Book a Call</a>
+      </div>
+
+      <div class="guarantee">
+        <div class="guarantee__seal">🛡️</div>
+        <h3>No lock-in. No black box.</h3>
+        <p>Month-to-month — cancel anytime. Unlike an agency, the strategy, templates, and tools stay with <strong style="color:#fff">you and your team</strong>, so the value compounds instead of walking out the door. If it's not a fit after your first month, you're free to walk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA + FORM ═══════════════════════════════════ -->
+<section class="final" id="apply">
+  <div class="container">
+    <span class="eyebrow">Apply now</span>
+    <h2>Ready to make email your <span class="green">#1 channel</span>?</h2>
+    <p>Tell me about your brand. If it's a fit, we'll hop on a short call and map your biggest retention opportunities — whether you join or not.</p>
+
+    <div class="final__form">
+      <h3>Apply for Retention OS</h3>
+      <p class="sub">Fill out the form and I'll follow up within one business day.</p>
+      <!-- Close.io embedded form (same as work-with-me; swap the form ID for a dedicated Retention OS form) -->
+      <script src="https://webforms.closeiocdn.com/webforms.js" type="module" crossorigin="anonymous" defer></script>
+      <close-form id="form_032AI3Q0PR6AiLOLMpJo0o"></close-form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  Copyright &copy; 2024–2026 Sales Ignition LLC. All rights reserved. &nbsp;·&nbsp;
+  Greenville, South Carolina &nbsp;·&nbsp;
+  <a href="mailto:hello@salesignition.com">hello@salesignition.com</a>
+</footer>
+
+</body>
+</html>

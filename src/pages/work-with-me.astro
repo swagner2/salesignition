@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Work With Me — Sales Ignition" theme="light">
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+
+
+<!-- ══ HERO + FORM ════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+
+      <!-- LEFT — copy -->
+      <div>
+        <span class="eyebrow">Let's work together</span>
+        <h1>Ready to grow your email revenue?</h1>
+        <p class="hero__desc">
+          Tell me about your business. I'll review your current email setup and tell you
+          exactly where the biggest opportunities are — deliverability, flows, list health,
+          or all three.
+        </p>
+
+        <h2>I work best with brands that:</h2>
+        <ul class="criteria">
+          <li>Are doing $1M+ in annual revenue</li>
+          <li>Send email through Klaviyo, ActiveCampaign, or HubSpot</li>
+          <li>Have an email list of at least 10,000 subscribers</li>
+          <li>Have at least 1 (Full or Part Time) Marketing person.</li>
+          <li>Want to work directly with an expert, not an account manager</li>
+        </ul>
+
+        <div class="proof-strip">
+          <img src="https://conversion.design/public/images/customers2x.png"
+            alt="Happy clients" style="height:38px;width:auto;"
+            onerror="this.style.display='none';">
+          <p class="proof-strip__text" style="margin:0;">
+            <strong>Toyota, True Citrus, Vurbmoto and 50+ others</strong> are already growing.<br>
+            <a href="index.html#testimonials">Read their stories →</a>
+          </p>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-row__item">
+            <span class="stat-row__num">$1M+</span>
+            <span class="stat-row__label">email revenue generated</span>
+          </div>
+          <div class="stat-row__item">
+            <span class="stat-row__num">50+</span>
+            <span class="stat-row__label">brands served</span>
+          </div>
+          <div class="stat-row__item">
+            <span class="stat-row__num">97%</span>
+            <span class="stat-row__label">avg inbox rate after audit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — form -->
+      <div>
+        <div class="form-panel">
+          <h2>APPLY TO WORK TOGETHER</h2>
+          <p class="form-panel__sub">Fill out the form and I'll follow up within one business day.</p>
+
+          <!-- Close.io embedded form -->
+          <script src="https://webforms.closeiocdn.com/webforms.js" type="module" crossorigin="anonymous" defer></script>
+          <close-form id="form_032AI3Q0PR6AiLOLMpJo0o"></close-form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT TO EXPECT ════════════════════════════════════ -->
+<section class="expect">
+  <div class="container">
+    <span class="eyebrow">What happens next</span>
+    <h2>Here's what to expect after you reach out</h2>
+    <div class="expect__grid">
+
+      <div class="expect__card">
+        <span class="expect__num">Step 01</span>
+        <h3>I review your setup</h3>
+        <p>Within one business day I'll take a look at your email program — domain health, current flows, list quality, and platform setup — so I come to our first call with real observations, not generic questions.</p>
+      </div>
+
+      <div class="expect__card">
+        <span class="expect__num">Step 02</span>
+        <h3>Discovery call</h3>
+        <p>We'll spend 30 minutes on a call where I walk you through what I found, ask about your goals and constraints, and give you an honest read on where the biggest revenue opportunities are.</p>
+      </div>
+
+      <div class="expect__card">
+        <span class="expect__num">Step 03</span>
+        <h3>Kickoff & Launch</h3>
+        <p>If we're a good fit, I'll send a focused sign-up link within 48 hours. No bloated retainers, no junior team members. Just a clear scope, timeline, and the work we'll do together.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+
+
+<script>
+  const btn=document.getElementById('hamburger'),links=document.getElementById('nav-links');
+  if(btn&&links){
+    btn.addEventListener('click',()=>links.classList.toggle('open'));
+    document.addEventListener('click',(e)=>{if(!btn.contains(e.target)&&!links.contains(e.target))links.classList.remove('open');});
+  }
+</script>
+</body>
+</html>
+</Layout>

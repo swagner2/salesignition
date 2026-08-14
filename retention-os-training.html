@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Training: How DTC Brands Grow Email to 40% of Revenue | Retention OS</title>
+  <meta name="description" content="Free live training — how DTC brands grow email & SMS to 40% of total revenue across pre-sale, post-sale, and retention, without paying $3–5k/mo for an agency. Hosted by Steven Wagner of Sales Ignition.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:#16c172; --green-2:#10ad65; --green-deep:#0a7d4c; --lime:#93dd4b;
+      --green-pill:#0c8a53;
+      --yellow:#ffd400; --yellow-2:#f0c200;
+      --ink:#16181b; --muted:#565a61; --dim:#9a9ea4;
+      --bg:#f2f1ec; --card:#ffffff; --line:#e7e6df; --red:#f4604d;
+      --font:'Poppins', sans-serif; --max:1080px; --r:18px; --r-lg:30px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+    h1,h2,h3 { line-height: 1.08; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); font-weight: 800; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; }
+    p { color: var(--muted); }
+    a { color: var(--green-deep); text-decoration: none; }
+    strong { color: var(--ink); font-weight: 700; }
+    .grad { background: linear-gradient(95deg, var(--green-deep) 10%, var(--green) 55%, var(--lime) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    .btn { display: inline-block; font-family: var(--font); font-weight: 800; font-size: 17px; cursor: pointer; border: none; text-decoration: none; border-radius: 14px; padding: 17px 34px; transition: transform 0.12s, box-shadow 0.12s; }
+    .btn--yellow { background: var(--yellow); color: var(--ink); box-shadow: 0 5px 0 var(--yellow-2), 0 14px 26px rgba(0,0,0,0.14); width: 100%; }
+    .btn--yellow:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--yellow-2), 0 18px 30px rgba(0,0,0,0.18); }
+
+    /* ── HERO (green panel) ──────────────────────────────── */
+    .hero { position: relative; margin: 14px 14px 0; border-radius: var(--r-lg);
+      background: radial-gradient(120% 80% at 50% 120%, rgba(190,245,120,0.5) 0%, rgba(22,193,114,0) 55%), linear-gradient(180deg, #1bca7a 0%, #14b86d 55%, #0fa863 100%);
+      background-color: var(--green); overflow: hidden; padding-bottom: 130px; }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: radial-gradient(120% 90% at 50% 0%, #000 40%, transparent 85%); -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 40%, transparent 85%); }
+    .hero > * { position: relative; z-index: 1; }
+    .hero__logo { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 900; font-size: 19px; letter-spacing: 0.02em; padding: 26px 36px 0; }
+    .hero__logo img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.5); }
+
+    .hero__body { max-width: 860px; margin: 0 auto; padding: 36px 32px 0; text-align: center; }
+
+    /* avatar cluster + sparkles */
+    .avatars { position: relative; display: inline-flex; justify-content: center; margin-bottom: 28px; }
+    .avatars img { width: 116px; height: 116px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+    .avatars__fallback { width: 116px; height: 116px; border-radius: 50%; border: 5px solid #fff; background: var(--green-deep); display: none; align-items: center; justify-content: center; color: #fff; font-size: 2.4rem; font-weight: 900; }
+    .spark { position: absolute; color: #d6f5b0; font-size: 26px; opacity: 0.9; }
+    .spark--1 { top: -6px; right: -34px; font-size: 30px; }
+    .spark--2 { bottom: 6px; left: -34px; font-size: 20px; }
+
+    /* pill badges */
+    .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 16px; }
+    .badge { display: inline-flex; align-items: center; gap: 7px; background: var(--green-pill); color: #fff; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 100px; }
+
+    /* countdown */
+    .countdown { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: #fff; font-weight: 700; font-size: 15px; padding: 9px 20px; border-radius: 100px; margin-bottom: 28px; box-shadow: 0 6px 16px rgba(244,96,77,0.35); }
+    .countdown__time { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+
+    .hero h1 { color: #fff; margin-bottom: 22px; }
+    .hero__sub { color: rgba(255,255,255,0.95); font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 500; max-width: 680px; margin: 0 auto; line-height: 1.5; }
+
+    /* ── REGISTRATION CARD (overlaps hero) ───────────────── */
+    .reg-wrap { max-width: 560px; margin: -100px auto 0; padding: 0 24px; position: relative; z-index: 5; }
+    .reg-card { background: #fff; border-radius: var(--r-lg); padding: 28px; box-shadow: 0 24px 70px rgba(0,0,0,0.20); }
+    .reg-card__when { display: flex; gap: 12px; margin-bottom: 22px; }
+    .when-pill { flex: 1; display: flex; align-items: center; gap: 9px; justify-content: center; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; font-weight: 700; font-size: 14.5px; color: var(--ink); }
+    .reg-card h3 { font-size: 1.25rem; font-weight: 800; text-align: center; margin-bottom: 4px; }
+    .reg-card__note { text-align: center; font-size: 13.5px; color: var(--muted); margin-bottom: 20px; }
+    .reg-field { margin-bottom: 12px; }
+    .reg-field label { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+    .reg-field input { width: 100%; font-family: var(--font); font-size: 16px; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); transition: border 0.12s; }
+    .reg-field input:focus { outline: none; border-color: var(--green); }
+    .reg-row { display: flex; gap: 12px; }
+    .reg-row .reg-field { flex: 1; }
+    .reg-card .btn { margin-top: 8px; }
+    .reg-fine { text-align: center; font-size: 12.5px; color: var(--dim); margin-top: 14px; }
+    .reg-success { text-align: center; padding: 16px 8px; }
+    .reg-success__check { width: 56px; height: 56px; border-radius: 50%; background: var(--green); color: #fff; font-size: 28px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .reg-success h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .reg-success p { font-size: 14.5px; }
+
+    /* ── SECTION ─────────────────────────────────────────── */
+    .section { padding: 72px 0; }
+    .section__head { text-align: center; max-width: 720px; margin: 0 auto 44px; }
+    .section__head .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-deep); background: #e3f7ea; padding: 6px 16px; border-radius: 100px; margin-bottom: 16px; }
+    .section__head p { font-size: 1.08rem; margin-top: 12px; }
+
+    /* what you'll learn */
+    .learn { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .learn__item { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 24px; display: flex; gap: 14px; align-items: flex-start; }
+    .learn__item::before { content: '✓'; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--green); color: #fff; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .learn__item strong { display: block; font-size: 16px; margin-bottom: 3px; }
+    .learn__item span { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    /* host card */
+    .host { max-width: 760px; margin: 0 auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 36px; display: grid; grid-template-columns: 150px 1fr; gap: 32px; align-items: center; }
+    .host__photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+    .host__photo-fallback { width: 150px; height: 150px; border-radius: 50%; background: var(--green); display: none; align-items: center; justify-content: center; color: #fff; font-size: 2.6rem; font-weight: 900; }
+    .host__name { font-size: 1.5rem; font-weight: 800; }
+    .host__role { color: var(--green-deep); font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+    .host__bio { font-size: 15px; }
+
+    /* secondary CTA strip */
+    .cta-strip { text-align: center; padding: 0 0 80px; }
+    .cta-strip a { display: inline-block; }
+
+    footer { padding: 32px; text-align: center; font-size: 13.5px; color: var(--dim); }
+    footer a { color: var(--dim); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .container { padding: 0 22px; }
+      .learn { grid-template-columns: 1fr; }
+      .host { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 30px 24px; }
+      .section { padding: 52px 0; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .hero { margin: 8px 8px 0; border-radius: 22px; padding-bottom: 110px; }
+      .hero__logo { padding: 20px 22px 0; }
+      .hero__body { padding: 28px 22px 0; }
+      .badges { gap: 8px; }
+      .badge { font-size: 13px; padding: 7px 13px; }
+      .reg-wrap { padding: 0 16px; margin-top: -84px; }
+      .reg-card { padding: 22px; }
+      .reg-row { flex-direction: column; gap: 0; }
+      .spark--1 { right: -16px; } .spark--2 { left: -16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO (GREEN PANEL) ═════════════════════════════════ -->
+<header class="hero">
+  <a class="hero__logo" href="retention-os.html">
+    <img src="images/Steve-SR-Crop.png" alt="" onerror="this.style.display='none'">
+    RETENTION&nbsp;OS
+  </a>
+
+  <div class="hero__body">
+    <div class="avatars">
+      <span class="spark spark--1">✦</span>
+      <img src="images/Steve-SR-Crop.png" alt="Steven Wagner" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="avatars__fallback">SW</span>
+      <span class="spark spark--2">✦</span>
+    </div>
+
+    <div class="badges">
+      <span class="badge">🎥 Free Live Training</span>
+      <span class="badge">📹 Hosted on Zoom</span>
+      <span class="badge">Hosted by Steven Wagner</span>
+    </div>
+
+    <div class="countdown">
+      <span>⏱</span> <span>Starts in:</span> <span class="countdown__time" id="countdown">--:--:--:--</span>
+    </div>
+
+    <h1>How DTC Brands Grow Email to 40% of Revenue</h1>
+    <p class="hero__sub">
+      The exact system for turning email &amp; SMS into your #1 sales channel — across pre-sale,
+      post-sale, and retention — without paying $3–5k/mo for an agency.
+    </p>
+  </div>
+</header>
+
+<!-- ══ REGISTRATION CARD ══════════════════════════════════ -->
+<div class="reg-wrap" id="register">
+  <div class="reg-card">
+
+    <!-- form -->
+    <form id="reg-form" novalidate>
+      <div class="reg-card__when">
+        <!-- EDIT date/time to match your session -->
+        <span class="when-pill">📅 Thu, Jul 16th</span>
+        <span class="when-pill">⏰ 2:00 PM EDT</span>
+      </div>
+      <h3>Save your free seat</h3>
+      <p class="reg-card__note">Limited spots · Replay sent to everyone who registers</p>
+
+      <div class="reg-row">
+        <div class="reg-field">
+          <label for="fname">First name</label>
+          <input id="fname" name="first_name" type="text" placeholder="Jane" required>
+        </div>
+        <div class="reg-field">
+          <label for="lname">Last name</label>
+          <input id="lname" name="last_name" type="text" placeholder="Doe" required>
+        </div>
+      </div>
+      <div class="reg-field">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="jane@yourbrand.com" required>
+      </div>
+
+      <button type="submit" class="btn btn--yellow">Save My Free Seat →</button>
+      <p class="reg-fine">Free to attend · No pitch-fest · Hosted live on Zoom</p>
+    </form>
+
+    <!-- success state (shown after submit) -->
+    <div class="reg-success" id="reg-success" hidden>
+      <div class="reg-success__check">✓</div>
+      <h3>You're registered! 🎉</h3>
+      <p>Check your inbox for the Zoom link and calendar invite. See you there.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ WHAT YOU'LL LEARN ══════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">On this training</span>
+      <h2 class="grad">What you'll walk away with</h2>
+      <p>45 minutes of senior-level retention strategy you can apply the same week.</p>
+    </div>
+    <div class="learn">
+      <div class="learn__item"><div><strong>The 40% revenue engine</strong><span>The pre-sale, post-sale, and retention flows that consistently drive 30–40% of total revenue.</span></div></div>
+      <div class="learn__item"><div><strong>What agencies won't tell you</strong><span>The handful of flows and segments that do most of the work — and where brands waste money.</span></div></div>
+      <div class="learn__item"><div><strong>AI tools that 10x execution</strong><span>How a small team (or a solo founder) ships email like a full agency using AI workflows.</span></div></div>
+      <div class="learn__item"><div><strong>Deliverability fundamentals</strong><span>How to actually land in the inbox so your campaigns get seen — and converted.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOST ═══════════════════════════════════════════════ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Your host</span>
+      <h2 class="grad">Who's teaching</h2>
+    </div>
+    <div class="host">
+      <img src="images/Steve-SR-Crop.png" alt="Steven Wagner" class="host__photo"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="host__photo-fallback">SW</div>
+      <div>
+        <div class="host__name">Steven Wagner</div>
+        <div class="host__role">Founder, Sales Ignition · Email Deliverability &amp; Retention Expert</div>
+        <p class="host__bio">Steven has built email and SMS programs for brands like Toyota, True Citrus, and VurbMoto — generating over $1M in email revenue and recovering inboxing for brands that couldn't reach their customers. On this training he breaks down the exact retention system behind Retention OS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECONDARY CTA ══════════════════════════════════════ -->
+<div class="cta-strip">
+  <a href="#register" class="btn btn--yellow" style="width:auto;display:inline-block;">Save My Free Seat →</a>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  Copyright &copy; 2024–2026 Sales Ignition LLC. All rights reserved. &nbsp;·&nbsp;
+  Greenville, South Carolina &nbsp;·&nbsp;
+  <a href="mailto:hello@salesignition.com">hello@salesignition.com</a> &nbsp;·&nbsp;
+  <a href="retention-os.html">Back to Retention OS</a>
+</footer>
+
+<script>
+  /* ── Live countdown ──────────────────────────────────────
+     EDIT this to your real webinar date/time (ISO 8601 with timezone offset).
+     Example below = Jul 16, 2026, 2:00 PM Eastern (-04:00). */
+  const TARGET = new Date('2026-07-16T14:00:00-04:00').getTime();
+  const el = document.getElementById('countdown');
+  function tick(){
+    const diff = TARGET - Date.now();
+    if (diff <= 0){ el.textContent = 'Live now'; return; }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff%86400000/3600000);
+    const m = Math.floor(diff%3600000/60000);
+    const s = Math.floor(diff%60000/1000);
+    const p = n => String(n).padStart(2,'0');
+    el.textContent = `${p(d)}:${p(h)}:${p(m)}:${p(s)}`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ── Registration form ───────────────────────────────────
+     This is a front-end stub that shows a success state on submit.
+     To capture real registrations, wire it to your tool:
+       • Zoom Webinar registration URL (set form action + method="POST")
+       • GoHighLevel / Close.io form embed (replace this form block)
+       • Or post to your own endpoint with fetch().
+     Until then it just confirms visually. */
+  const form = document.getElementById('reg-form');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    form.setAttribute('hidden','');
+    document.getElementById('reg-success').removeAttribute('hidden');
+    document.getElementById('register').scrollIntoView({behavior:'smooth', block:'center'});
+    /* TODO: send {first_name,last_name,email} to your registration system here */
+  });
+</script>
+</body>
+</html>

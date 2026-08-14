@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════
+   Sales Ignition — Dark Theme Variables
+   Used by: all case study pages
+   Matches conversion.design dark aesthetic
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:           #0f0f0f;
+  --bg-alt:       #161616;
+  --bg-card:      #1a1a1a;
+  --bg-hover:     #222222;
+  --border:       #2c2c2c;
+  --border-light: #383838;
+
+  --text:         #f2ede7;
+  --text-muted:   #999999;
+  --text-dim:     #555555;
+
+  --accent:       #f0c040;
+  --accent-dark:  #d4a020;
+  --accent-text:  #0f0f0f;
+
+  --link:         #f0c040;
+
+  --font:         'Open Sans', sans-serif;
+  --max:          1080px;
+  --radius:       6px;
+}
