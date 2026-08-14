@@ -1,6 +1,6 @@
 name = "salesignition"
 main = "dist/_worker.js/index.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-11-12"
 compatibility_flags = ["nodejs_compat"]
 
 [assets]
