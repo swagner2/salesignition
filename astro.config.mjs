@@ -10,7 +10,6 @@ export default defineConfig({
   integrations: [
     ...(isDev ? [react(), keystatic()] : []),
     markdoc(),
-    cloudflare({ mode: 'server' })
   ],
   output: 'server',
   adapter: cloudflare(),
