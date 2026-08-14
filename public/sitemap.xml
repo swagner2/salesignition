@@ -26,6 +26,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://salesignition.com/blog/welcome-series-blueprint</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://salesignition.com/blog/why-emails-go-to-spam</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
