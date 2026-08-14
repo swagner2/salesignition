@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^11.1.2",
-    "@astrojs/react": "^4.2.0",
     "@astrojs/markdoc": "^0.11.2",
-    "@keystatic/core": "^0.5.34",
+    "@astrojs/react": "^4.2.0",
     "@keystatic/astro": "^5.0.1",
+    "@keystatic/core": "^0.5.34",
     "astro": "^4.15.4",
+    "playwright": "^1.62.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
