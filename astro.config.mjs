@@ -4,7 +4,7 @@ import markdoc from '@astrojs/markdoc';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.argv.includes('dev');
 
 export default defineConfig({
   integrations: [
