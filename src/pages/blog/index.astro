@@ -1,0 +1,499 @@
+---
+import Layout from '../../layouts/Layout.astro';
+// We are importing the master layout if we want, or keeping the raw page for 100% design match!
+// Let's keep the raw page to match the exact design of the blog layout
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Marketing & Deliverability Blog | Sales Ignition</title>
+  <meta name="description" content="Practical email marketing, Klaviyo strategy, and deliverability guides for DTC and e-commerce brands. Written by Steven Wagner at Sales Ignition.">
+  <link rel="canonical" href="https://blog.salesignition.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #ffffff;
+      --bg-alt:       #f7f6f3;
+      --bg-card:      #f2f1ee;
+      --border:       #e2e1de;
+      --border-light: #d0cfc9;
+      --text:         #1a1a1a;
+      --text-muted:   #666666;
+      --text-dim:     #999999;
+      --accent:       #e84c1e;
+      --accent-dark:  #c93d14;
+      --accent-light: #fef2ee;
+      --font:         'Open Sans', sans-serif;
+      --max:          1080px;
+      --radius:       5px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-size: 17px; line-height: 1.75; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+
+    .eyebrow { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+
+    h1 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); }
+    h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
+    h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; color: var(--text); margin-bottom: 10px; }
+    p { margin-bottom: 18px; color: var(--text-muted); }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 700; color: var(--text); }
+
+    /* ── BUTTONS ─────────────────────────────────────────── */
+    .btn { display: inline-block; background: var(--accent); color: #fff; font-family: var(--font); font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: var(--radius); text-decoration: none; transition: background 0.15s, transform 0.12s; white-space: nowrap; }
+    .btn:hover { background: var(--accent-dark); text-decoration: none; transform: translateY(-1px); }
+    .btn--ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border-light); }
+    .btn--ghost:hover { background: var(--bg-alt); color: var(--text); text-decoration: none; transform: none; }
+    .btn--sm { font-size: 13px; padding: 9px 18px; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .nav__inner { max-width: var(--max); margin: 0 auto; padding: 0 36px; display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 20px; }
+    .nav__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav__logo-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; }
+    .nav__logo-fallback { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: none; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; flex-shrink: 0; }
+    .nav__logo-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .nav__logo-sub { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); }
+    .nav__links { display: flex; align-items: center; list-style: none; gap: 2px; flex: 1; justify-content: flex-end; }
+    .nav__links > li > a { display: block; font-size: 14px; font-weight: 600; color: var(--text-muted); padding: 6px 13px; border-radius: var(--radius); transition: color 0.12s, background 0.12s; text-decoration: none; white-space: nowrap; }
+    .nav__links > li > a:hover { color: var(--text); background: var(--bg-alt); }
+    .nav__links > li.nav__cta > a { background: var(--accent); color: #fff; font-weight: 700; }
+    .nav__links > li.nav__cta > a:hover { background: var(--accent-dark); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .blog-hero { padding: 68px 0 56px; border-bottom: 1px solid var(--border); }
+    .blog-hero h1 { max-width: 620px; margin-bottom: 16px; }
+    .blog-hero p { max-width: 520px; font-size: 1.05rem; color: var(--text-muted); margin-bottom: 0; }
+
+    /* ── FEATURED ARTICLE ─────────────────────────────────── */
+    .featured { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .featured__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .featured__img { aspect-ratio: 16/10; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .featured__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .featured__img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 13px; }
+    .featured__cat { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); border-radius: 100px; padding: 3px 11px; margin-bottom: 16px; }
+    .featured__title { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px; text-decoration: none; display: block; }
+    .featured__title:hover { color: var(--accent); text-decoration: none; }
+    .featured__excerpt { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 22px; }
+    .featured__meta { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--text-dim); }
+    .featured__meta-avatar { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; }
+    .featured__meta-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .featured__read { font-weight: 700; color: var(--accent); font-size: 14px; text-decoration: none; }
+    .featured__read:hover { text-decoration: underline; }
+
+    /* ── CATEGORY FILTER ─────────────────────────────────── */
+    .cat-filter { padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .cat-filter__inner { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .cat-filter__label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 4px; }
+    .cat-btn { background: none; border: 1.5px solid var(--border); border-radius: 100px; padding: 5px 15px; font-family: var(--font); font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block; }
+    .cat-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .cat-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* ── ARTICLE GRID ─────────────────────────────────────── */
+    .articles { padding: 56px 0 80px; }
+    .articles__header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 36px; flex-wrap: wrap; gap: 12px; }
+    .articles__count { font-size: 13px; color: var(--text-dim); }
+    .articles__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+    .acard { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+    .acard:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(0,0,0,0.08); }
+    .acard__img { aspect-ratio: 16/10; background: var(--bg-alt); overflow: hidden; }
+    .acard__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s; }
+    .acard:hover .acard__img img { transform: scale(1.04); }
+    .acard__img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+    .acard__body { padding: 22px 22px 18px; display: flex; flex-direction: column; flex: 1; }
+    .acard__cat { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .acard__title { font-size: 1rem; font-weight: 700; line-height: 1.4; color: var(--text); margin-bottom: 10px; text-decoration: none; display: block; }
+    .acard__title:hover { color: var(--accent); text-decoration: none; }
+    .acard__excerpt { font-size: 14px; color: var(--text-muted); line-height: 1.65; flex: 1; margin-bottom: 18px; }
+    .acard__footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--border); }
+    .acard__meta { font-size: 12px; color: var(--text-dim); }
+    .acard__read { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .acard__read:hover { text-decoration: underline; }
+
+    /* ── PAGINATION ───────────────────────────────────────── */
+    .pagination { display: flex; align-items: center; justify-content: center; gap: 6px; padding-top: 44px; border-top: 1px solid var(--border); margin-top: 44px; }
+    .page-btn { width: 38px; height: 38px; border: 1.5px solid var(--border); border-radius: var(--radius); background: none; font-family: var(--font); font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
+    .page-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .page-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .page-btn--text { width: auto; padding: 0 12px; }
+
+    /* ── NEWSLETTER BAND ──────────────────────────────────── */
+    .newsletter-band { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 64px 0; text-align: center; }
+    .newsletter-band h2 { max-width: 500px; margin: 0 auto 10px; }
+    .newsletter-band p { max-width: 440px; margin: 0 auto 28px; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; justify-content: center; flex-wrap: wrap; }
+    .newsletter-form input { flex: 1; min-width: 240px; padding: 12px 16px; font-family: var(--font); font-size: 15px; border: 1.5px solid var(--border-light); border-radius: var(--radius); color: var(--text); background: var(--bg); outline: none; transition: border-color 0.15s; }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form input::placeholder { color: var(--text-dim); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 26px 36px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--text-dim); flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--text-muted); }
+    .footer__links { display: flex; gap: 18px; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .nav__links { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 14px 24px 18px; z-index: 500; }
+      .nav__links.open { display: flex; }
+      .nav__hamburger { display: flex; }
+      .featured__inner { grid-template-columns: 1fr; gap: 32px; }
+      .articles__grid { grid-template-columns: 1fr 1fr; }
+      .container { padding: 0 24px; }
+    }
+    @media (max-width: 580px) {
+      .articles__grid { grid-template-columns: 1fr; }
+      .blog-hero { padding: 44px 0 36px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">
+      <img src="https://conversion.design/public/images/jaka_smid_conversion_designer.png"
+        alt="Steven" class="nav__logo-avatar"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="nav__logo-fallback">SI</span>
+      <span class="nav__logo-name">Sales Ignition<span class="nav__logo-sub">Email Marketing Blog</span></span>
+    </a>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="#deliverability">Deliverability</a></li>
+      <li><a href="#klaviyo">Klaviyo</a></li>
+      <li><a href="#strategy">Strategy</a></li>
+      <li><a href="https://salesignition.com" target="_blank">Main Site</a></li>
+      <li class="nav__cta"><a href="https://salesignition.com/work-with-me.html">Work With Me</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="blog-hero">
+  <div class="container">
+    <span class="eyebrow">Sales Ignition · Email Marketing Blog</span>
+    <h1>Practical email strategy for DTC brands that want more revenue.</h1>
+    <p>Deliverability fixes, Klaviyo playbooks, AI systems, and campaign teardowns — written by someone who's done it inside real accounts at real volume.</p>
+  </div>
+</section>
+
+<!-- ══ FEATURED ARTICLE ═══════════════════════════════ -->
+<section class="featured">
+  <div class="container">
+    <span class="eyebrow">Featured</span>
+    <div class="featured__inner">
+      <div class="featured__img">
+        <img src="/images/blog/featured-deliverability.png" alt="Email deliverability guide"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="featured__img-placeholder">📬</div>
+      </div>
+      <div>
+        <span class="featured__cat">Deliverability</span>
+        <a class="featured__title" href="/blog/why-emails-go-to-spam">
+          Why Your Emails Are Going to Spam (And the 7-Step Fix That Actually Works)
+        </a>
+        <p class="featured__excerpt">Most deliverability advice is vague. "Warm up your IP." "Clean your list." "Authenticate your domain." But none of it tells you how to diagnose which specific issue is killing your inbox placement — or in what order to fix them. This is that guide.</p>
+        <div class="featured__meta">
+          <div class="featured__meta-avatar">
+            <img src="/images/steven-headshot.png" alt="Steven"
+              onerror="this.style.display='none';">
+          </div>
+          <div>
+            <strong>Steven Wagner</strong> · April 2025 · 12 min read
+          </div>
+          <a class="featured__read" href="/blog/why-emails-go-to-spam">Read article →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CATEGORY FILTER ════════════════════════════════ -->
+<div class="cat-filter" id="deliverability">
+  <div class="container">
+    <div class="cat-filter__inner">
+      <span class="cat-filter__label">Topic</span>
+      <button class="cat-btn active" data-cat="all">All Articles</button>
+      <button class="cat-btn" data-cat="deliverability">Deliverability</button>
+      <button class="cat-btn" data-cat="klaviyo">Klaviyo</button>
+      <button class="cat-btn" data-cat="ai">AI &amp; Systems</button>
+      <button class="cat-btn" data-cat="strategy">Strategy</button>
+      <button class="cat-btn" data-cat="campaigns">Campaigns</button>
+      <button class="cat-btn" data-cat="casestudy">Case Studies</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ARTICLES GRID ══════════════════════════════════ -->
+<section class="articles" id="klaviyo">
+  <div class="container">
+    <div class="articles__header">
+      <h2 style="margin-bottom:0;">Latest Articles</h2>
+      <span class="articles__count" id="article-count">Showing 9 articles</span>
+    </div>
+
+    <div class="articles__grid" id="articles-grid">
+
+      <!-- Article 1 -->
+      <article class="acard" data-cat="deliverability">
+        <div class="acard__img">
+          <img src="/images/blog/spf-dkim-dmarc.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">🔐</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Deliverability</span>
+          <a class="acard__title" href="spf-dkim-dmarc-guide.html">SPF, DKIM, and DMARC: The Complete Setup Guide for DTC Brands (No IT Required)</a>
+          <p class="acard__excerpt">A step-by-step walkthrough for setting up all three authentication records correctly — with screenshots and common mistakes to avoid.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Mar 2025 · 9 min read</span>
+            <a class="acard__read" href="spf-dkim-dmarc-guide.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="acard" data-cat="klaviyo">
+        <div class="acard__img">
+          <img src="/images/blog/klaviyo-segments.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">📊</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Klaviyo</span>
+          <a class="acard__title" href="klaviyo-segments-that-print-money.html">The 5 Klaviyo Segments Every DTC Brand Needs (And What to Send Each One)</a>
+          <p class="acard__excerpt">Most brands have one or two broad segments. The brands doing 35%+ of revenue from email have five specific ones — here's exactly how to build them.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Mar 2025 · 11 min read</span>
+            <a class="acard__read" href="klaviyo-segments-that-print-money.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="acard" data-cat="ai">
+        <div class="acard__img">
+          <img src="/images/blog/ai-email-copy.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">⚡</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">AI &amp; Systems</span>
+          <a class="acard__title" href="ai-email-copy-system.html">How to Build an AI Email Copy System That Sounds Like Your Brand (Not Like a Robot)</a>
+          <p class="acard__excerpt">The problem with AI-generated email copy isn't the AI — it's that marketers haven't given it the right architecture. Here's how to fix that.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Feb 2025 · 8 min read</span>
+            <a class="acard__read" href="ai-email-copy-system.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="acard" data-cat="strategy">
+        <div class="acard__img">
+          <img src="/images/blog/abandoned-cart.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">🛒</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Strategy</span>
+          <a class="acard__title" href="abandoned-cart-flow-blueprint.html">The Abandoned Cart Flow That Recovered $240K for a DTC Brand in 6 Months</a>
+          <p class="acard__excerpt">A detailed breakdown of the 7-step cart abandonment sequence we built — including the exact timing, subject lines, and copy approach for each email.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Feb 2025 · 14 min read</span>
+            <a class="acard__read" href="abandoned-cart-flow-blueprint.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="acard" data-cat="deliverability">
+        <div class="acard__img">
+          <img src="/images/blog/inbox-placement.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">📥</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Deliverability</span>
+          <a class="acard__title" href="gmail-inbox-placement.html">Gmail Is Filtering You Into Promotions. Here's Why It Happens and How to Fix It.</a>
+          <p class="acard__excerpt">The Gmail Promotions tab isn't a death sentence — but Primary tab placement can increase open rates by 2–3×. Here's exactly how to get there.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Jan 2025 · 7 min read</span>
+            <a class="acard__read" href="gmail-inbox-placement.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 6 -->
+      <article class="acard" data-cat="casestudy">
+        <div class="acard__img">
+          <img src="/images/blog/vurbmoto-case.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">📈</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Case Study</span>
+          <a class="acard__title" href="vurbmoto-deliverability-case-study.html">Case Study: How Vurbmoto Went From 54% to 95% Inbox Placement in 60 Days</a>
+          <p class="acard__excerpt">A real-world walkthrough of the exact diagnosis process, fixes applied, and results timeline for one of the most dramatic deliverability restorations we've done.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Jan 2025 · 10 min read</span>
+            <a class="acard__read" href="vurbmoto-deliverability-case-study.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 7 -->
+      <article class="acard" data-cat="klaviyo">
+        <div class="acard__img">
+          <img src="/images/blog/welcome-series.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">👋</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Klaviyo</span>
+          <a class="acard__title" href="welcome-series-blueprint.html">The Welcome Series Blueprint: Turn First-Time Subscribers Into Buyers in 5 Emails</a>
+          <p class="acard__excerpt">Your welcome series is the highest-converting automation you'll ever run. Most brands waste it. Here's the structure that consistently converts at 15%+.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Dec 2024 · 10 min read</span>
+            <a class="acard__read" href="welcome-series-blueprint.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 8 -->
+      <article class="acard" data-cat="campaigns">
+        <div class="acard__img">
+          <img src="/images/blog/campaign-calendar.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">📅</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">Campaigns</span>
+          <a class="acard__title" href="dtc-email-calendar.html">The 12-Month DTC Email Campaign Calendar (With AI to Produce It in Half the Time)</a>
+          <p class="acard__excerpt">A complete campaign planning system built for DTC brands — including the AI workflow that lets one marketer produce a full month's campaigns in a single day.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Dec 2024 · 13 min read</span>
+            <a class="acard__read" href="dtc-email-calendar.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 9 -->
+      <article class="acard" data-cat="ai">
+        <div class="acard__img">
+          <img src="/images/blog/subject-lines.png" alt=""
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="acard__img-placeholder">✍️</div>
+        </div>
+        <div class="acard__body">
+          <span class="acard__cat">AI &amp; Systems</span>
+          <a class="acard__title" href="subject-line-testing-system.html">How to Build a Subject Line Testing System That Actually Improves Over Time</a>
+          <p class="acard__excerpt">Most A/B testing is one-and-done. This system uses AI to generate variations, track winners by segment, and compound what works into every future send.</p>
+          <div class="acard__footer">
+            <span class="acard__meta">Nov 2024 · 9 min read</span>
+            <a class="acard__read" href="subject-line-testing-system.html">Read →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span style="color:var(--text-dim);padding:0 6px;">…</span>
+      <button class="page-btn page-btn--text">Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ═════════════════════════════════════ -->
+<div class="newsletter-band" id="strategy">
+  <div class="container">
+    <span class="eyebrow">Stay Sharp</span>
+    <h2>Get one email per week that improves your email program.</h2>
+    <p>No fluff. Just practical deliverability fixes, Klaviyo strategies, and AI systems — from someone who uses them in real accounts.</p>
+    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit" class="btn">Subscribe →</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════════════ -->
+<footer>
+  <span>© 2024–2026 Sales Ignition LLC · Greenville, SC</span>
+  <div class="footer__links">
+    <a href="https://salesignition.com">Main Site</a>
+    <a href="https://salesignition.com/work-with-me.html">Work With Me</a>
+    <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co</a>
+    <a href="mailto:hello@salesignition.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Nav hamburger
+  const btn = document.getElementById('hamburger');
+  const links = document.getElementById('nav-links');
+  if (btn && links) {
+    btn.addEventListener('click', () => links.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!btn.contains(e.target) && !links.contains(e.target)) links.classList.remove('open');
+    });
+  }
+
+  // Category filter
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.acard');
+  const countEl = document.getElementById('article-count');
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      let visible = 0;
+      cards.forEach(card => {
+        const show = cat === 'all' || card.dataset.cat === cat;
+        card.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+      });
+      countEl.textContent = `Showing ${visible} article${visible !== 1 ? 's' : ''}`;
+    });
+  });
+
+  // Newsletter form
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ You\'re in!';
+    btn.style.background = '#16a34a';
+    input.value = '';
+    input.disabled = true;
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>

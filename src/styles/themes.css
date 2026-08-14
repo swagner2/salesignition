@@ -1,0 +1,49 @@
+/* ═══════════════════════════════════════════════════════════
+   Sales Ignition — Dynamic Themes
+═══════════════════════════════════════════════════════════ */
+
+:root, [data-theme="light"] {
+  --bg:           #ffffff;
+  --bg-alt:       #f7f6f3;
+  --bg-card:      #f2f1ee;
+  --bg-hover:     #ebebeb;
+  --border:       #e2e1de;
+  --border-light: #d0cfc9;
+
+  --text:         #1a1a1a;
+  --text-muted:   #666666;
+  --text-dim:     #999999;
+
+  --accent:       #e84c1e;
+  --accent-dark:  #c93d14;
+  --accent-text:  #ffffff;
+
+  --link:         #e84c1e;
+
+  --font:         'Open Sans', sans-serif;
+  --max:          1080px;
+  --radius:       5px;
+}
+
+[data-theme="dark"] {
+  --bg:           #0f0f0f;
+  --bg-alt:       #161616;
+  --bg-card:      #1a1a1a;
+  --bg-hover:     #222222;
+  --border:       #2c2c2c;
+  --border-light: #383838;
+
+  --text:         #f2ede7;
+  --text-muted:   #999999;
+  --text-dim:     #555555;
+
+  --accent:       #f0c040;
+  --accent-dark:  #d4a020;
+  --accent-text:  #0f0f0f;
+
+  --link:         #f0c040;
+
+  --font:         'Open Sans', sans-serif;
+  --max:          1080px;
+  --radius:       6px;
+}

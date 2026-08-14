@@ -1,0 +1,33 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/themes.css';
+import '../styles/base.css';
+import '../styles/style.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  theme?: 'light' | 'dark';
+}
+
+const { title, description = "Salesignition - B2B Marketing & Klaviyo Lifecycle Agency", theme = "light" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- Include Open Sans font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <Navigation />
+    <slot />
+    <Footer />
+  </body>
+</html>
