@@ -4,8 +4,15 @@ import markdoc from '@astrojs/markdoc';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 export default defineConfig({
-  integrations: [react(), markdoc(), keystatic(), cloudflare({ mode: 'server' })],
+  integrations: [
+    react(),
+    markdoc(),
+    ...(isDev ? [keystatic()] : []),
+    cloudflare({ mode: 'server' })
+  ],
   output: 'server',
   adapter: cloudflare(),
   redirects: {
