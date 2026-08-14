@@ -26,6 +26,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://salesignition.com/blog/abandoned-cart-flow-blueprint</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salesignition.com/blog/ai-email-copy-system</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salesignition.com/blog/dtc-email-calendar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salesignition.com/blog/gmail-inbox-placement</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salesignition.com/blog/klaviyo-segments-that-print-money</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salesignition.com/blog/spf-dkim-dmarc-guide</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://salesignition.com/blog/welcome-series-blueprint</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -52,6 +82,11 @@
   </url>
   <url>
     <loc>https://salesignition.com/hear</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salesignition.com/home-test</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

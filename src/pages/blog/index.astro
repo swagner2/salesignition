@@ -1,7 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-// We are importing the master layout if we want, or keeping the raw page for 100% design match!
-// Let's keep the raw page to match the exact design of the blog layout
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+// Sort by publishDate descending
+posts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -248,174 +250,47 @@ import Layout from '../../layouts/Layout.astro';
   <div class="container">
     <div class="articles__header">
       <h2 style="margin-bottom:0;">Latest Articles</h2>
-      <span class="articles__count" id="article-count">Showing 9 articles</span>
+      <span class="articles__count" id="article-count">Showing {posts.length} articles</span>
     </div>
 
     <div class="articles__grid" id="articles-grid">
-
-      <!-- Article 1 -->
-      <article class="acard" data-cat="deliverability">
-        <div class="acard__img">
-          <img src="/blog/images/blog/spf-dkim-dmarc.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">🔐</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Deliverability</span>
-          <a class="acard__title" href="spf-dkim-dmarc-guide">SPF, DKIM, and DMARC: The Complete Setup Guide for DTC Brands (No IT Required)</a>
-          <p class="acard__excerpt">A step-by-step walkthrough for setting up all three authentication records correctly — with screenshots and common mistakes to avoid.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Mar 2025 · 9 min read</span>
-            <a class="acard__read" href="spf-dkim-dmarc-guide">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 2 -->
-      <article class="acard" data-cat="klaviyo">
-        <div class="acard__img">
-          <img src="/blog/images/blog/klaviyo-segments.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">📊</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Klaviyo</span>
-          <a class="acard__title" href="klaviyo-segments-that-print-money">The 5 Klaviyo Segments Every DTC Brand Needs (And What to Send Each One)</a>
-          <p class="acard__excerpt">Most brands have one or two broad segments. The brands doing 35%+ of revenue from email have five specific ones — here's exactly how to build them.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Mar 2025 · 11 min read</span>
-            <a class="acard__read" href="klaviyo-segments-that-print-money">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 3 -->
-      <article class="acard" data-cat="ai">
-        <div class="acard__img">
-          <img src="/blog/images/blog/ai-email-copy.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">⚡</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">AI &amp; Systems</span>
-          <a class="acard__title" href="ai-email-copy-system">How to Build an AI Email Copy System That Sounds Like Your Brand (Not Like a Robot)</a>
-          <p class="acard__excerpt">The problem with AI-generated email copy isn't the AI — it's that marketers haven't given it the right architecture. Here's how to fix that.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Feb 2025 · 8 min read</span>
-            <a class="acard__read" href="ai-email-copy-system">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 4 -->
-      <article class="acard" data-cat="strategy">
-        <div class="acard__img">
-          <img src="/blog/images/blog/abandoned-cart.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">🛒</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Strategy</span>
-          <a class="acard__title" href="abandoned-cart-flow-blueprint">The Abandoned Cart Flow That Recovered $240K for a DTC Brand in 6 Months</a>
-          <p class="acard__excerpt">A detailed breakdown of the 7-step cart abandonment sequence we built — including the exact timing, subject lines, and copy approach for each email.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Feb 2025 · 14 min read</span>
-            <a class="acard__read" href="abandoned-cart-flow-blueprint">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 5 -->
-      <article class="acard" data-cat="deliverability">
-        <div class="acard__img">
-          <img src="/blog/images/blog/inbox-placement.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">📥</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Deliverability</span>
-          <a class="acard__title" href="gmail-inbox-placement">Gmail Is Filtering You Into Promotions. Here's Why It Happens and How to Fix It.</a>
-          <p class="acard__excerpt">The Gmail Promotions tab isn't a death sentence — but Primary tab placement can increase open rates by 2–3×. Here's exactly how to get there.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Jan 2025 · 7 min read</span>
-            <a class="acard__read" href="gmail-inbox-placement">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 6 -->
-      <article class="acard" data-cat="casestudy">
-        <div class="acard__img">
-          <img src="/blog/images/blog/vurbmoto-case.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">📈</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Case Study</span>
-          <a class="acard__title" href="vurbmoto-deliverability-case-study">Case Study: How Vurbmoto Went From 54% to 95% Inbox Placement in 60 Days</a>
-          <p class="acard__excerpt">A real-world walkthrough of the exact diagnosis process, fixes applied, and results timeline for one of the most dramatic deliverability restorations we've done.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Jan 2025 · 10 min read</span>
-            <a class="acard__read" href="vurbmoto-deliverability-case-study">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 7 -->
-      <article class="acard" data-cat="klaviyo">
-        <div class="acard__img">
-          <img src="/blog/images/blog/welcome-series.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">👋</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Klaviyo</span>
-          <a class="acard__title" href="welcome-series-blueprint">The Welcome Series Blueprint: Turn First-Time Subscribers Into Buyers in 5 Emails</a>
-          <p class="acard__excerpt">Your welcome series is the highest-converting automation you'll ever run. Most brands waste it. Here's the structure that consistently converts at 15%+.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Dec 2024 · 10 min read</span>
-            <a class="acard__read" href="welcome-series-blueprint">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 8 -->
-      <article class="acard" data-cat="campaigns">
-        <div class="acard__img">
-          <img src="/blog/images/blog/campaign-calendar.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">📅</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">Campaigns</span>
-          <a class="acard__title" href="dtc-email-calendar">The 12-Month DTC Email Campaign Calendar (With AI to Produce It in Half the Time)</a>
-          <p class="acard__excerpt">A complete campaign planning system built for DTC brands — including the AI workflow that lets one marketer produce a full month's campaigns in a single day.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Dec 2024 · 13 min read</span>
-            <a class="acard__read" href="dtc-email-calendar">Read →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 9 -->
-      <article class="acard" data-cat="ai">
-        <div class="acard__img">
-          <img src="/blog/images/blog/subject-lines.png" alt=""
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="acard__img-placeholder">✍️</div>
-        </div>
-        <div class="acard__body">
-          <span class="acard__cat">AI &amp; Systems</span>
-          <a class="acard__title" href="subject-line-testing-system">How to Build a Subject Line Testing System That Actually Improves Over Time</a>
-          <p class="acard__excerpt">Most A/B testing is one-and-done. This system uses AI to generate variations, track winners by segment, and compound what works into every future send.</p>
-          <div class="acard__footer">
-            <span class="acard__meta">Nov 2024 · 9 min read</span>
-            <a class="acard__read" href="subject-line-testing-system">Read →</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
+      {posts.map(post => {
+        const cat = post.data.category || 'deliverability';
+        const emojiMap = {
+          'deliverability': '🔐',
+          'klaviyo': '📊',
+          'ai': '⚡',
+          'strategy': '🛒',
+          'campaigns': '📅',
+          'casestudy': '📈',
+        };
+        const emoji = emojiMap[cat] || '✍️';
+        
+        // Sourced image URL
+        const imageSrc = `/blog/images/blog/${post.slug}.png`;
+        
+        // Format meta date (e.g. Mar 2025)
+        const dateObj = new Date(post.data.publishDate);
+        const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        
+        return (
+          <article class="acard" data-cat={cat}>
+            <div class="acard__img">
+              <img src={imageSrc} alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="acard__img-placeholder">{emoji}</div>
+            </div>
+            <div class="acard__body">
+              <span class="acard__cat">{cat === 'casestudy' ? 'CASE STUDY' : cat === 'ai' ? 'AI & SYSTEMS' : cat.toUpperCase()}</span>
+              <a class="acard__title" href={`/blog/${post.slug}`}>{post.data.title}</a>
+              <p class="acard__excerpt">{post.data.description}</p>
+              <div class="acard__footer">
+                <span class="acard__meta">{formattedDate} · 10 min read</span>
+                <a class="acard__read" href={`/blog/${post.slug}`}>Read →</a>
+              </div>
+            </div>
+          </article>
+        );
+      })}</div>
 
     <!-- Pagination -->
     <div class="pagination">

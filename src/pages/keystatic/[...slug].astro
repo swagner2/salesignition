@@ -1,14 +1,23 @@
 ---
-import { Keystatic } from '@keystatic/core/ui';
+import { KeystaticConfig } from '@keystatic/core';
+import config from '../../keystatic.config';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const pathname = slug ? `/${slug}` : '/';
 ---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Keystatic Admin</title>
+    <title>Keystatic</title>
+    <link rel="stylesheet" href="/_keystatic/keystatic.css" />
   </head>
   <body>
-    <Keystatic client:only="react" />
+    <div id="keystatic-root"></div>
+    <script type="module" src="/_keystatic/keystatic-entry.js"></script>
   </body>
 </html>
