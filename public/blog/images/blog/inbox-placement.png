@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Jaka Šmid - Conversion Designer</title>
+    <!-- Primary Meta Tags -->
+    <title>The 'Da Vinci' of Converting Visitors Into Customers</title>
+    <meta name="title" content="The 'Da Vinci' of Converting Visitors Into Customers">
+    <meta name="description"
+        content="I'll help your SaaS or eCommerce company grow their business with a stunning web design that converts! Improve conversion rate and turn more visitors into customers.">
+
+
+    <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+    <meta property="og:type" content="website" />
+    <meta name="facebook-domain-verification" content="qtih9kkube6t87itbrz8vbp1g3bjv4" />
+    <link rel="stylesheet" href="public/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="public/css/main.css?v=20241023" media="screen" />
+    <link rel="stylesheet" href="public/css/responsive.css?v=20241023" media="screen" />
+    <link rel="canonical" href="" />
+    <meta property="og:image" content="public/images/open-graph-photo.png" />
+    <meta property="og:title" content="Jaka Šmid - Conversion Designer Portfolio" />
+    <meta property="og:description"
+        content="I help SaaS and eCommerce companies grow their business with stunning web design that converts!" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
+    <meta property="og:url" content="https://conversion.design" />
+    <meta property="og:type" content="website" />
+    <meta property="fb:app_id" content="966242223397117" />
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MFWJ2JF');
+    </script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFWJ2JF" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Page -->
+    <div id="page">
+        <!-- Header -->
+        <header id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <a href="index.php" class="logotype"><img src="public/images/jaka_smid_conversion_designer.png"
+                        alt="Conversion designer - Jaka Šmid">
+                    <span>Jaka Šmid</span> </br>
+                    Conversion designer
+                </a>
+            </div>
+
+            <div class="col-lg-8">
+                <nav class="navbar navbar-expand-lg navbar-light float-right">
+                    <button class="navbar-toggler info-line" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+
+
+                            <!-- Dropdown Menu for Products -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle parent-menu" href="#" id="navbarDropdown"
+                                    role="button">
+                                    My Products
+                                </a>
+                                <div class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="https://sapiora.net" target="_blank">Sapiora - Books
+                                        as Podcasts</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/e-commerce-checklist/"
+                                        target="_blank">E-commerce Checklist</a>
+                                    <a class="dropdown-item" href="https://library.conversion.design/"
+                                        target="_blank">E-commerce Library</a>
+                                    <a class="dropdown-item"
+                                        href="https://www.conversion.care/sp/facebook-ad-templates/"
+                                        target="_blank">Facebook Ad Templates</a>
+                                    <a class="dropdown-item"
+                                        href="https://www.conversion.care/sp/100-product-page-screenshots/"
+                                        target="_blank">100+ Product Page Screenshots</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/email-checklist/"
+                                        target="_blank">E-mail Checklist</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/ecommerce-template/"
+                                        target="_blank">E-commerce Template</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/seo-checklist/"
+                                        target="_blank">SEO Checklist</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/black-friday/">Black
+                                        Friday Checklist</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/digital-product/"
+                                        target="_blank">Digital Product Guide</a>
+                                    <a class="dropdown-item" href="https://www.conversion.care/sp/aov-challenge/"
+                                        target="_blank">AOV Challenge</a>
+                                    <a class="dropdown-item" href="https://parityrocket.com/" target="_blank">Parity
+                                        Rocket (SaaS)</a>
+                                    <a class="dropdown-item" href="https://baby-movers.com" target="_blank">Baby Motor
+                                        Development Course</a>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="https://www.conversion.care/sp/conversion-audit/" target="_blank">Conversion
+                                    Audit</a>
+                            </li>
+
+
+                            <li>
+                                <a href="https://app.youform.com/forms/8atbpl9o" class="btn-header-gradient">Want to
+                                    work with
+                                    me?</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>        <div id="content">
+            <div class="black-box">
+                <div class="container text-center">
+                    <h1>The <span>da Vinci</span> of converting <br />
+                        visitors into customers
+                    </h1>
+                    <div class="large-text">
+                        <p>I help e-commerce companies grow their metrics with stunning web design that
+                            converts!
+                        </p>
+                    </div>
+                    <a href="#portfolio" id="read" class="btn"><span>Go directly to my portfolio</span></a>
+                    <div class="stories">
+                        <img src="public/images/customers2x.png" alt="Happy clients">
+                        <p>
+                            <strong>Aaron Sustar, Karlo Bradica and 107 others</strong>
+                            are already growing their businesses since my redesign.
+                            <a href="#testimonials" id="read">Read their stories</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="logos">
+                    <ul>
+                        <li><img src="public/images/evolve_garden.png" alt="Evolve Garden"></li>
+                        <li><img src="public/images/spin_rewriter.png" alt="Spin Rewriter"></li>
+                        <li><img src="public/images/wheelio.png" alt="Wheelio"></li>
+                        <li><img src="public/images/proteusthemes.png" alt="ProteusThemes"></li>
+                        <li><img src="public/images/evolven.png" alt="Evolven"></li>
+                        <li><img src="public/images/ranktrackr.png" alt="RankTrackr"></li>
+                        <li><img src="public/images/rifuzl.png" alt="Rifuzl"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container medium">
+                <h4>Why work with me?</h4>
+                <h2>From a <span>multi-million dollar business owner </span>
+                    to a high-end conversion designer
+                </h2>
+                <div class="info-box">
+                    <p>In 2012 I founded ProteusThemes, a design company specialized in building conversion-focused
+                        WooCommerce themes and grew it into a
+                        multi-million dollar company.
+                    </p>
+                    <p>In 2021, I created an E-commerce Conversion Checklist that took over the e-commerce world, gained
+                        more than 20,000 customers, and generated $1.5M in revenue.</p>
+                    <p>After a successful exits, I now help 8 & 9-figure e-commerce companies generate <a
+                            href="#vigoshop" id="read">tens of
+                            millions in EXTRA profit</a> through design that CONVERTS.</p>
+                    </p>
+                </div>
+            </div>
+            <div class="container small">
+                <div class="box-white">
+                    <h2>If you want to:</h2>
+                    <div class="border-line">&nbsp;</div>
+                    <ul>
+                        <li><span>Improve conversions</span> on your landing pages</li>
+                        <li><span>Increase average order value</span> in your online store</li>
+                        <li><span>Improve retention</span> in your web app</li>
+
+                        <a href="https://app.youform.com/forms/8atbpl9o" class="btn"><span>Let's Work
+                                Together</span></a>
+                        <!--    <div class="logos-box">
+                        <p>or get in touch with me via e-mail <a
+                                href="mailto:jaka@conversion.design">jaka@conversion.design</a>
+                    </div> !-->
+                </div>
+
+                <div class="stories">
+                    <img src="public/images/customers2x.png" alt="Happy clients">
+                    <p>
+                        <strong>Aaron Sustar, Karlo Bradica and 107 others</strong>
+                        are already profiting since my redesign.
+                        <a href="#testimonials" id="read">Read their stories</a>
+                    </p>
+                </div>
+                <div class="box-black" id="casestudy">
+                    <h4>Case study</h4>
+                    <h3>See how my redesign generates $610k/ year in extra profit for an 8-figure company</h3>
+                    <p>I’m serious when I say my design generates massive improvements in performance. </p>
+
+                    <p>I track everything, and that’s why I can confidently say that my design brings in hundreds of
+                        thousands of dollars in profit for my clients. </p>
+
+                    <p>Want some proof? </p>
+
+                    <p>No problem, my work generated a 65% increase in revenue (over $610k/year) for Spin Rewriter, an
+                        8-figure SaaS company. </p>
+
+                    <p>They were so happy with my results that they’re generously letting me share their case study with
+                        you today. </p>
+                    <a href="case-study.php" class="btn">Read the whole case study</a>
+                </div>
+            </div>
+            <div class="container medium" id="testimonials">
+                <h4>Testimonials</h4>
+                <h2>Here's what successful business owners and marketers are saying about me</h2>
+            </div>
+            <div class="container small">
+                <div class="box-light">
+                    <h3>"...Churn rate dropped significantly."</h3>
+                    <div class="rating-box">
+                        <div class="rating">
+                            <div style="width: 100%">&nbsp;</div>
+                        </div>
+                        <p><u>@karlobradica</u> · Mar 2, 2020</p>
+                    </div>
+                    <p>Jaka did our new app dashboard interface for our <a href="wheelio-admin-dashboard.php">Wheelio
+                            app.</a> We built a totally new version of the app and needed something great for
+                        our users to engage with it.
+                    </p>
+
+                    <p>Our biggest issue was our app dashboard and the complexity of it, since we only added new
+                        features and it got clustered and too
+                        complicated for our users, which resulted in bigger churn rates and more support tickets.
+                    </p>
+
+                    <p>After the redesign of the interface, our support team can finally breathe again and the happiness
+                        of our customers multiplied overnight.
+                        <span><b>Churn rate dropped significantly.</b></span>
+                    </p>
+
+                    <p>I would 100% recommend Jaka Smid to anyone serious about their business, he takes your
+                        recommendations and wishes to the next level,
+                        adding his personal touch and improving any experience to the next level. I worked closely with
+                        him on almost every wireframe and
+                        he always improved upon my ideas, which makes him a fantastic guy to work with.
+                    </p>
+
+                    <div class="box-photo">
+                        <strong>
+                            <img src="public/images/karlo_bradica.png" alt="Karlo Bradica">
+                            Karlo Bradica
+                        </strong>
+                        <p>Founder of Wheelio, <span>7-figure company</span></p>
+
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="box-light">
+                    <h3>"...Our revenue shot up by 65% immediately."</h3>
+                    <div class="rating-box">
+                        <div class="rating">
+                            <div style="width: 100%">&nbsp;</div>
+                        </div>
+                        <p><u>@aaronsustar</u>· Oct 29, 2019</p>
+                    </div>
+                    <p>I hounded Jaka for 4 months before he agreed to take on <a href="spin-rewriter.php">our
+                            redesign.</a> It turns out great designers are busy!
+                        But I didn't back down, because I KNEW Jaka was the right person for the job.
+                    </p>
+
+                    <p>And once we got the ball rolling, every single one of his detailed updates and thoughtful emails
+                        blew me away.
+                        And here's the thing I loved the most: Jaka was always confident in all his decisions, taking a
+                        huge load off my
+                        shoulders, making sure everything ran smoothly, and delivering a truly incredible product in the
+                        end. Can you imagine
+                        asking your designer "what do you think, should we go with A or B?" and getting the answer "B,
+                        abso-fucking-lutely,
+                        100 percent B, it's a no-brainer because of X, Y and Z" every single time?! That was such an
+                        unexpected revelation
+                        and an incredible load off my shoulders!
+                    </p>
+
+                    <p>And finally, as a business owner, THIS is what you're probably interested in: It turns out Jaka
+                        was confident for a reason! <br />
+                        <span><b>Jaka's redesign of our entire SaaS website was &mdash; by far! &mdash; the most
+                                important factor in our revenue growing 65% year-over-year </b></span>
+                        in the past 10 months since the redesign. Our business has been successful (by all means) but
+                        extremely steady from 2014 through 2019,
+                        consistently bringing in about $1.5M per year. After Jaka's redesign in October 2019, our
+                        conversion rates / sales / revenue <a href="case-study.php">shot up
+                            by 65% immediately</a>, and 10 months later (August 2020 vs August 2019) we are still seeing
+                        the exact same 65% year-over-year growth.
+                    </p>
+
+                    <p>This is truly INSANE and if I could only ever recommend one person for any business-related
+                        thing in the world, it would be Jaka
+                        for delivering a redesign that looks great and CONVERTS. Which is all that matters!
+                    </p>
+
+                    <div class="box-photo">
+                        <strong>
+                            <img src="public/images/aaron_sustar.png" alt="Aaron Sustar">
+                            Aaron Sustar
+                        </strong>
+                        <p> Founder of Spin Rewriter, <span>8-figure company</span></p>
+
+                    </div>
+                </div>
+                <div class="container-medium">
+                    <h4>About me</h4>
+                    <h2>So, who’s Jaka?</h2>
+                    <div class="info-box">
+                        <p><span><b>I stand out from other designers because I’ve actually built a multi-million dollar
+                                    design company from scratch. </b></span></p>
+
+                        <p>That’s why I know how important marketing and sales are.</p>
+
+                        <p>And while most designers only care about the looks, I care about how things perform.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container small">
+                <div class="image-box">
+                    <picture>
+                        <source media="(min-width: 1024px)"
+                            srcset="public/images/jaka-smid@2x.jpg  1024w, public/images/jaka-smid@2x.jpg 640w, public/images/jaka-smid.jpg 320w"
+                            sizes="50vw" />
+                        <source srcset="public/images/jaka-smid@2x.jpg 2x, public/images/jaka-smid.jpg 1x" />
+                        <img src="public/images/jaka-smid.jpg" alt="Conversion designer" />
+                    </picture>
+                    <img class="tags" src="public/images/tags_cloud.png" alt="Jaka Smid">
+                </div>
+                <div class="info-box">
+                    <p>Before my business grew into a multi-million dolar company there was a point where I had to
+                        do everything myself: design, UX, copywriting, marketing, advertising, sales, front-end dev,
+                        accounting…
+                    </p>
+
+                    <p>This left me with a deep understanding of what profitable businesses really need. </p>
+
+                    <p>After selling my design company, I'm now able to focus 100% on what I do best: <span><b>designing
+                                high-converting e-commerce stores</b></span></p>
+
+                    <p>Today I help businesses skyrocket the performance of their websites &amp; apps using evolutionary
+                        design.</p>
+                </div>
+                <div class="box-white box-second">
+                    <h2>So, listen! If you</h2>
+                    <ul>
+                        <li><span>Are tired of designers trying to sell you their artwork</span></li>
+                        <li><span>Want to increase conversions on your page or app</span> <br />based on proven,
+                            data-driven optimizations</li>
+                        <li><span>Are looking for a designer who understands business,</span> <br /> marketing &amp;
+                            sales</li>
+                    </ul>
+                    <a href="https://app.youform.com/forms/8atbpl9o" class="btn"><span>Let's Work Together</span></a>
+                    <!--    <div class="logos-box">
+                        <p>or get in touch with me via e-mail <a
+                                href="mailto:jaka@conversion.design">jaka@conversion.design</a>
+                    </div> !-->
+                </div>
+
+
+
+            </div>
+
+
+            <div class="portfolio" id="portfolio">
+                <div class="container small">
+                    <h4>Portfolio</h4>
+                    <h2>Want to see my work in action?
+                        Take a look at my portfolio…
+                    </h2>
+                    <div class="text-center">
+                        <p>Most of my work is locked behind NDAs, but I’ve managed to convince a select few of my
+                            clients to let me showcase their projects below.</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <!-- VigoShop -->
+                    <div class="pic-box blue" id="vigoshop">
+
+                        <div class="info">
+                            <h4>Complete E-commerce Design</h4>
+                            <h3>VigoShop</h3>
+                            <p>VigoShop is one of Slovenia's leading e-commerce stores, where I personally helped the
+                                team grow from a $95M/year operation to a $159M/year company with a smoother,
+                                higher-converting funnel.</p>
+                            <div class="border-line">&nbsp;</div>
+                            <div class="small-text">
+                                <p>Additional revenue generated:</p>
+                            </div>
+
+                            <p class="val"><span>+$64 million</span> +67.4%</p>
+                            <div class="slider-range-max"></div>
+
+
+
+
+                            <a href="vigoshop.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="vigoshop.php"><img src="public/images/vigo-preview.png"
+                                    alt="VigoShop e-commerce design"></a>
+                        </div>
+                    </div>
+                    <!-- Vitapur -->
+                    <div class="pic-box sunrise">
+
+                        <div class="info">
+                            <h4>E-commerce Product Page</h4>
+                            <h3>Vitapur</h3>
+                            <p>Vitapur is a household brand in Central Europe that helps families outfit their homes
+                                with premium bedding, kitchenware, and wellness products built to last.</p>
+
+
+                            <a href="vitapur.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="vitapur.php"><img src="public/images/vitapur-e-commerce-design.png"
+                                    alt="Vitapur e-commerce design"></a>
+                        </div>
+                    </div>
+                    <!-- EvolveGarden -->
+                    <div class="pic-box light-green">
+
+                        <div class="info">
+                            <h4>SALES PAGE DESIGN</h4>
+                            <h3>Evolve Garden</h3>
+                            <p>Evolve Garden is a food startup that helps you grow healthy organic microgreens in the
+                                comfort of your home.</p>
+
+
+
+                            <a href="evolve-garden.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="evolve-garden.php"><img src="public/images/evolve_garden_ecommerce_design.png"
+                                    alt="evolve garden ecommerce"></a>
+                        </div>
+                    </div>
+                    <!-- Yalla -->
+                    <div class="pic-box purple">
+
+                        <div class="info">
+                            <h4>E-commerce Design</h4>
+                            <h3>Yalla Baby Box</h3>
+                            <p>Yalla Baby Box is an UAE store that sells baby products as a subscription.</p>
+
+                            <a href="yalla-baby-box.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="yalla-baby-box.php"><img src="public/images/yalla-baby-box-e-commerce.png"
+                                    alt="yalla baby box ecommerce design"></a>
+                        </div>
+                    </div>
+                    <!-- Golden Tree Nutrition -->
+                    <div class="pic-box honey">
+
+                        <div class="info">
+                            <h4>E-commerce Product Page</h4>
+                            <h3>Golden Tree Nutrition</h3>
+                            <p>Golden Tree Nutrition is a European wellness brand known for collagen and metabolic
+                                supplements. I designed their premium product page to spotlight bundle savings, make the
+                                subscription toggle effortless, and stack trust signals that reassure health-conscious
+                                buyers.</p>
+
+
+
+                            <a href="golden-tree-nutrition.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="golden-tree-nutrition.php"><img src="public/images/golden-tree.png"
+                                    alt="Golden Tree Nutrition ecommerce design"></a>
+                        </div>
+                    </div>
+
+                    <!-- EBN -->
+                    <div class="pic-box blue">
+
+                        <div class="info">
+                            <h4>Landing, Sales Page &amp; App Design</h4>
+                            <h3>Easy Blog Networks</h3>
+                            <p>Easy Blog Networks is a SaaS tool for SEO specialists that want to build and manage their
+                                private blog networks in a simple and easy way.</p>
+                            <div class="border-line">&nbsp;</div>
+                            <div class="small-text">
+                                <p>Increased conversion rate</p>
+                            </div>
+
+                            <p class="val"><span>+55,12%</span></p>
+                            <div class="slider-range-max"></div>
+
+
+
+
+
+                            <a href="easy-blog-networks.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="easy-blog-networks.php"><img src="public/images/ebn_landing_page_design.png"
+                                    alt="easy blog networks landing page"></a>
+                        </div>
+                    </div>
+                    <!-- SpinRewriter -->
+                    <div class="pic-box red">
+
+                        <div class="info">
+                            <h4>Landing, Sales Page &amp; App Design</h4>
+                            <h3>Spin Rewriter</h3>
+                            <p>Spin Rewriter is a SaaS tool for SEO specialists that need unique content to rank higher
+                                on Google, used by 181,000 customers.</p>
+                            <div class="border-line">&nbsp;</div>
+                            <div class="small-text">
+                                <p>Additional revenue generated:</p>
+                            </div>
+
+                            <p class="val"><span>+$610,000</span> +65%</p>
+                            <div class="slider-range-max"></div>
+
+
+
+
+                            <a href="spin-rewriter.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="spin-rewriter.php"><img src="public/images/spin_rewriter_landing_page_design.png"
+                                    alt="spin rewriter landing page"></a>
+                        </div>
+                    </div>
+
+                    <!-- Sendcloud -->
+                    <div class="pic-box green-blue">
+
+                        <div class="info">
+                            <h4>LANDING PAGE DESIGN</h4>
+                            <h3>SendCloud</h3>
+                            <p>Sendcloud is a leading European all-round shipping platform that connects to 85+ shop
+                                systems and carriers.</p>
+
+
+                            <a href="sendcloud.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="sendcloud.php"><img src="public/images/sendcloud.png"
+                                    alt="Sendcloud landing page design"></a>
+                        </div>
+                    </div>
+
+                    <!-- Wheelio dashboard -->
+                    <div class="pic-box purple">
+
+                        <div class="info">
+                            <h4>DASHBOARD DESIGN</h4>
+                            <h3>Wheelio Admin</h3>
+                            <p>Wheelio is the world's first gamified pop-up builder, used by more than 96,000 store
+                                owners.</p>
+                            <div class="border-line">&nbsp;</div>
+                            <div class="small-text">
+                                <p>Increased retention:</p>
+                            </div>
+
+                            <p class="val"><span>+9.66%</span></p>
+                            <div class="slider-range-max4"></div>
+                            <a href="wheelio-admin-dashboard.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="wheelio-admin-dashboard.php"><img
+                                    src="public/images/wheelio_admin_dashboard_design.png"
+                                    alt="wheelio admin dashboard ui"></a>
+                        </div>
+                    </div>
+
+                    <!-- PirateStore -->
+                    <div class="pic-box green-blue">
+
+                        <div class="info">
+                            <h4>E-COMMERCE DESIGN</h4>
+                            <h3>Pirate Store</h3>
+                            <p>Pirate Store is a conversion-focused Shopify theme that helps merchants turn more
+                                visitors into customers.</p>
+
+
+                            <a href="pirate-store.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="pirate-store.php"><img src="public/images/pirate_store_ecommerce_design.png"
+                                    alt="pirate store ecommerce shopify theme"></a>
+                        </div>
+                    </div>
+
+                    <!-- Wheelio landing page -->
+                    <div class="pic-box blue">
+                        <div class="info">
+                            <h4>LANDING PAGE DESIGN</h4>
+                            <h3>Wheelio</h3>
+                            <p>Wheelio is the world's first gamified pop-up builder, used by more than 96,000 store
+                                owners.</p>
+                            <div class="border-line">&nbsp;</div>
+                            <div class="small-text">
+                                <p>Increased conversion rate:</p>
+                            </div>
+
+                            <p class="val"><span>+20.4%</span> </p>
+                            <div class="slider-range-max2"></div>
+                            <a href="wheelio-landing-page.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="wheelio-landing-page.php"><img src="public/images/wheelio_landing_page_design.png"
+                                    alt="wheelio landing page"></a>
+                        </div>
+                    </div>
+
+                    <!-- Rifuzl -->
+                    <div class="pic-box green">
+                        <div class="info">
+                            <h4>APP FOR GROCERY SHOPPING</h4>
+                            <h3>Rifuzl</h3>
+                            <p>Rifuzl is the first Slovenian zero-waste grocery store whose mission is to remove
+                                plastics from the food system.</p>
+                            <div class="border-line">&nbsp;</div>
+                            <div class="small-text">
+                                <p>Increased average order value:</p>
+                            </div>
+
+                            <p class="val"><span>+10.02%</span> </p>
+                            <div class="slider-range-max3"></div>
+                            <a href=" rifuzl.php" class="btn-black">More about the project</a>
+                        </div>
+                        <div class="image">
+                            <a href="rifuzl.php"><img src="public/images/rifuzl_mobile_app_design.png"
+                                    alt="rifuzl mobile ecommerce store"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vitapur 
+                    <div class="pic-box green">
+                      
+                      <div class="info">
+                          <h4>E-commerce design</h4>
+                          <h3>Vitapur</h3>
+                          <p>Vitapur is a brand of innovative products that wants to offer better and more quality sleep.</p>
+                          
+                        
+                        
+                          
+                          
+                          <a href="vitapur.php" class="btn-black">More about the project</a>
+                      </div>
+                      <div class="image">
+                          <a href="vitapur.php"><img src="public/images/vitapur-e-commerce-design.png" alt="vitapur e-commerce product page design"></a>
+                      </div>
+                  </div>-->
+
+
+
+            </div>
+
+            <footer id="footer">
+                <div class="container">
+                    <h2>Results matter!</h2>
+                    <h4>and so does the look</h4>
+                    <div class="info-box">
+                        <p>If you’re looking for a designer who can squeeze incredible conversions through gorgeous
+                            design, then I’m your guy.</p>
+
+                        <p>You already know that I built a multi-million dollar design company from scratch…</p>
+
+                        <p>And how I help businesses generate hundreds of thousands of dollars in EXTRA revenue through
+                            design.</p>
+
+                        <p>If you’re an owner of a 7 or 8-figure company, then I want to work with you.</p>
+                    </div>
+                    <div class="box-white">
+                        <h2>If you want to:</h2>
+                        <div class="border-line">&nbsp;</div>
+                        <ul>
+                            <li><span>Improve conversions</span> on your landing pages</li>
+                            <li><span>Increase average order value</span> in your online store</li>
+                            <li><span>Improve retention</span> in your web app</li>
+                        </ul>
+                        <a href="https://app.youform.com/forms/8atbpl9o" class="btn"><span> Let's Work
+                                Together</span></a>
+                        <div id="content">
+                            <!--    <div class="logos-box">
+                        <p>or get in touch with me via e-mail <a
+                                href="mailto:jaka@conversion.design">jaka@conversion.design</a>
+                    </div> !-->
+                        </div>
+                    </div>
+                    <h3>The so-called “Jaka” effect</h3>
+                    <div class="copy-text">
+                        <p>Copyright &copy; 2007&mdash;2026 Jaka Šmid. All rights reserved. <br />
+                            Enjoy the rest of your Friday!
+                        </p>
+                    </div>
+                </div>
+
+            </footer>
+
+        </div>
+
+
+        <script src="public/js/jquery.js"></script>
+        <script src="public/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="public/js/main.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"0af294dc6ed54804883c024966b8910d","r":1}' crossorigin="anonymous"></script>
+</body>
+
+</html>

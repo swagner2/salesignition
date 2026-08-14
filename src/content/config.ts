@@ -4,8 +4,8 @@ const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    publishDate: z.string(), // or z.date()
-    description: z.string(),
+    publishDate: z.union([z.string(), z.date()]), // Accepts both strings and date objects
+    description: z.string().optional(),           // Make description optional to prevent empty save failures
   }),
 });
 

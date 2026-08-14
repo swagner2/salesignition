@@ -202,7 +202,7 @@ import Layout from '../../layouts/Layout.astro';
     <span class="eyebrow">Featured</span>
     <div class="featured__inner">
       <div class="featured__img">
-        <img src="/images/blog/featured-deliverability.png" alt="Email deliverability guide"
+        <img src="/blog/images/blog/featured-deliverability.png" alt="Email deliverability guide"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="featured__img-placeholder">📬</div>
       </div>
@@ -214,7 +214,7 @@ import Layout from '../../layouts/Layout.astro';
         <p class="featured__excerpt">Most deliverability advice is vague. "Warm up your IP." "Clean your list." "Authenticate your domain." But none of it tells you how to diagnose which specific issue is killing your inbox placement — or in what order to fix them. This is that guide.</p>
         <div class="featured__meta">
           <div class="featured__meta-avatar">
-            <img src="/images/steven-headshot.png" alt="Steven"
+            <img src="/blog/images/steven-headshot.png" alt="Steven"
               onerror="this.style.display='none';">
           </div>
           <div>
@@ -256,7 +256,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 1 -->
       <article class="acard" data-cat="deliverability">
         <div class="acard__img">
-          <img src="/images/blog/spf-dkim-dmarc.png" alt=""
+          <img src="/blog/images/blog/spf-dkim-dmarc.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">🔐</div>
         </div>
@@ -274,7 +274,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 2 -->
       <article class="acard" data-cat="klaviyo">
         <div class="acard__img">
-          <img src="/images/blog/klaviyo-segments.png" alt=""
+          <img src="/blog/images/blog/klaviyo-segments.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">📊</div>
         </div>
@@ -292,7 +292,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 3 -->
       <article class="acard" data-cat="ai">
         <div class="acard__img">
-          <img src="/images/blog/ai-email-copy.png" alt=""
+          <img src="/blog/images/blog/ai-email-copy.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">⚡</div>
         </div>
@@ -310,7 +310,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 4 -->
       <article class="acard" data-cat="strategy">
         <div class="acard__img">
-          <img src="/images/blog/abandoned-cart.png" alt=""
+          <img src="/blog/images/blog/abandoned-cart.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">🛒</div>
         </div>
@@ -328,7 +328,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 5 -->
       <article class="acard" data-cat="deliverability">
         <div class="acard__img">
-          <img src="/images/blog/inbox-placement.png" alt=""
+          <img src="/blog/images/blog/inbox-placement.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">📥</div>
         </div>
@@ -346,7 +346,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 6 -->
       <article class="acard" data-cat="casestudy">
         <div class="acard__img">
-          <img src="/images/blog/vurbmoto-case.png" alt=""
+          <img src="/blog/images/blog/vurbmoto-case.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">📈</div>
         </div>
@@ -364,7 +364,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 7 -->
       <article class="acard" data-cat="klaviyo">
         <div class="acard__img">
-          <img src="/images/blog/welcome-series.png" alt=""
+          <img src="/blog/images/blog/welcome-series.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">👋</div>
         </div>
@@ -382,7 +382,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 8 -->
       <article class="acard" data-cat="campaigns">
         <div class="acard__img">
-          <img src="/images/blog/campaign-calendar.png" alt=""
+          <img src="/blog/images/blog/campaign-calendar.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">📅</div>
         </div>
@@ -400,7 +400,7 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Article 9 -->
       <article class="acard" data-cat="ai">
         <div class="acard__img">
-          <img src="/images/blog/subject-lines.png" alt=""
+          <img src="/blog/images/blog/subject-lines.png" alt=""
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="acard__img-placeholder">✍️</div>
         </div>
@@ -434,7 +434,7 @@ import Layout from '../../layouts/Layout.astro';
     <span class="eyebrow">Stay Sharp</span>
     <h2>Get one email per week that improves your email program.</h2>
     <p>No fluff. Just practical deliverability fixes, Klaviyo strategies, and AI systems — from someone who uses them in real accounts.</p>
-    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+    <form class="newsletter-form">
       <input type="email" placeholder="your@email.com" required>
       <button type="submit" class="btn">Subscribe →</button>
     </form>
@@ -447,7 +447,7 @@ import Layout from '../../layouts/Layout.astro';
   <div class="footer__links">
     <a href="https://salesignition.com">Main Site</a>
     <a href="https://salesignition.com//work-with-me">Work With Me</a>
-    <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co</a>
+    <a href="/audit">EmailDelivery.co</a>
     <a href="mailto:hello@salesignition.com">Contact</a>
   </div>
 </footer>
@@ -483,16 +483,31 @@ import Layout from '../../layouts/Layout.astro';
     });
   });
 
-  // Newsletter form
-  function handleSubscribe(e) {
-    e.preventDefault();
-    const input = e.target.querySelector('input');
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✓ You\'re in!';
-    btn.style.background = '#16a34a';
-    input.value = '';
-    input.disabled = true;
-    btn.disabled = true;
+    // Newsletter form
+  const form = document.querySelector('.newsletter-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input');
+      const btn = form.querySelector('button');
+      
+      btn.textContent = "✓ You're in!";
+      btn.style.background = '#16a34a';
+      btn.style.color = '#ffffff';
+      input.value = '';
+      input.disabled = true;
+      btn.disabled = true;
+      
+      const successMsg = document.createElement('p');
+      successMsg.className = 'subscribe-success';
+      successMsg.style.color = '#16a34a';
+      successMsg.style.fontWeight = '700';
+      successMsg.style.fontSize = '16px';
+      successMsg.style.marginTop = '15px';
+      successMsg.style.textAlign = 'center';
+      successMsg.textContent = "Awesome! You've successfully subscribed to the weekly newsletter.";
+      form.parentNode.appendChild(successMsg);
+    });
   }
 </script>
 </body>

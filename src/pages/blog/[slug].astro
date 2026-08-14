@@ -11,7 +11,6 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -300,7 +299,7 @@ const { Content } = await post.render();
     <p class="article-header__intro">Most deliverability advice is vague. "Warm up your IP." "Clean your list." "Authenticate your domain." None of it tells you how to diagnose which specific issue is killing your inbox placement — or in what order to fix them. This is that guide.</p>
     <div class="article-header__meta">
       <div class="article-header__avatar">
-        <img src="/images/steven-headshot.png" alt="Steven Wagner"
+        <img src="/blog/images/steven-headshot.png" alt="Steven Wagner"
           onerror="this.style.display='none';this.parentElement.textContent='SW';">
       </div>
       <div class="article-header__byline">
@@ -325,7 +324,7 @@ const { Content } = await post.render();
 
     <!-- Hero image -->
     <div class="article-hero-img">
-      <img src="/images/blog/featured-deliverability.png" alt="Email deliverability diagram"
+      <img src="/blog/images/blog/featured-deliverability.png" alt="Email deliverability diagram"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <span>📬 images/blog/featured-deliverability.png</span>
     </div>
@@ -336,7 +335,7 @@ const { Content } = await post.render();
       
 <article class="article-content">
   <!-- Render dynamic frontmatter headers inside template if needed, or keep original body since it's in the Markdown -->
-  <Content />
+  <Fragment set:html={post.body} />
 </article>
       <!-- ░░░░░░ END MAIN CONTENT ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 
@@ -360,7 +359,7 @@ const { Content } = await post.render();
             <span class="sidebar-audit__icon">📬</span>
             <h4>Free Email Deliverability Audit</h4>
             <p>Check your SPF, DKIM, DMARC, blacklist status, and sender reputation in under 60 seconds — free.</p>
-            <a class="btn btn--ghost" href="https://emaildelivery.co" target="_blank">Run Your Free Audit →</a>
+            <a class="btn btn--ghost" href="/audit">Run Your Free Audit →</a>
           </div>
         </div>
 
@@ -433,7 +432,7 @@ const { Content } = await post.render();
     <a href="/">Blog Home</a>
     <a href="https://salesignition.com">Main Site</a>
     <a href="https://salesignition.com//work-with-me">Work With Me</a>
-    <a href="https://emaildelivery.co" target="_blank">EmailDelivery.co</a>
+    <a href="/audit">EmailDelivery.co</a>
     <a href="mailto:hello@salesignition.com">Contact</a>
   </div>
 </footer>
