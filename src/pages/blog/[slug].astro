@@ -283,11 +283,11 @@ const { post } = Astro.props;
 <!-- ══ BREADCRUMB ════════════════════════════════════════ -->
 <div class="breadcrumb">
   <div class="container">
-    <a href="/">Blog</a>
+    <a href="/blog">Blog</a>
     <span>›</span>
-    <a href="/?cat=deliverability">Deliverability</a>
+    <a href="/blog?cat=deliverability">Deliverability</a>
     <span>›</span>
-    Why Your Emails Are Going to Spam
+    {post.data.title}
   </div>
 </div>
 
