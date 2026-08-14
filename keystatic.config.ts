@@ -30,5 +30,17 @@ export default config({
         content: fields.markdoc({ label: 'Content' }),
       },
     }),
+    pages: collection({
+      label: 'Marketing Pages',
+      slugField: 'slug',
+      path: 'src/content/pages/*',
+      format: { contentField: 'content' },
+      schema: {
+        slug: fields.slug({ name: { label: 'Slug / URL Path' } }),
+        title: fields.text({ label: 'Page Title' }),
+        description: fields.text({ label: 'Meta Description', multiline: true }),
+        content: fields.markdoc({ label: 'Page Content (Markdown / Copy)' }),
+      },
+    }),
   },
 });
